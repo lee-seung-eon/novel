@@ -65,10 +65,12 @@
   /* ── 밤하늘: 별자리 + 초승달 ── */
   .sky{position:fixed; inset:0; z-index:0; pointer-events:none;}
   .sky svg{width:100%; height:100%; display:block;}
-  .cst-line{fill:none; stroke:var(--gold-dim); stroke-width:1; stroke-linecap:round; opacity:.55;}
-  .star{fill:var(--gold); filter:drop-shadow(0 0 3px rgba(217,184,119,.8));}
+  .cst-line{fill:none; stroke:rgba(217,184,119,.34); stroke-width:.7; stroke-linecap:round;}
+  .star{fill:var(--gold); filter:drop-shadow(0 0 2px rgba(217,184,119,.7));}
+  .star.cool{fill:#c4d6e6; filter:drop-shadow(0 0 2px rgba(196,214,230,.7));}
   .star.tw{animation:tw 4s ease-in-out infinite;}
   .star.tw2{animation:tw 5.5s ease-in-out infinite; animation-delay:1.2s;}
+  .star.tw3{animation:tw 6.6s ease-in-out infinite; animation-delay:.6s;}
   .moon{fill:var(--gold); filter:drop-shadow(0 0 10px rgba(217,184,119,.6));}
   @keyframes tw{0%,100%{opacity:1;}50%{opacity:.35;}}
 
@@ -112,9 +114,9 @@
     background:linear-gradient(90deg, transparent, var(--line-strong), transparent);}
   .rule span{font-size:.7rem; letter-spacing:.3em;}
 
-  .lede{color:var(--text-soft); font-size:1.02rem; line-height:1.95; max-width:33rem;
-    margin:0 auto; letter-spacing:.01em;}
-  .lede b{color:var(--gold-soft); font-weight:400;}
+  .lede{color:#e4e0d3; font-size:1.12rem; font-weight:700; line-height:1.95; max-width:34rem;
+    margin:0 auto; letter-spacing:.01em; text-shadow:0 1px 8px rgba(0,0,0,.55);}
+  .lede b{color:var(--gold); font-weight:700;}
 
   /* ── shelf ── */
   .shelf-head{font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.3em;
@@ -147,7 +149,8 @@
   .book .name{font-family:"Nanum Myeongjo", serif; font-weight:800; color:var(--frost);
     font-size:2.2rem; line-height:1; letter-spacing:.06em; margin:0 0 1rem;
     text-shadow:0 0 24px rgba(217,184,119,.12);}
-  .book .desc{color:var(--text-soft); font-size:.92rem; line-height:1.85; margin:0 0 1.5rem;}
+  .book .desc{color:#cdc9ba; font-size:.95rem; line-height:1.85; margin:0 0 1.5rem;
+    text-shadow:0 1px 6px rgba(0,0,0,.5);}
   .book .meta{margin-top:auto; display:flex; justify-content:space-between; align-items:center;
     font-family:"IBM Plex Mono", monospace; font-size:.68rem; letter-spacing:.08em; color:var(--muted);
     padding-top:1rem; border-top:1px dashed var(--line-strong);}
@@ -188,35 +191,61 @@
     <path class="moon" d="M872 150 a52 52 0 1 0 34 92 a40 40 0 1 1 -34 -92 Z"/>
 
     <!-- 북두칠성 (Big Dipper) · 좌하단 -->
-    <polyline class="cst-line" points="120,980 210,1000 300,970 380,1010 380,1110 470,1140 500,1060"/>
-    <circle class="star tw" cx="120" cy="980" r="4"/>
-    <circle class="star" cx="210" cy="1000" r="3.4"/>
-    <circle class="star tw2" cx="300" cy="970" r="4.2"/>
-    <circle class="star" cx="380" cy="1010" r="3.4"/>
-    <circle class="star tw" cx="380" cy="1110" r="3.6"/>
-    <circle class="star" cx="470" cy="1140" r="4"/>
-    <circle class="star tw2" cx="500" cy="1060" r="3.4"/>
+    <polyline class="cst-line" points="130,995 208,1012 288,985 360,1018 360,1104 452,1132 480,1058"/>
+    <circle class="star tw" cx="130" cy="995" r="2.4"/>
+    <circle class="star cool" cx="208" cy="1012" r="1.9"/>
+    <circle class="star tw2" cx="288" cy="985" r="2.5"/>
+    <circle class="star" cx="360" cy="1018" r="1.9"/>
+    <circle class="star cool tw" cx="360" cy="1104" r="2.1"/>
+    <circle class="star" cx="452" cy="1132" r="2.3"/>
+    <circle class="star tw2" cx="480" cy="1058" r="1.9"/>
 
     <!-- 카시오페이아 (W) · 우중단 -->
-    <polyline class="cst-line" points="720,470 780,540 850,480 910,560 980,500"/>
-    <circle class="star tw2" cx="720" cy="470" r="3.6"/>
-    <circle class="star" cx="780" cy="540" r="3.2"/>
-    <circle class="star tw" cx="850" cy="480" r="4"/>
-    <circle class="star" cx="910" cy="560" r="3.2"/>
-    <circle class="star tw2" cx="980" cy="500" r="3.6"/>
+    <polyline class="cst-line" points="735,470 786,528 846,478 900,540 960,492"/>
+    <circle class="star tw2" cx="735" cy="470" r="2.1"/>
+    <circle class="star cool" cx="786" cy="528" r="1.8"/>
+    <circle class="star tw" cx="846" cy="478" r="2.4"/>
+    <circle class="star cool" cx="900" cy="540" r="1.8"/>
+    <circle class="star tw2" cx="960" cy="492" r="2.1"/>
 
-    <!-- 오리온 벨트 (세 별) · 중앙하단 -->
-    <polyline class="cst-line" points="560,760 620,800 680,840"/>
-    <circle class="star tw" cx="560" cy="760" r="3.4"/>
-    <circle class="star" cx="620" cy="800" r="3.8"/>
-    <circle class="star tw2" cx="680" cy="840" r="3.4"/>
+    <!-- 오리온 벨트 · 중앙하단 -->
+    <polyline class="cst-line" points="566,762 618,798 670,834"/>
+    <circle class="star tw" cx="566" cy="762" r="2"/>
+    <circle class="star" cx="618" cy="798" r="2.3"/>
+    <circle class="star cool tw2" cx="670" cy="834" r="2"/>
 
-    <!-- 흩뿌린 별 -->
-    <circle class="star tw2" cx="180" cy="360" r="2.2"/>
-    <circle class="star tw" cx="640" cy="240" r="2"/>
-    <circle class="star" cx="430" cy="520" r="1.8"/>
-    <circle class="star tw" cx="900" cy="900" r="2.2"/>
-    <circle class="star tw2" cx="260" cy="640" r="2"/>
+    <!-- 작은 별자리 (삼각) · 좌중단 -->
+    <polyline class="cst-line" points="150,600 215,585 190,655 150,600"/>
+    <circle class="star cool tw3" cx="150" cy="600" r="1.8"/>
+    <circle class="star tw" cx="215" cy="585" r="1.7"/>
+    <circle class="star tw2" cx="190" cy="655" r="1.7"/>
+
+    <!-- 흩뿌린 성긴 별밭 (촘촘) -->
+    <circle class="star tw2" cx="120" cy="330" r="1.5"/>
+    <circle class="star cool tw" cx="200" cy="250" r="1.2"/>
+    <circle class="star tw3" cx="300" cy="200" r="1.4"/>
+    <circle class="star cool" cx="410" cy="150" r="1.1"/>
+    <circle class="star tw" cx="620" cy="220" r="1.5"/>
+    <circle class="star cool tw2" cx="700" cy="300" r="1.2"/>
+    <circle class="star tw3" cx="560" cy="360" r="1.3"/>
+    <circle class="star" cx="470" cy="430" r="1.2"/>
+    <circle class="star cool tw" cx="340" cy="470" r="1.4"/>
+    <circle class="star tw2" cx="250" cy="520" r="1.2"/>
+    <circle class="star tw3" cx="820" cy="360" r="1.4"/>
+    <circle class="star cool" cx="930" cy="300" r="1.2"/>
+    <circle class="star tw" cx="880" cy="640" r="1.5"/>
+    <circle class="star cool tw2" cx="950" cy="720" r="1.3"/>
+    <circle class="star tw3" cx="780" cy="700" r="1.2"/>
+    <circle class="star" cx="660" cy="620" r="1.3"/>
+    <circle class="star cool tw" cx="540" cy="560" r="1.2"/>
+    <circle class="star tw2" cx="410" cy="720" r="1.4"/>
+    <circle class="star tw3" cx="300" cy="780" r="1.2"/>
+    <circle class="star cool" cx="180" cy="820" r="1.3"/>
+    <circle class="star tw" cx="620" cy="980" r="1.4"/>
+    <circle class="star cool tw2" cx="720" cy="1050" r="1.2"/>
+    <circle class="star tw3" cx="860" cy="1000" r="1.3"/>
+    <circle class="star" cx="920" cy="1120" r="1.2"/>
+    <circle class="star cool tw" cx="240" cy="1180" r="1.3"/>
   </svg>
 </div>
 
@@ -230,7 +259,7 @@
       <div class="seal" title="李承彦印">
         <div class="grid2"><i>彦</i><i>李</i><i>印</i><i>承</i></div>
       </div>
-      <h1>서재<span class="hanja">별 헤는 밤</span></h1>
+      <h1>서재</h1>
     </div>
     <div class="rule"><span>✦</span></div>
     <p class="lede">계절이 지나가는 하늘 아래,<br>Claude와 함께 <b>한 편씩</b> 눌러쓴 이야기들.</p>
