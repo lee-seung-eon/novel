@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>적정 온도 · 목차</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0f13; --surface:#141821; --surface-2:#11141b;
+    --text:#cfd3d8; --text-dim:#727a86; --faint:#454c57;
+    --blue:#7fb0d4; --blue-dim:#52788f; --blue-deep:#3d5a70;
+    --warm:#e8dcc8; --warm-dim:#a89880;
+    --highlight:#eef1f4; --border:#232833; --border-2:#2f3644;
+    --maxw:640px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(90% 60% at 50% -8%, #131a24 0%, transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Serif KR', serif; min-height:100vh;
+    line-height:1.75; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 22px 96px;}
+  .back{display:inline-block; font-family:'Noto Sans KR',sans-serif; font-size:12px;
+    letter-spacing:.08em; color:var(--text-dim); text-decoration:none; margin-bottom:44px;}
+  .back:hover{color:var(--blue);}
+
+  /* 온도 게이지 헤더 */
+  header.title{text-align:center; padding:20px 0 46px; border-bottom:1px solid var(--border); margin-bottom:8px;}
+  .gauge{width:1px; height:44px; margin:0 auto 26px; position:relative;
+    background:linear-gradient(180deg, var(--blue), var(--warm-dim));}
+  .gauge::after{content:""; position:absolute; left:50%; bottom:-4px; transform:translateX(-50%);
+    width:9px; height:9px; border-radius:50%; background:var(--blue); box-shadow:0 0 12px var(--blue);}
+  .series{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.44em;
+    text-indent:.44em; color:var(--blue); margin-bottom:20px;}
+  h1{font-weight:700; color:var(--highlight); font-size:clamp(2.8rem,10vw,4rem);
+    letter-spacing:.08em; line-height:1.05;}
+  .tagline{margin-top:22px; color:var(--text-dim); font-size:15px; line-height:1.95;}
+  .meta-row{margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.14em;}
+  .chip{border:1px solid var(--border-2); border-radius:20px; padding:5px 13px; color:var(--warm-dim);}
+  .chip.done{border-color:var(--blue-dim); color:var(--blue);}
+
+  .toc-label{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--text-dim); margin:38px 0 6px;}
+  .toc{list-style:none;}
+  .toc a{display:flex; align-items:baseline; gap:16px; text-decoration:none; color:var(--text);
+    padding:15px 6px; border-bottom:1px solid var(--border); transition:background .16s, padding-left .16s;}
+  .toc a:hover{background:rgba(127,176,212,.06); padding-left:14px;}
+  .toc .no{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.06em;
+    color:var(--blue); flex:0 0 auto; min-width:58px;}
+  .toc .ep{font-size:17px; color:var(--highlight); letter-spacing:.01em;}
+  .toc .go{margin-left:auto; font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--faint);}
+  .toc a:hover .go{color:var(--blue);}
+  .toc li.epi a{border-top:1px solid var(--border-2); margin-top:6px;}
+  .toc li.epi .no{color:var(--warm-dim);}
+
+  .codex{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:28px;
+    padding:17px 16px; text-decoration:none; border:1px solid var(--border-2); border-radius:3px;
+    background:linear-gradient(180deg, rgba(127,176,212,.07), transparent);
+    font-family:'Noto Sans KR',sans-serif; font-size:13px; letter-spacing:.1em; color:var(--blue);}
+  .codex span{color:var(--text-dim); letter-spacing:.02em;}
+
+  .foot{margin-top:52px; text-align:center; font-family:'Noto Sans KR',sans-serif;
+    font-size:11px; letter-spacing:.12em; color:var(--faint); line-height:2;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../../index.html">&#9668; 서재로</a>
+
+  <header class="title">
+    <div class="gauge" aria-hidden="true"></div>
+    <div class="series">적정 온도</div>
+    <h1>적정 온도</h1>
+    <p class="tagline">뜨겁지도 차갑지도 않게. 딱 그만큼의 거리에서 살아온 남자.<br>은백색 창을 든 전 A급 헌터의, 천천히 데워지는 이야기.</p>
+    <div class="meta-row">
+      <span class="chip done">완결</span>
+      <span class="chip">전 40화 + 에필로그</span>
+      <span class="chip">헌터 · 슬로우번 · BL</span>
+    </div>
+  </header>
+
+  <div class="toc-label">목차 · Chapters</div>
+  <ul class="toc">
+    <li><a href="chapter01.html"><span class="no">01화</span><span class="ep">적정 온도</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter02.html"><span class="no">02화</span><span class="ep">재능 없는 쪽</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter03.html"><span class="no">03화</span><span class="ep">옛 직장 동료</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter04.html"><span class="no">04화</span><span class="ep">선택지</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter05.html"><span class="no">05화</span><span class="ep">오지 않는 곳</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter06.html"><span class="no">06화</span><span class="ep">감감무소식</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter07.html"><span class="no">07화</span><span class="ep">3년</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter08.html"><span class="no">08화</span><span class="ep">익숙한 문</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter09.html"><span class="no">09화</span><span class="ep">공략단</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter10.html"><span class="no">10화</span><span class="ep">허튼생각</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter11.html"><span class="no">11화</span><span class="ep">선봉</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter12.html"><span class="no">12화</span><span class="ep">빡통이 아닌데</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter13.html"><span class="no">13화</span><span class="ep">고생했다</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter14.html"><span class="no">14화</span><span class="ep">처음으로</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter15.html"><span class="no">15화</span><span class="ep">가고 싶지</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter16.html"><span class="no">16화</span><span class="ep">솥뚜껑</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter17.html"><span class="no">17화</span><span class="ep">류시헌</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter18.html"><span class="no">18화</span><span class="ep">화 많이 났냐</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter19.html"><span class="no">19화</span><span class="ep">태풍의 눈</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter20.html"><span class="no">20화</span><span class="ep">얼굴이 예쁜데</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter21.html"><span class="no">21화</span><span class="ep">합의</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter22.html"><span class="no">22화</span><span class="ep">2국</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter23.html"><span class="no">23화</span><span class="ep">미친 사람들</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter24.html"><span class="no">24화</span><span class="ep">괴물들</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter25.html"><span class="no">25화</span><span class="ep">업어줘</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter26.html"><span class="no">26화</span><span class="ep">매의 눈</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter27.html"><span class="no">27화</span><span class="ep">밤길</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter28.html"><span class="no">28화</span><span class="ep">힘 조절</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter29.html"><span class="no">29화</span><span class="ep">상위호환</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter30.html"><span class="no">30화</span><span class="ep">자판기</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter31.html"><span class="no">31화</span><span class="ep">타입</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter32.html"><span class="no">32화</span><span class="ep">청구서</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter33.html"><span class="no">33화</span><span class="ep">3억</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter34.html"><span class="no">34화</span><span class="ep">보고 싶어요</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter35.html"><span class="no">35화</span><span class="ep">무서워요</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter36.html"><span class="no">36화</span><span class="ep">기대는 것</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter37.html"><span class="no">37화</span><span class="ep">같은 밤길</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter38.html"><span class="no">38화</span><span class="ep">세 갈래 길</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter39.html"><span class="no">39화</span><span class="ep">열한 번째</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter40.html"><span class="no">40화</span><span class="ep">좋아합니다</span><span class="go">읽기 &#9658;</span></a></li>
+    <li class="epi"><a href="epilogue.html"><span class="no">에필로그</span><span class="ep">적정 온도</span><span class="go">읽기 &#9658;</span></a></li>
+  </ul>
+
+  <a class="codex" href="설정집.html">📖 세계관 설정집 <span>— 은우의 세계를 더 깊이</span></a>
+
+  <div class="foot">《적정 온도》 · 완결 · written with Claude</div>
+
+</div>
+</body>
+</html>

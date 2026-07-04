@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>적정 온도 · 세계관 설정집</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0f13; --surface:#141821; --surface-2:#11141b;
+    --text:#cfd3d8; --text-dim:#727a86; --faint:#454c57;
+    --blue:#7fb0d4; --blue-dim:#52788f;
+    --warm:#e8dcc8; --warm-dim:#a89880;
+    --highlight:#eef1f4; --border:#232833; --border-2:#2f3644; --steel:#9aa7b5;
+    --maxw:660px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(90% 55% at 50% -8%, #131a24 0%, transparent 60%), var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Serif KR', serif; min-height:100vh;
+    line-height:1.85; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 22px 96px;}
+  .back{display:inline-block; font-family:'Noto Sans KR',sans-serif; font-size:12px;
+    letter-spacing:.08em; color:var(--text-dim); text-decoration:none; margin-bottom:34px;}
+  .back:hover{color:var(--blue);}
+
+  .file{border:1px solid var(--border); background:var(--surface); padding:18px 20px;
+    font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--text-dim);
+    line-height:1.9; letter-spacing:.02em; position:relative; overflow:hidden;}
+  .file .glow{position:absolute; top:16px; right:18px; width:10px; height:10px; border-radius:50%;
+    background:var(--blue); box-shadow:0 0 12px var(--blue); opacity:.85;}
+  .file .k{color:var(--faint);}
+
+  header.title{text-align:center; padding:52px 0 40px; border-bottom:1px solid var(--border); margin-bottom:38px;}
+  .series{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.46em;
+    text-indent:.46em; color:var(--blue); margin-bottom:20px;}
+  h1{font-weight:700; color:var(--highlight); font-size:clamp(2rem,7vw,2.9rem);
+    letter-spacing:.04em; line-height:1.2;}
+  h1 .sub{display:block; margin-top:12px; font-size:clamp(.95rem,3vw,1.15rem);
+    letter-spacing:.22em; color:var(--blue-dim); font-weight:400;}
+  .lede{margin-top:22px; color:var(--text-dim); font-size:15px; line-height:1.95;}
+
+  section{margin:0 0 46px;}
+  .sec-label{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--blue); margin-bottom:8px;}
+  h2{font-weight:700; color:var(--highlight); font-size:clamp(1.35rem,4.5vw,1.7rem);
+    margin:0 0 18px; letter-spacing:.02em; padding-bottom:10px; border-bottom:1px solid var(--border);}
+  h3{font-family:'Noto Sans KR',sans-serif; font-weight:700; color:var(--blue); font-size:14px;
+    letter-spacing:.04em; margin:24px 0 10px;}
+  p{margin:0 0 12px;}
+  ul.dots{list-style:none; margin:0 0 12px;}
+  ul.dots li{position:relative; padding-left:18px; margin-bottom:8px;}
+  ul.dots li::before{content:"·"; position:absolute; left:4px; top:-1px; color:var(--blue); font-weight:700; font-size:16px;}
+  b{color:var(--highlight); font-weight:600;}
+  em{color:var(--blue); font-style:normal;}
+  .warm{color:var(--warm-dim);}
+
+  table{width:100%; border-collapse:collapse; margin:8px 0 16px; font-size:14px;}
+  th,td{text-align:left; padding:11px 13px; border:1px solid var(--border); vertical-align:top;}
+  th{background:rgba(127,176,212,.07); color:var(--blue);
+    font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;}
+  td:first-child{white-space:nowrap; color:var(--highlight); font-weight:600;}
+
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:8px 0 16px;}
+  .split .box{border:1px solid var(--border); background:var(--surface-2); padding:16px;}
+  .split .box .t{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.1em; margin-bottom:8px; font-weight:700;}
+  .split .box.cold .t{color:var(--blue);} .split .box.warm-b .t{color:var(--warm-dim);}
+  .split .box p{font-size:13.5px; color:var(--text-dim); margin:0; line-height:1.8;}
+
+  .callout{border:1px solid var(--border-2); border-left:3px solid var(--blue);
+    background:var(--surface-2); padding:14px 16px; margin:14px 0; border-radius:2px;}
+  .callout .tag{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.14em;
+    color:var(--blue); text-transform:uppercase; margin-bottom:7px; font-weight:700;}
+  .callout p:last-child{margin-bottom:0;}
+
+  .chars{display:grid; gap:16px; margin:8px 0 0;}
+  .char{border:1px solid var(--border); background:var(--surface); padding:20px 20px 18px; position:relative; overflow:hidden;}
+  .char::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--blue); opacity:.75;}
+  .char.warm-c::after{background:var(--warm-dim);}
+  .char.steel-c::after{background:var(--steel);}
+  .ch-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px;}
+  .ch-name{font-weight:700; color:var(--highlight); font-size:21px; letter-spacing:.02em;}
+  .ch-role{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.12em; color:var(--blue); text-transform:uppercase; font-weight:700;}
+  .char.warm-c .ch-role{color:var(--warm-dim);} .char.steel-c .ch-role{color:var(--steel);}
+  .ch-meta{font-family:'Noto Sans KR',sans-serif; font-size:12.5px; color:var(--text-dim); letter-spacing:.02em; margin-bottom:12px;}
+  .ch-field{margin-top:10px;}
+  .ch-field .fl{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.1em; color:var(--faint); text-transform:uppercase; margin-bottom:3px;}
+  .ch-field p{font-size:14px; margin:0; line-height:1.8;}
+  .quote-line{color:var(--warm); font-style:italic;}
+
+  /* 조연 */
+  .side{display:grid; gap:10px; margin-top:8px;}
+  .side .s{border:1px solid var(--border); border-radius:3px; background:var(--surface-2); padding:13px 15px;}
+  .side .s .sn{color:var(--highlight); font-weight:600;}
+  .side .s .sr{font-family:'Noto Sans KR',sans-serif; font-size:11px; color:var(--blue-dim); letter-spacing:.06em; margin-left:6px;}
+  .side .s p{font-size:13px; color:var(--text-dim); margin:6px 0 0; line-height:1.75;}
+
+  .motif{display:grid; gap:10px;}
+  .motif .m{border-left:2px solid var(--blue-dim); padding:2px 0 2px 14px;}
+  .motif .m b{color:var(--warm);}
+  .motif .m span{color:var(--text-dim); font-size:14px;}
+
+  .foot{margin-top:54px; text-align:center; font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.12em; color:var(--faint); line-height:2;}
+  .botnav{display:flex; justify-content:center; gap:22px; margin-top:26px; font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.05em;}
+  .botnav a{color:var(--blue-dim); text-decoration:none;} .botnav a:hover{color:var(--blue);}
+  @media (max-width:560px){ .split{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">&#9668; 적정 온도 목차</a>
+
+  <div class="file">
+    <span class="glow"></span>
+    <div><span class="k">문서</span> &nbsp; 세계관 설정집 · CODEX</div>
+    <div><span class="k">작품</span> &nbsp; 적정 온도 <span style="color:var(--blue-dim)">(완결 · 40화+에필로그)</span></div>
+    <div><span class="k">분류</span> &nbsp; 현대 판타지 · 헌터 · 슬로우번 · BL</div>
+    <div><span class="k">주의</span> &nbsp; <span style="color:var(--warm-dim)">일부 전개 스포일러 포함</span></div>
+  </div>
+
+  <header class="title">
+    <div class="series">적정 온도</div>
+    <h1>세계관 설정집<span class="sub">World Codex</span></h1>
+    <p class="lede">뜨겁지도 차갑지도 않게 살아온 남자와,<br>그 온도를 천천히 흔드는 사람들의 기록.</p>
+  </header>
+
+  <section>
+    <div class="sec-label">01 · World</div>
+    <h2>세계관</h2>
+    <ul class="dots">
+      <li><b>대공명</b> 이후 20년. <b>마석 자본주의</b> 대한민국</li>
+      <li><b>게이트</b> 등급 D~A급 <span class="warm">(S급 게이트는 미관측)</span>. A급 실패 시 <b>반경 2km 증발</b></li>
+      <li><b>근접형 vs 원거리형</b> 각성자 비율 약 <b>1 : 5</b> — 근접형이 매우 희귀</li>
+      <li><b>마력 단전 파괴</b> — 각성자에게 <em>사형 선고급</em> 최악의 처벌</li>
+    </ul>
+    <div class="split">
+      <div class="box cold">
+        <div class="t">세이프 존</div>
+        <p>정화 필터, 깨끗한 공기, 가로등이 전부 켜진 부유층의 구역.</p>
+      </div>
+      <div class="box warm-b">
+        <div class="t">아웃랜드</div>
+        <p>탁한 공기, 반쯤 꺼진 가로등. 버려진 자들이 사는 바깥.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · Rank &amp; Powers</div>
+    <h2>등급 &amp; 세력</h2>
+    <ul class="dots">
+      <li><b>헌터 등급 : F ~ S급.</b> S급은 국내 <b>단 6명</b></li>
+    </ul>
+    <h3>3대 길드</h3>
+    <table>
+      <tr><th>길드</th><th>성향</th></tr>
+      <tr><td>천일</td><td><b>자본</b> 중심</td></tr>
+      <tr><td>이지스</td><td><b>전투 특화</b> · 군사기업(PMC)</td></tr>
+      <tr><td>미라지</td><td><b>마법 / 서포터</b> 중심</td></tr>
+    </table>
+    <h3>관리국 (KACB)</h3>
+    <table>
+      <tr><th>국</th><th>관할</th></tr>
+      <tr><td>1국</td><td>등급 측정 · 일반 행정</td></tr>
+      <tr><td>2국</td><td>특수 타격대</td></tr>
+      <tr><td>3국</td><td>감찰 수사</td></tr>
+      <tr><td>4국</td><td>이상 현상 · 게이트 연구</td></tr>
+      <tr><td>5~6국</td><td>대외 협력 · 병참 등</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · Protagonist</div>
+    <h2>주인공 — 서은우</h2>
+    <div class="char">
+      <div class="ch-head"><span class="ch-name">서은우</span><span class="ch-role">35세 · 前 이지스 A급 창술사</span></div>
+      <div class="ch-meta">現 관리국 2국 무보수 의무 복무 1년 중 · 고유 마력색 <span style="color:var(--blue)">푸른빛</span></div>
+      <div class="ch-field">
+        <div class="fl">기본</div>
+        <p>시설 출신 천애고아, <b>아웃랜드</b> 출신. 22세 C급 각성 → 25세 B급 이지스 입단 → 28세 A급. <b>6년 만에 C→A</b>에 도달한 천재. 호리호리 곱상한 외모, 창에 마력을 실어 싸우는 희귀한 <b>근접형</b>.</p>
+      </div>
+      <div class="ch-field">
+        <div class="fl">마력형 극단 체질</div>
+        <p>A급 마력을 가졌지만 순수 육체 체력은 <b>B급 이하</b> — 마력이 없으면 D급 수준. 이 격차가 이야기 내내 그를 웃기고 괴롭힌다.</p>
+      </div>
+      <div class="ch-field">
+        <div class="fl">성격 · 적정 온도</div>
+        <p>뻔뻔한 인싸. 사교적이지만 <b>진짜 가까운 사람은 없다.</b> 무거운 걸 가볍게 만드는 느슨한 웃음이 기본값이고, 관계가 깊어지기 전에 끊는 습관이 시설 시절부터 몸에 뱄다. — 그 <em>적정 온도</em>에 처음 금이 가는 건 14화.</p>
+      </div>
+      <div class="ch-field">
+        <div class="fl">과거의 그늘 — 뒷거래 사건</div>
+        <p>A급이 된 뒤 오만과 돈 결핍으로 브로커에 넘어가 <b>마석 불법 유통·게이트 정보 판매</b>를 반년간. 이지스 감찰에 적발돼 길드장 <b>강태준</b>에게 추방당했다. 번 돈을 전부 토해내고 열 번 매달렸지만 거절당한, 그의 가장 깊은 후회.</p>
+      </div>
+      <div class="ch-field">
+        <div class="fl">은백색 창</div>
+        <p>이지스 시절 자비로 산 고급 무기. 추방 때 사정해서 반출했고, 이지스 각인은 갈아냈다. — 은우의 <b>유일한 소유물이자 정체성의 상징</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">04 · Key Figures</div>
+    <h2>핵심 인물</h2>
+    <div class="chars">
+      <div class="char warm-c">
+        <div class="ch-head"><span class="ch-name">류시헌</span><span class="ch-role">33세 · 상대역</span></div>
+        <div class="ch-meta">前 이지스 → 관리국 2국 → 現 A급, 4국 파견 · 권투/체술형 근접</div>
+        <div class="ch-field">
+          <div class="fl">관계</div>
+          <p>이지스 시절 은우의 후배이자 같은 팀. 은우를 존경하고 동경했지만, 추방 이후 실망과 분노로 <b>전화기를 부수고 번호를 일부러 지웠다.</b> 재회 후엔 차갑고 절제된 태도지만 — 행동은 따뜻하다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">온기의 방식</div>
+          <p>은우가 블랙을 안 마시는 걸 기억해 매일 <b>라떼</b>를 갖다 놓고, 농담으로 흘린 <b>초코파이</b>를 한 박스 사 온다. 존칭은 ‘선배님’에서 ‘<b>선배</b>’로 — 님 하나가 떨어진다.</p>
+          <p class="quote-line" style="margin-top:6px">“달달한 거라고 했으니까요.” · “선배 블랙 안 마시잖아요.”</p>
+        </div>
+      </div>
+
+      <div class="char steel-c">
+        <div class="ch-head"><span class="ch-name">강태준</span><span class="ch-role">S급 · 이지스 길드장</span></div>
+        <div class="ch-meta">50대 중반 · 검 · 원칙과 규율의 사람</div>
+        <div class="ch-field">
+          <div class="fl">은우와의 관계</div>
+          <p>은우를 내쫓았지만 <b>시야에서 놓지 않는다.</b> 기대 → 배신감 → 분노, 그럼에도 끝내 놓지 못하는 마음. 게이트 땐 법무팀을 보내 그를 지켰다. 속으로는 <em>“허튼생각만 안 했으면 S급도 무리 아닌 경지”</em>라 여긴다.</p>
+          <p class="quote-line" style="margin-top:6px">“다 거절했으면서.” · “고생했다.” · “바보 같은 놈.” · “늦지 마라.”</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>그 외 인물</h3>
+    <div class="side">
+      <div class="s"><span class="sn">박준호</span><span class="sr">24세 · E→D급</span><p>은우의 아웃랜드 파티원. 밝고 직설적. 은우에게 마력 연습법을 배운다. — “형 다시 돌아올 거죠?”</p></div>
+      <div class="s"><span class="sn">이수빈</span><span class="sr">31세 · D급</span><p>아웃랜드 파티원. 조용하고 관찰력이 좋아 은우의 미세한 변화를 읽는다. — “조심히 다녀오세요.”</p></div>
+      <div class="s"><span class="sn">차정우</span><span class="sr">이지스 B급 후배</span><p>은우와 연락을 유지하는 후배. 시헌의 소식을 전한다. — “형은 안 변했는데요.”</p></div>
+      <div class="s"><span class="sn">장현우</span><span class="sr">S급 · 2국 국장</span><p>40대 후반, 원거리 마법형. 매 같은 인상. 은우가 그 압력에 시선을 바닥에 둘 만큼 긴장시키는 존재.</p></div>
+      <div class="s"><span class="sn">윤하</span><span class="sr">미라지 B급 서포터</span><p>A급 게이트에서 은우를 서포트. 전투 습관(왼쪽 어깨)을 읽어낸다.</p></div>
+      <div class="s"><span class="sn">오태현</span><span class="sr">2국 C급</span><p>은우의 스파링·아침 체력 훈련 파트너. 페이스를 맞춰준다.</p></div>
+      <div class="s"><span class="sn">한도경 · 송재윤</span><span class="sr">천일 A급 / B급</span><p>A급 게이트 공략단. 처음엔 은우에게 불쾌했으나 실력을 인정. 송재윤은 은우가 구해준 인연.</p></div>
+      <div class="s"><span class="sn">박성진</span><span class="sr">관리국 3국 부국장</span><p>실적형 관료. 은우 재수사를 주도하지만 결국 합의로 마무리된다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">05 · Motifs</div>
+    <h2>테마 &amp; 모티프</h2>
+    <div class="motif">
+      <div class="m"><b>적정 온도</b> <span>— 은우의 감정 방어 메커니즘. 1화에서 확립, 14화부터 금이 간다.</span></div>
+      <div class="m"><b>은백색 창</b> <span>— 정체성의 상징. 이지스 각인이 갈려나간 자리.</span></div>
+      <div class="m"><b>푸른빛</b> <span>— 은우의 고유 마력색. D급으로 숨어 살 땐 꺼두고 있었다.</span></div>
+      <div class="m"><b>국밥 / 밥 사주기</b> <span>— 은우가 관계를 맺는 방식.</span></div>
+      <div class="m"><b>“가르치는 재능 없는데”</b> <span>— 반복 모티프. 실제로는 계속 누군가를 가르친다.</span></div>
+      <div class="m"><b>돌아보지 않는 사람</b> <span>— 이지스를 떠날 때도, 아웃랜드를 떠날 때도. 은우의 패턴.</span></div>
+    </div>
+  </section>
+
+  <nav class="botnav">
+    <a href="index.html">&#9668; 목차</a>
+    <a href="../../index.html">서재로 &#9668;&#9668;</a>
+  </nav>
+
+  <div class="foot">《적정 온도》 · 세계관 설정집 — written with Claude</div>
+
+</div>
+</body>
+</html>
