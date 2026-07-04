@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온실 · 목차</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0e; --surface:#0f1618; --surface-2:#0c1213;
+    --frost:#eaf2ef; --text:#c6d0cd; --text-soft:#aab4b1;
+    --muted:#6e7d7a; --faint:#475452;
+    --line:rgba(132,216,210,.13); --line-strong:rgba(132,216,210,.26);
+    --ice:#86d8d2; --ice-dim:rgba(134,216,210,.55); --danger:#df574e;
+    --maxw:46rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:radial-gradient(120% 80% at 50% -10%, #0e171a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); font-family:"Noto Serif KR", serif; line-height:1.9;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:clamp(2.4rem,6vw,5rem) clamp(1.15rem,5vw,2rem) 6rem;}
+
+  .back{
+    font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.14em;
+    color:var(--muted); text-decoration:none;
+  }
+  .back:hover{color:var(--ice-dim);}
+
+  /* control-system readout */
+  .sys{
+    margin-top:2rem; border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:1.05rem 1.15rem 1.1rem; font-family:"IBM Plex Mono", monospace;
+    font-size:.74rem; line-height:1.6; color:var(--text-soft); position:relative; overflow:hidden;
+  }
+  .sys .head{
+    display:flex; align-items:center; gap:.55rem; color:var(--ice); letter-spacing:.16em;
+    font-weight:500; font-size:.72rem; text-transform:uppercase;
+    padding-bottom:.7rem; margin-bottom:.75rem; border-bottom:1px dashed var(--line-strong);
+  }
+  .sys .head .dot{width:6px;height:6px;border-radius:50%;background:var(--ice);
+    box-shadow:0 0 7px var(--ice); animation:pulse 2.4s ease-in-out infinite;}
+  .row{display:grid; grid-template-columns:5.6rem 1fr; gap:.4rem;}
+  .row + .row{margin-top:.18rem;}
+  .row .k{color:var(--faint); letter-spacing:.04em;}
+
+  header.title{text-align:center; margin:clamp(2.6rem,7vw,3.8rem) 0 clamp(2rem,5vw,2.8rem);}
+  .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.42em;
+    text-indent:.42em; color:var(--muted); text-transform:uppercase; margin-bottom:1.25rem;}
+  h1{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(3.4rem,16vw,5.6rem); line-height:1; margin:0; letter-spacing:.05em;
+    text-shadow:0 0 38px rgba(134,216,210,.14);}
+  .tagline{margin-top:1.4rem; color:var(--text-soft); font-size:1rem; line-height:1.85;}
+  .genre{margin-top:1rem; font-family:"IBM Plex Mono", monospace; font-size:.72rem;
+    letter-spacing:.2em; color:var(--ice-dim);}
+
+  .toc-head{
+    font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--muted); margin:2.6rem 0 1.1rem;
+    padding-bottom:.6rem; border-bottom:1px solid var(--line);
+  }
+  .toc{list-style:none; padding:0; margin:0; counter-reset:ep;}
+  .toc a{
+    display:flex; align-items:baseline; gap:1rem; text-decoration:none;
+    padding:1rem .4rem; border-bottom:1px solid var(--line); color:var(--text);
+    transition:background .15s, padding-left .15s;
+  }
+  .toc a:hover{background:rgba(134,216,210,.05); padding-left:.9rem;}
+  .toc .no{font-family:"IBM Plex Mono", monospace; font-size:.78rem; color:var(--ice-dim);
+    letter-spacing:.06em; flex:0 0 auto; min-width:3.2rem;}
+  .toc .ep-title{font-family:"Gowun Batang", serif; font-size:1.15rem; color:var(--frost);}
+  .toc .arrow{margin-left:auto; color:var(--faint); font-family:"IBM Plex Mono", monospace;}
+  .toc a:hover .arrow{color:var(--ice);}
+
+  .colophon{margin-top:3rem; text-align:center; font-family:"IBM Plex Mono", monospace;
+    font-size:.68rem; letter-spacing:.12em; color:var(--faint); line-height:1.9;}
+
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.32;}}
+  @media (max-width:560px){ .toc .ep-title{font-size:1.05rem;} .row{grid-template-columns:4.8rem 1fr;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../../index.html">◄ 서재로</a>
+
+  <section class="sys" aria-label="테라리움 통합관제 기록">
+    <div class="head"><span class="dot"></span>Terrarium · 통합관제 시스템</div>
+    <div class="row"><span class="k">기록 분류</span><span class="v">장편 연재 · 인물 관찰 일지</span></div>
+    <div class="row"><span class="k">공개 화수</span><span class="v">5화 <span style="color:var(--faint)">/ 연재 중</span></span></div>
+    <div class="row"><span class="k">대상</span><span class="v">서은우 · 수(水) 계열 · A급</span></div>
+  </section>
+
+  <header class="title">
+    <div class="eyebrow">가제 · 장편</div>
+    <h1>온실</h1>
+    <p class="tagline">인류 최후의 거주 구역, 유리 돔 ‘온실’.<br>버려진 폐급 부대 D-7과, 잃어버린 밤을 되찾으려는 A급 능력자의 이야기.</p>
+    <div class="genre">생존 · 헌터 · 휴먼 드라마</div>
+  </header>
+
+  <div class="toc-head">목차 · Chapters</div>
+  <ul class="toc">
+    <li><a href="온실_1화.html"><span class="no">제1화</span><span class="ep-title">폐급</span><span class="arrow">읽기 ►</span></a></li>
+    <li><a href="온실_2화.html"><span class="no">제2화</span><span class="ep-title">고개 숙이는 법</span><span class="arrow">읽기 ►</span></a></li>
+    <li><a href="온실_3화.html"><span class="no">제3화</span><span class="ep-title">사냥은, 천천히</span><span class="arrow">읽기 ►</span></a></li>
+    <li><a href="온실_4화.html"><span class="no">제4화</span><span class="ep-title">폐급 주제에</span><span class="arrow">읽기 ►</span></a></li>
+    <li><a href="온실_5화.html"><span class="no">제5화</span><span class="ep-title">목줄</span><span class="arrow">읽기 ►</span></a></li>
+  </ul>
+
+  <div class="colophon">
+    《온실》 (가제) · Terrarium 통합관제 시스템<br>
+    written with Claude
+  </div>
+
+</div>
+</body>
+</html>

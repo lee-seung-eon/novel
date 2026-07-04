@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온실 · 제4화 — 폐급 주제에</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0e; --surface:#0f1618; --surface-2:#0c1213;
+    --frost:#eaf2ef; --text:#c6d0cd; --text-soft:#aab4b1;
+    --muted:#6e7d7a; --faint:#475452;
+    --line:rgba(132,216,210,.13); --line-strong:rgba(132,216,210,.26);
+    --ice:#86d8d2; --ice-dim:rgba(134,216,210,.55);
+    --ember:#caa05a; --ember-dim:rgba(202,160,90,.55);
+    --danger:#df574e; --gain:#7fbf8f;
+    --maxw:46rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;
+    background:radial-gradient(120% 80% at 50% -10%, #0e171a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); font-family:"Noto Serif KR", serif; font-weight:400;
+    line-height:1.95; letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+  #scan{position:fixed; top:0; left:0; height:2px; width:0%;
+    background:linear-gradient(90deg, transparent, var(--ice));
+    box-shadow:0 0 8px rgba(134,216,210,.5); z-index:50; transition:width .08s linear;}
+  .wrap{max-width:var(--maxw); margin:0 auto;
+    padding:clamp(2.2rem,6vw,5rem) clamp(1.15rem,5vw,2rem) 6rem;}
+
+  .sys{border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:1.05rem 1.15rem 1.1rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.74rem; line-height:1.6;
+    color:var(--text-soft); position:relative; overflow:hidden;}
+  .sys::before{content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px); pointer-events:none;}
+  .sys .head{display:flex; align-items:center; gap:.55rem;
+    color:var(--ice); letter-spacing:.16em; font-weight:500; font-size:.72rem; text-transform:uppercase;
+    padding-bottom:.7rem; margin-bottom:.75rem; border-bottom:1px dashed var(--line-strong);}
+  .sys .head .dot{width:6px;height:6px;border-radius:50%;
+    background:var(--ice); box-shadow:0 0 7px var(--ice); animation:pulse 2.4s ease-in-out infinite;}
+  .row{display:grid; grid-template-columns:5.2rem 1fr; gap:.4rem;}
+  .row + .row{margin-top:.18rem;}
+  .row .k{color:var(--faint); letter-spacing:.04em;}
+  .row .v{color:var(--text-soft);}
+  .v .tag{color:var(--muted);}
+  .v.alarm{color:var(--danger); font-weight:500; letter-spacing:.02em;}
+  .v .up{color:var(--gain);}
+
+  header.title{text-align:center; margin:clamp(2.4rem,7vw,3.6rem) 0 clamp(1.4rem,4vw,2rem);}
+  .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.42em; text-indent:.42em;
+    color:var(--muted); text-transform:uppercase; margin-bottom:1.25rem;}
+  h1{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(3.2rem,15vw,5.4rem); line-height:1; margin:0; letter-spacing:.04em;
+    text-shadow:0 0 38px rgba(134,216,210,.14);}
+  .chapter{margin-top:1.6rem; display:inline-flex; align-items:center; gap:.8rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.8rem; letter-spacing:.18em; color:var(--ice-dim);}
+  .chapter::before,.chapter::after{content:""; width:2.1rem; height:1px; background:var(--line-strong);}
+
+  .pov{display:flex; align-items:center; justify-content:center; gap:.85rem;
+    margin:clamp(2.4rem,6vw,3rem) 0 1.9rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.22em; text-transform:uppercase;}
+  .pov::before,.pov::after{content:""; height:1px; width:min(4.5rem,16vw);}
+  .pov .lbl{display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap;}
+  .pov .lbl::before{content:""; width:7px; height:7px; border-radius:50%;}
+  .pov.me{color:var(--ice-dim);}
+  .pov.me::before,.pov.me::after{background:linear-gradient(90deg,transparent,var(--ice-dim),transparent);}
+  .pov.me .lbl::before{background:var(--ice); box-shadow:0 0 6px var(--ice);}
+  .pov.omni{color:var(--ember-dim);}
+  .pov.omni::before,.pov.omni::after{background:linear-gradient(90deg,transparent,var(--ember-dim),transparent);}
+  .pov.omni .lbl::before{background:transparent; border:1.5px solid var(--ember); box-shadow:0 0 6px rgba(202,160,90,.45);}
+
+  main{margin-top:clamp(.6rem,3vw,1.4rem);}
+  p{margin:0 0 1.5em; font-size:1.075rem;}
+  p.line{margin-bottom:1.5em;}
+  p.beat{color:var(--text-soft); margin-bottom:1.5em;}
+  main p::selection, h1::selection{background:rgba(134,216,210,.25); color:#fff;}
+  main > p:first-of-type::first-letter{color:var(--ice); font-weight:600;}
+
+  .endcard{margin-top:3.4rem; padding:1.4rem 1.2rem 1.5rem; border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%); text-align:center;}
+  .endcard .stamp{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.26em;
+    color:var(--ice); text-transform:uppercase; margin-bottom:.85rem;}
+  .endcard .score{font-family:"IBM Plex Mono", monospace; font-size:.78rem; letter-spacing:.06em;
+    color:var(--text-soft); margin-bottom:.7rem;}
+  .endcard .score b{color:var(--gain); font-weight:500;}
+  .endcard .score .old{color:var(--faint); text-decoration:line-through;}
+  .endcard .next{font-family:"IBM Plex Mono", monospace; font-size:.74rem; letter-spacing:.05em;
+    color:var(--muted); margin-top:.4rem;}
+  .endcard .next b{color:var(--ember-dim); font-weight:500;}
+  .colophon{margin-top:2.4rem; text-align:center; font-family:"IBM Plex Mono", monospace;
+    font-size:.68rem; letter-spacing:.12em; color:var(--faint); line-height:1.9;}
+
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.32;}}
+  @media (max-width:560px){
+    body{line-height:1.92;} p{font-size:1.02rem;}
+    .row{grid-template-columns:4.4rem 1fr;} .sys{font-size:.7rem;}
+    .pov{font-size:.66rem; letter-spacing:.16em;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;} #scan{transition:none;}}
+</style>
+</head>
+<body>
+<div id="scan" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <section class="sys" aria-label="테라리움 통합관제 기록">
+    <div class="head"><span class="dot"></span>Terrarium · 통합관제 시스템</div>
+    <div class="row"><span class="k">기록 분류</span><span class="v">인물 관찰 일지 <span class="tag">/ 열람 제한</span></span></div>
+    <div class="row"><span class="k">대상</span><span class="v">서은우 · 수(水) 계열 · <strong style="color:var(--text-soft);font-weight:600;">A급</strong></span></div>
+    <div class="row"><span class="k">소속</span><span class="v">전선 공략대 D-7 <span class="tag">〔통칭 · 폐급〕</span></span></div>
+    <div class="row"><span class="k">누적 점수</span><span class="v alarm">−1,900 <span class="up">(−3,000 → −1,900 · 누계 +1,100)</span></span></div>
+    <div class="row"><span class="k">작전 권한</span><span class="v">지원조 임시 편입 <span class="tag">· 표상혁 隊</span></span></div>
+    <div class="row"><span class="k">비고</span><span class="v">공용구역 마찰 발생 — 금일</span></div>
+  </section>
+
+  <header class="title">
+    <div class="eyebrow">가제 · 장편</div>
+    <h1>온실</h1>
+    <div class="chapter">제 4 화 — 폐급 주제에</div>
+  </header>
+
+  <main>
+
+    <div class="pov me" aria-label="시점 전환"><span class="lbl">서은우 · 1인칭</span></div>
+
+    <p>마이너스 1,900.</p>
+
+    <p>표상혁 그 인간 무릎에 앉아 비위 맞춘 보람은, 있었다.</p>
+
+    <p>그 뒤로 지원을 두 번 더 나갔다. 한 번은 변이종 둥지 소탕, 한 번은 외곽 정착지 방어. 둥지 소탕 땐 한결이 알 까기 직전의 군체를 미리 짚어내서 통째로 묻었고, 정착지 방어 땐 서한의 결계가 밤새 한 번도 안 깨졌다. 셋 다, 지원으로는 진짜 일을 했다. 문제는 늘 나였지만.</p>
+
+    <p>표상혁은 여전히 내 뒷목을 잡고 위험한 데로 들이밀었고, 나는 여전히 손이 됐다 안 됐다 했다. 그래도 잡을 건 잡았다. 점수가 차곡차곡 붙었다.</p>
+
+    <p class="beat">마이너스 3,000에서 마이너스 1,900.</p>
+
+    <p>2주 전만 해도 1점도 안 움직이던 숫자가, 이젠 천 단위로 줄고 있었다.</p>
+
+    <p>그리고 우리 팀도, 조금 변했다.</p>
+
+    <p>도진은 여전히 입이 더러웠지만, 더는 나한테 시비를 걸진 않았다. 한결은 출동 다녀올 때마다 내 등이며 팔이며를 흘끔거렸고. 서한은…… 뭐, 여전히 기도는 했지만, 적어도 날 ‘더럽혀진 자’ 취급하는 눈빛은 사라졌다.</p>
+
+    <p class="beat">나쁘지 않았다. 솔직히.</p>
+
+    <p class="beat">…그게 문제였지만.</p>
+
+    <p>문제는, 우리가 점수를 따기 시작하면서 — 눈에 띄기 시작했다는 거다.</p>
+
+    <p>그날 공용 훈련장에서였다.</p>
+
+    <p>폐급한테도 훈련장 쓸 시간이 하루 한 시간씩은 배정된다. 보통은 제일 구린 시간대—새벽이나 한밤중. 근데 그날은 어쩐 일로 낮 시간이 비어서, 우리가 들어갔다.</p>
+
+    <p>그리고 거기, 먼저 와 있던 팀이 있었다.</p>
+
+    <p>오세건. 공략 5팀 팀장. 우리보다 등급도, 점수도 위인—근데 딱 그 ‘애매하게 위’인 게 문제인 인간이었다. 위로 더 올라갈 깜냥은 안 되고, 그래서 아래를 밟아야만 자기가 위라는 걸 확인하는 부류. 그런 인간한테, 갑자기 점수 따고 기어 올라오는 폐급은—눈엣가시였다.</p>
+
+    <p>부하 대여섯을 거느리고, 오세건이 우리를 위아래로 훑었다.</p>
+
+    <p class="line">“어어, 이게 누구야.” 비죽 웃으며. “요즘 잘나간다는 폐급 아냐? 표상혁 형님 다리에 매달려서 점수 빤다는.”</p>
+
+    <p>부하들이 키득거렸다.</p>
+
+    <p class="line">나는 그냥 웃었다. “안녕하세요. 훈련장 좀 쓰려고요. 금방 빠질게요.”</p>
+
+    <p class="line">“폐급이 훈련은 무슨.” 오세건이 턱짓을 했다. “달걀이나 더 삶지 그래? 너네 그 유명한 반숙란 훈련.”</p>
+
+    <p>…그건 또 어떻게 알았대. 좁은 동네다, 여기. 우리 막사 안에서 벌어진 일까지 새어 나갈 만큼.</p>
+
+    <p class="beat">무시하고 지나가려는데, 도진이 멈춰 섰다.</p>
+
+
+    <div class="pov omni" aria-label="시점 전환"><span class="lbl">전지적 · 관측 시점</span></div>
+
+    <p>강도진은, 2주 전의 강도진이 아니었다.</p>
+
+    <p>예전 같았으면 그냥 같이 욕하고 주먹다짐으로 끝났을 거다. 근데 지금 도진에게는—지켜야 할 게 생겼다. 마이너스 1,900. 자기 손으로 보탠 점수. 그리고 그 점수 끝에 있는, 28구역의 한 사람.</p>
+
+    <p class="beat">그래서 도진은, 참으려고 했다.</p>
+
+    <p>손목을 반대 손으로 꽉 움켜쥐고. 손끝에서 새어 나오려는 불씨를 억지로 눌러 삼키면서. 2주 전이었다면 상상도 못 할 인내였다. 근데 도진은, 정말로 참고 있었다.</p>
+
+    <p>오세건은 그걸 정확히 읽었다. 그리고—더 후볐다.</p>
+
+    <p class="line">“왜, 뭐 할 말 있어?” 오세건이 도진 앞으로 한 발 다가섰다. “방화범 새끼. 너 옛날에 네 막사도 태워먹었다며? 아군 보급도 한 번 홀랑 태우고. 그 성질에 용케 안 쫓겨났네. 아—폐급이라 더 쫓아낼 데도 없구나? 이미 쓰레기통인데.”</p>
+
+    <p>“…….” 도진의 턱이 빠득, 갈렸다.</p>
+
+    <p class="line">“근데 말이야.” 오세건이 목소리를 낮췄다. “너 같은 놈은, 어디 가서 뭘 해도 결국 다 태워먹어. 옆에 누가 있든. 그거 알지?”</p>
+
+    <p>도진의 손끝에서, 불씨가 확 일었다.</p>
+
+    <p class="line">“도진.” 은우가 낮게 불렀다.</p>
+
+    <p class="beat">근데 늦었다.</p>
+
+    <p class="line">“이 씨—” 도진의 주먹에 불이 붙었다. 훈련장 바닥에 깔린 매트로 불똥이 튀어, 치익, 그을음이 일었다.</p>
+
+    <p>오세건의 입꼬리가, 그 순간 올라갔다.</p>
+
+    <p class="beat">기다렸다는 듯이.</p>
+
+    <p class="line">“어어? 방금 다들 봤지?” 오세건이 부하들을 돌아보며 능청을 떨었다. “폐급이 공용 훈련장에서 화염 능력 휘둘렀다. 시설 파손에, 능력자 간 폭력 미수. 이거 치안국에 올리면—”</p>
+
+    <p class="beat">은우의 얼굴에서, 웃음이 가셨다.</p>
+
+    <p>능력자 간 폭력은, 이 돔에서 제일 무겁게 다루는 사고 중 하나였다. 안 그래도 다 들여다보이는 사회. 내무·치안국이 제일 좋아하는 먹잇감. 사고 한 번 걸리면 점수는 통째로 날아가고, 심하면 막사까지 압수당한다. 공간이 곧 목숨인 이곳에서, 막사 압수는—사형 선고나 다름없었다.</p>
+
+    <p>2주를 굴러 겨우 만회한 1,100점이, 도진 주먹의 불씨 하나로 도로 날아갈 판이었다.</p>
+
+    <p>오세건은, 그걸 노린 거였다. 처음부터. 점수 따고 올라오는 폐급의 발목을, 합법적으로 분질러 놓을 구실. 도진의 성질은, 그저 그 구실을 끌어내기 위한 미끼였을 뿐이고.</p>
+
+
+    <div class="pov me" aria-label="시점 전환"><span class="lbl">서은우 · 1인칭</span></div>
+
+    <p class="beat">내가 나섰다.</p>
+
+    <p class="line">“오 팀장님.” 나는 도진 앞을 막아서며, 다시 웃었다. 제일 능청맞은 웃음으로. “애가 아직 어려서. 제가 사과드릴게요.”</p>
+
+    <p class="line">“사과?” 오세건이 코웃음을 쳤다. “사과로 될 일이야 이게?”</p>
+
+    <p class="line">“그럼 어떻게 해드리면 될까요.” 나는 물었다. 진심으로.</p>
+
+    <p>오세건의 눈이 반짝였다. 자, 이제부터가 이 인간이 원하던 거다. 폐급 팀장이 제 앞에서 기는 그림.</p>
+
+    <p class="line">“무릎 꿇어.”</p>
+
+    <p>훈련장이 조용해졌다.</p>
+
+    <p class="line">뒤에서 도진이 숨을 들이켜는 소리가 들렸다. “팀장님, 안—”</p>
+
+    <p class="line">“꿇을게요.” 나는 도진 말을 자르고, 그냥 꿇었다.</p>
+
+    <p class="beat">바닥에. 양 무릎.</p>
+
+    <p>차가운 훈련장 바닥이 무릎으로 올라왔다. 오세건의 부하들이 키득거렸다. 누군가 단말을 들어 영상을 찍는 것 같기도 했다. 뭐, 찍든가. 지나가던 다른 팀 몇몇도 걸음을 멈추고 구경하기 시작했다. 폐급 팀장이 공략 5팀장 앞에서 무릎 꿇은 그림은, 꽤나 볼만한 구경거리였을 거다.</p>
+
+    <p class="line">“우리 애가 실수했습니다. 시설 파손은 저희가 변상하고, 다신 이런 일 없게 하겠습니다. 한 번만 봐주세요. 예?”</p>
+
+    <p>나는 고개까지 숙였다. 이마가 바닥에 닿을 듯이.</p>
+
+    <p class="line">“그게 다야?” 오세건이 느긋하게 물었다. 즐기는 거다. “성의가 없는데. 따라 해. ……‘폐급은 분수를 알겠습니다.’”</p>
+
+    <p>뒤에서, 서한의 결계 술식이 파지직, 곤두서는 게 등으로 느껴졌다. 도진의 불씨도. 한결의 흐느낌도.</p>
+
+    <p>셋 다, 당장이라도 튀어나올 기세였다.</p>
+
+    <p>나는 무릎 꿇은 채로, 고개만 살짝 돌려 그들을 봤다. 정비실에서 그랬던 것처럼.</p>
+
+    <p class="beat">—가만있어.</p>
+
+    <p>그리고 다시 앞을 보고, 또박또박 복창했다.</p>
+
+    <p class="line">“폐급은, 분수를 알겠습니다.”</p>
+
+    <p>부하들이 와하하 웃었다. 오세건은 한참을 더 즐겼다. 내 머리 위에서 이런저런 소리를 늘어놨다. 폐급이 어떻고, 분수가 어떻고. 한 번은 발끝으로 내 어깨를 툭툭 밀기도 했다. 나는 다 받았다. 웃으면서.</p>
+
+    <p>솔직히, 표상혁한테 맞을 때보다 이게 더 더러웠다. 그건 적어도 안 보는 데서 맞았으니까. 이건 다 보는 데서, 다 들리는 데서, 다 찍히는 데서 기는 거였다. 근데 뭐, 어쩌겠어.</p>
+
+    <p>사실 방법은 있었다.</p>
+
+    <p>표상혁 이름 한 번 흘리면, 오세건 같은 인간은 바로 꼬리를 내린다. ‘표상혁 형님이 데리고 다니는 앤데, 이렇게 망신 주셔도 되나요?’ 이 한마디면 끝이다.</p>
+
+    <p class="beat">근데 안 했다.</p>
+
+    <p>그 이름 한 번 쓰는 게, 결국 표상혁한테 빚지는 거니까. 그 인간한테 진 빚은 이미 등짝에 충분히 새겨져 있었고, 더 늘리고 싶지 않았다. 차라리 무릎이 싸게 먹혔다.</p>
+
+    <p>자존심? 아까도 말했지만, 그건 3년 전에 얼음 관 안에 두고 왔다. 무릎 좀 꿇는 걸로 1,100점이 안 날아가면, 그게 남는 장사다.</p>
+
+    <p>한참 만에, 오세건이 흥이 식었는지 손을 휘저었다.</p>
+
+    <p class="line">“꺼져. 다음에 또 건방 떨면, 그땐 진짜 치안국행이다.”</p>
+
+    <p class="line">“감사합니다.” 나는 일어나며 무릎을 털었다.</p>
+
+
+    <div class="pov omni" aria-label="시점 전환"><span class="lbl">전지적 · 관측 시점</span></div>
+
+    <p>오세건 일행이 사라진 훈련장에, D-7만 남았다.</p>
+
+    <p class="beat">아무도, 입을 열지 않았다.</p>
+
+    <p>강도진은, 주먹을 쥔 채 떨고 있었다.</p>
+
+    <p>자기가 시작한 일이었다. 자기 성질, 자기 불씨. 그걸로 팀장이—2주 전까지만 해도 자기가 죽일 듯이 시비 걸던 그 팀장이—오세건 같은 놈 앞에서 이마를 바닥에 박았다. 자기 대신. ‘폐급은 분수를 알겠습니다’ 소리까지 복창해 가며.</p>
+
+    <p>방화 4건. 자기 막사를 태워먹었을 때도, 도진은 이런 기분이 아니었다. 그땐 그냥 자기 혼자 망가지면 그만이었으니까. 근데 지금은, 자기 불씨 하나가 남의 무릎을 꿇렸다.</p>
+
+    <p class="line">“……팀장.” 도진이 겨우 입을 뗐다. 목소리가 잠겨 있었다. “내가, 내가 참았어야—”</p>
+
+    <p class="line">“응. 참았어야지.” 은우가 무릎을 마저 털며 대수롭지 않게 말했다. “근데 뭐, 이미 꿇었고.”</p>
+
+    <p>도진이 고개를 들지 못했다.</p>
+
+    <p class="line">“도진아.” 은우가 그 어깨를 툭 쳤다. “네 화력, 진짜 좋아. 근데 그게 언제 터질지 너도 모르잖아. 방금처럼. 저 새끼는 딱 그거 노리고 너 후빈 거고. 그거 하나 때문에 오늘 1,100점이 날아갈 뻔했어.”</p>
+
+    <p class="beat">“…….”</p>
+
+    <p class="line">“반숙란.” 은우가 씩 웃었다. “내가 왜 그딴 걸 시켰는지, 이제 좀 알겠냐?”</p>
+
+    <p>도진은, 아무 말도 못 했다.</p>
+
+    <p>대신 다음 날부터, 도진은 시키지도 않았는데 혼자 달걀을 삶기 시작했다. 약불로. 손끝을 떨면서, 63도를 맞추려고. 그날 도진이 처음으로 멀쩡한 반숙란 하나를 건졌을 때, 그건 그냥 달걀 한 알이 아니었다.</p>
+
+    <p>서한은 그날, 처음으로 은우에게 먼저 말을 걸었다.</p>
+
+    <p class="line">“……팀장님.” 결계 술식을 만지작거리던 손을 멈추고. “아까, 표상혁 그 사람 이름을 대면 끝날 일이었습니다. 저도 압니다. 왜 안 하셨습니까.”</p>
+
+    <p class="line">은우는 어깨를 으쓱했다. “빚지기 싫어서.”</p>
+
+    <p class="line">“고작 그 이유로, 그 망신을 다 감수하셨다는 겁니까.”</p>
+
+    <p class="line">“빚이라는 게 원래 무서운 거야. 한 번 지면, 그 인간이 평생 우리 목줄을 쥐거든.” 은우가 대수롭지 않게 말했다. “무릎은 털면 그만인데, 목줄은 안 풀려.”</p>
+
+    <p>서한은 한참을 그를 보다가, 조용히 고개를 끄덕였다. 그 ‘더럽혀졌다’던 눈빛은, 정말로 사라지고 없었다. 대신 그 자리에, 처음 보는 다른 게 들어서 있었다.</p>
+
+    <p>한결은, 그냥 울었다. 늘 그렇듯이. “패, 팀장님 무릎…… 약 발라야 되는데…….” 또 그 소리.</p>
+
+    <p class="beat">이번엔, 은우도 굳이 안 잘랐다.</p>
+
+
+    <div class="pov me" aria-label="시점 전환"><span class="lbl">서은우 · 1인칭</span></div>
+
+    <p>그날 밤, 나는 결린 무릎을 주무르며 생각했다.</p>
+
+    <p>점수가 오를수록, 이런 일은 더 많아질 거다. 오세건 같은 인간은 어디에나 있으니까. 위로 올라간다는 건, 밟고 싶어 하는 놈들 눈에 더 잘 띈다는 뜻이기도 했다.</p>
+
+    <p class="beat">뭐, 어쩌겠어.</p>
+
+    <p>무릎이야 또 꿇으면 되고, 등이야 또 맞으면 되지. 그렇게라도 이 고장난 새끼들 데리고 위로 기어 올라갈 수만 있으면—그걸로 됐다.</p>
+
+    <p>부엌 쪽에서, 달걀 삶는 냄새가 났다.</p>
+
+    <p class="beat">도진이었다.</p>
+
+    <p>나는 픽 웃고, 무릎을 마저 주물렀다. 등은 아직도 표상혁이 새긴 자국이 남아 있었고, 무릎은 오늘 오세건이 보탰고, 내일은 또 누가 뭘 보탤지 몰랐다.</p>
+
+    <p>그래도, 부엌에선 달걀이 삶기고 있었다.</p>
+
+    <p class="beat">그거면, 일단은 됐다.</p>
+
+    <div class="endcard">
+      <div class="stamp">— 기록 종료 · 제4화 끝 —</div>
+      <div class="score">누적 점수 <span class="old">−2,600</span> → −1,900 &nbsp;<b>(지원 2회 · 누계 +1,100)</b></div>
+    </div>
+
+    <nav style="display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:1.8rem;font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.05em;">
+      <a href="온실_3화.html" style="color:var(--ice-dim);text-decoration:none;padding:.5rem .2rem;">◄ 이전 화 · 사냥은, 천천히</a>
+      <a href="index.html" style="color:var(--muted);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--line);border-radius:2px;">목 차</a>
+      <a href="온실_5화.html" style="color:var(--ice);text-decoration:none;padding:.5rem .2rem;">다음 화 · 목줄 ►</a>
+    </nav>
+
+    <div class="colophon">
+      《온실》 (가제) · 생존 / 헌터 / 휴먼 드라마<br>
+      Terrarium 통합관제 시스템 — 인물 관찰 일지 No. 004
+    </div>
+
+  </main>
+</div>
+
+<script>
+  (function(){
+    var bar = document.getElementById('scan');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      bar.style.width = (p * 100).toFixed(2) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+</body>
+</html>

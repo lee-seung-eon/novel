@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서재 · Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0e; --surface:#0f1618; --surface-2:#0c1213;
+    --frost:#eaf2ef; --text:#c6d0cd; --text-soft:#aab4b1;
+    --muted:#6e7d7a; --faint:#475452;
+    --line:rgba(132,216,210,.13); --line-strong:rgba(132,216,210,.26);
+    --ice:#86d8d2; --ice-dim:rgba(134,216,210,.55);
+    --maxw:52rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; min-height:100vh;
+    background:radial-gradient(120% 80% at 50% -10%, #0e171a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); font-family:"Noto Serif KR", serif; line-height:1.9;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:clamp(3rem,8vw,6rem) clamp(1.15rem,5vw,2rem) 6rem;}
+
+  header.masthead{text-align:center; margin-bottom:clamp(3rem,8vw,4.5rem);}
+  .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.42em;
+    text-indent:.42em; color:var(--muted); text-transform:uppercase; margin-bottom:1.3rem;}
+  h1{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(2.6rem,10vw,4rem); line-height:1.05; margin:0; letter-spacing:.04em;
+    text-shadow:0 0 38px rgba(134,216,210,.12);}
+  .sub{margin-top:1.2rem; color:var(--muted); font-family:"IBM Plex Mono", monospace;
+    font-size:.76rem; letter-spacing:.16em;}
+
+  .shelf-head{
+    font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 1.3rem;
+    padding-bottom:.6rem; border-bottom:1px solid var(--line);
+  }
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(15rem,1fr)); gap:1.1rem;}
+
+  .book{
+    display:flex; flex-direction:column; text-decoration:none;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:1.6rem 1.4rem 1.4rem; position:relative; overflow:hidden;
+    transition:border-color .18s, transform .18s;
+  }
+  .book:hover{border-color:var(--line-strong); transform:translateY(-3px);}
+  .book::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px);
+    pointer-events:none;
+  }
+  .book .badge{font-family:"IBM Plex Mono", monospace; font-size:.66rem; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ice-dim); margin-bottom:1.1rem;}
+  .book .name{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:2rem; line-height:1; letter-spacing:.04em; margin:0 0 .9rem;}
+  .book .desc{color:var(--text-soft); font-size:.92rem; line-height:1.8; margin:0 0 1.4rem;}
+  .book .meta{margin-top:auto; display:flex; justify-content:space-between; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.06em; color:var(--muted);
+    padding-top:1rem; border-top:1px dashed var(--line-strong);}
+  .book .meta .open{color:var(--ice);}
+
+  .book.empty{align-items:center; justify-content:center; text-align:center; color:var(--faint);
+    border-style:dashed; min-height:12rem; cursor:default;}
+  .book.empty:hover{transform:none; border-color:var(--line);}
+  .book.empty .plus{font-size:2rem; margin-bottom:.6rem; color:var(--faint);}
+  .book.empty .t{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.1em;}
+
+  .foot{margin-top:clamp(3rem,8vw,4.5rem); text-align:center; font-family:"IBM Plex Mono", monospace;
+    font-size:.68rem; letter-spacing:.12em; color:var(--faint); line-height:1.9;}
+
+  @media (prefers-reduced-motion:reduce){ .book{transition:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Web Novel Archive</div>
+    <h1>서재</h1>
+    <div class="sub">written with Claude</div>
+  </header>
+
+  <div class="shelf-head">작품 · Novels</div>
+  <div class="grid">
+
+    <a class="book" href="novels/온실/index.html">
+      <div class="badge">연재 중 · 5화</div>
+      <div class="name">온실</div>
+      <p class="desc">유리 돔 안, 버려진 폐급 부대 D-7. 잃어버린 밤을 되찾으려는 A급 능력자의 생존 드라마.</p>
+      <div class="meta"><span>생존 · 헌터</span><span class="open">읽기 ►</span></div>
+    </a>
+
+    <div class="book empty" aria-hidden="true">
+      <div class="plus">＋</div>
+      <div class="t">다음 작품 준비 중</div>
+    </div>
+
+  </div>
+
+  <div class="foot">novels/ 폴더에 작품이 추가됩니다 · written with Claude</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온실 · 제5화 — 목줄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0e; --surface:#0f1618; --surface-2:#0c1213;
+    --frost:#eaf2ef; --text:#c6d0cd; --text-soft:#aab4b1;
+    --muted:#6e7d7a; --faint:#475452;
+    --line:rgba(132,216,210,.13); --line-strong:rgba(132,216,210,.26);
+    --ice:#86d8d2; --ice-dim:rgba(134,216,210,.55);
+    --ember:#caa05a; --ember-dim:rgba(202,160,90,.55);
+    --danger:#df574e; --gain:#7fbf8f;
+    --maxw:46rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;
+    background:radial-gradient(120% 80% at 50% -10%, #0e171a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); font-family:"Noto Serif KR", serif; font-weight:400;
+    line-height:1.95; letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+  #scan{position:fixed; top:0; left:0; height:2px; width:0%;
+    background:linear-gradient(90deg, transparent, var(--ice));
+    box-shadow:0 0 8px rgba(134,216,210,.5); z-index:50; transition:width .08s linear;}
+  .wrap{max-width:var(--maxw); margin:0 auto;
+    padding:clamp(2.2rem,6vw,5rem) clamp(1.15rem,5vw,2rem) 6rem;}
+
+  .sys{border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:1.05rem 1.15rem 1.1rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.74rem; line-height:1.6;
+    color:var(--text-soft); position:relative; overflow:hidden;}
+  .sys::before{content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px); pointer-events:none;}
+  .sys .head{display:flex; align-items:center; gap:.55rem;
+    color:var(--ice); letter-spacing:.16em; font-weight:500; font-size:.72rem; text-transform:uppercase;
+    padding-bottom:.7rem; margin-bottom:.75rem; border-bottom:1px dashed var(--line-strong);}
+  .sys .head .dot{width:6px;height:6px;border-radius:50%;
+    background:var(--ice); box-shadow:0 0 7px var(--ice); animation:pulse 2.4s ease-in-out infinite;}
+  .row{display:grid; grid-template-columns:5.2rem 1fr; gap:.4rem;}
+  .row + .row{margin-top:.18rem;}
+  .row .k{color:var(--faint); letter-spacing:.04em;}
+  .row .v{color:var(--text-soft);}
+  .v .tag{color:var(--muted);}
+  .v.alarm{color:var(--danger); font-weight:500; letter-spacing:.02em;}
+  .v.warm{color:var(--ember); font-weight:500;}
+  .v .up{color:var(--gain);}
+
+  header.title{text-align:center; margin:clamp(2.4rem,7vw,3.6rem) 0 clamp(1.4rem,4vw,2rem);}
+  .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.42em; text-indent:.42em;
+    color:var(--muted); text-transform:uppercase; margin-bottom:1.25rem;}
+  h1{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(3.2rem,15vw,5.4rem); line-height:1; margin:0; letter-spacing:.04em;
+    text-shadow:0 0 38px rgba(134,216,210,.14);}
+  .chapter{margin-top:1.6rem; display:inline-flex; align-items:center; gap:.8rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.8rem; letter-spacing:.18em; color:var(--ice-dim);}
+  .chapter::before,.chapter::after{content:""; width:2.1rem; height:1px; background:var(--line-strong);}
+
+  .pov{display:flex; align-items:center; justify-content:center; gap:.85rem;
+    margin:clamp(2.4rem,6vw,3rem) 0 1.9rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.22em; text-transform:uppercase;}
+  .pov::before,.pov::after{content:""; height:1px; width:min(4.5rem,16vw);}
+  .pov .lbl{display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap;}
+  .pov .lbl::before{content:""; width:7px; height:7px; border-radius:50%;}
+  .pov.me{color:var(--ice-dim);}
+  .pov.me::before,.pov.me::after{background:linear-gradient(90deg,transparent,var(--ice-dim),transparent);}
+  .pov.me .lbl::before{background:var(--ice); box-shadow:0 0 6px var(--ice);}
+  .pov.omni{color:var(--ember-dim);}
+  .pov.omni::before,.pov.omni::after{background:linear-gradient(90deg,transparent,var(--ember-dim),transparent);}
+  .pov.omni .lbl::before{background:transparent; border:1.5px solid var(--ember); box-shadow:0 0 6px rgba(202,160,90,.45);}
+
+  main{margin-top:clamp(.6rem,3vw,1.4rem);}
+  p{margin:0 0 1.5em; font-size:1.075rem;}
+  p.line{margin-bottom:1.5em;}
+  p.beat{color:var(--text-soft); margin-bottom:1.5em;}
+  main p::selection, h1::selection{background:rgba(134,216,210,.25); color:#fff;}
+  main > p:first-of-type::first-letter{color:var(--ice); font-weight:600;}
+
+  .endcard{margin-top:3.4rem; padding:1.4rem 1.2rem 1.5rem; border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%); text-align:center;}
+  .endcard .stamp{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.26em;
+    color:var(--ice); text-transform:uppercase; margin-bottom:.85rem;}
+  .endcard .score{font-family:"IBM Plex Mono", monospace; font-size:.78rem; letter-spacing:.06em;
+    color:var(--text-soft); margin-bottom:.7rem;}
+  .endcard .score b{color:var(--gain); font-weight:500;}
+  .endcard .score .old{color:var(--faint); text-decoration:line-through;}
+  .endcard .alert{font-family:"IBM Plex Mono", monospace; font-size:.74rem; letter-spacing:.05em;
+    color:var(--danger); font-weight:500; margin:.55rem 0 .2rem;
+    padding:.5rem .6rem; border:1px solid rgba(223,87,78,.3); background:rgba(223,87,78,.06); display:inline-block;}
+  .endcard .next{font-family:"IBM Plex Mono", monospace; font-size:.74rem; letter-spacing:.05em;
+    color:var(--muted); margin-top:.7rem;}
+  .endcard .next b{color:var(--danger); font-weight:500;}
+  .colophon{margin-top:2.4rem; text-align:center; font-family:"IBM Plex Mono", monospace;
+    font-size:.68rem; letter-spacing:.12em; color:var(--faint); line-height:1.9;}
+
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.32;}}
+  @media (max-width:560px){
+    body{line-height:1.92;} p{font-size:1.02rem;}
+    .row{grid-template-columns:4.4rem 1fr;} .sys{font-size:.7rem;}
+    .pov{font-size:.66rem; letter-spacing:.16em;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;} #scan{transition:none;}}
+</style>
+</head>
+<body>
+<div id="scan" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <section class="sys" aria-label="테라리움 통합관제 기록">
+    <div class="head"><span class="dot"></span>Terrarium · 통합관제 시스템</div>
+    <div class="row"><span class="k">기록 분류</span><span class="v">인물 관찰 일지 <span class="tag">/ 열람 제한</span></span></div>
+    <div class="row"><span class="k">대상</span><span class="v">서은우 · 수(水) 계열 · <strong style="color:var(--text-soft);font-weight:600;">A급</strong></span></div>
+    <div class="row"><span class="k">소속</span><span class="v">전선 공략대 D-7 <span class="tag">〔통칭 · 폐급〕</span></span></div>
+    <div class="row"><span class="k">누적 점수</span><span class="v alarm">−1,100 <span class="up">(−3,000 → −1,100)</span></span></div>
+    <div class="row"><span class="k">작전 권한</span><span class="v">지원조 임시 편입 <span class="tag">· 표상혁 隊</span></span></div>
+    <div class="row"><span class="k">비고</span><span class="v warm">양전(陽轉)까지 −1,100 · 임박</span></div>
+  </section>
+
+  <header class="title">
+    <div class="eyebrow">가제 · 장편</div>
+    <h1>온실</h1>
+    <div class="chapter">제 5 화 — 목줄</div>
+  </header>
+
+  <main>
+
+    <div class="pov omni" aria-label="시점 전환"><span class="lbl">전지적 · 관측 시점</span></div>
+
+    <p>마이너스 1,100.</p>
+
+    <p>D-7의 점수는, 어느덧 거기까지 와 있었다.</p>
+
+    <p>마이너스 3,000에서 시작한 게 엊그제 같은데. 표상혁 부대에 지원으로 붙어 변이종을 잡고, 또 잡고, 또 잡고. 그렇게 쌓인 숫자가 이제 마이너스 네 자리의 끝자락이었다. 이대로 한 달만 더. 딱 한 달만 더 이 페이스로 가면, D-7은 처음으로 양수를 단다. 폐급이라는 딱지를 떼고, ‘정상’ 부대가 된다.</p>
+
+    <p class="beat">양전(陽轉).</p>
+
+    <p>그게 무슨 의미인지, 서은우는 누구보다 잘 알았다. 양수가 되면—선택지가 생긴다. 정식 출동 신청이 받아들여지고, 한결은 그토록 바라던 구호조 전근을 넣을 수 있고, 도진은 거주 등급을 올려 그 여자를 데려올 수 있고. 그리고 은우 자신도, 더는 표상혁 무릎에 앉아 비위를 맞추지 않아도 된다.</p>
+
+    <p class="beat">딱 한 달.</p>
+
+    <p>은우는 그 한 달을, 이를 악물고 버티는 중이었다.</p>
+
+    <p>…그리고 바로 그 무렵, 표상혁이 은우를 따로 불렀다. 팀원들도 없이, 은우 혼자만.</p>
+
+    <p class="line">“재밌는 거 보여줄게.” 표상혁이 히죽 웃으며 말했다.</p>
+
+    <p>정비실—이젠 익숙해진 그곳에, 손님이 하나 와 있었다.</p>
+
+    <p>윤재경. 은우도 아는 얼굴이었다. 표상혁과 어울려 다니는, 둘 다 상위권 실적을 찍는 공략대 팀장. 근데 윤재경은 표상혁과는 결이 달랐다. 표상혁이 한눈에 봐도 위험한 건달이라면, 윤재경은—말끔한 정장에, 목엔 단정한 넥타이까지 맨, 어디 사무직이라고 해도 믿을 인상이었다.</p>
+
+    <p>근데 이 바닥 사람들은 안다. 제일 위험한 건, 한눈에 위험해 보이는 쪽이 아니라는 걸.</p>
+
+    <p>바깥에 나가 변이종이랑 부대끼는 인간들은, 다들 어딘가 나사가 하나씩 빠져 있다. 안 그러면 그 지옥을 못 버티니까. 표상혁은 그게 ‘사냥을 즐기는’ 쪽으로 빠졌고, 윤재경은—사람을 사람으로 안 보는 쪽으로 빠졌다. 악의도 아니다. 그냥, 눈앞의 게 인형인지 사람인지에 별 관심이 없는 거다. 그게 사디스트보다 무서웠다. 사디스트는 적어도 반응을 즐기느라 선이라도 있는데, 이쪽은—선이 없으니까.</p>
+
+    <p>한번은 작전 중에, 같이 나간 신참 하나가 변이종한테 당했는데, 윤재경이 구하지도 도망치지도 않고 그냥—그 과정을 끝까지 구경만 했다는 소문이 있었다. 신기해서. 사람이 어떻게 망가지는지가. 그 소문이 사실인지는 아무도 몰랐지만, 아무도 굳이 확인하려 들지도 않았다.</p>
+
+    <p class="line">“핑키 기억나지?” 표상혁이 은우를 턱으로 가리켰다. “얘, 요새 완전 내 이거잖아.”</p>
+
+    <p>그러더니 새끼손가락을 까딱, 세워 보였다.</p>
+
+    <p>윤재경이 그 손가락과 은우를 번갈아 보더니, 흥미롭다는 듯 고개를 살짝 기울였다.</p>
+
+    <p class="line">“핑키야.” 표상혁이 웃었다. “손님 오셨는데, 재롱 좀 떨어봐라.”</p>
+
+
+    <div class="pov me" aria-label="시점 전환"><span class="lbl">서은우 · 1인칭</span></div>
+
+    <p class="beat">재롱.</p>
+
+    <p class="beat">…재롱이 뭐가 있냐, 나한테.</p>
+
+    <p>손가락만 빨고 서 있을 수도 없고. 정비실 구석을 둘러보니, 웬 단소가 하나 굴러다니고 있었다. 누가 쉬는 시간에 불다 둔 건지. 나는 그걸 집어 들었다.</p>
+
+    <p class="beat">불 줄도 모르면서.</p>
+
+    <p class="beat">삑—</p>
+
+    <p class="beat">…삑, 삐익.</p>
+
+    <p>단소에서 나온 건 음악이 아니라, 그냥 바람 새는 소리였다. 손가락 구멍도 제대로 못 막아서.</p>
+
+    <p class="line">표상혁이 인상을 썼다. “야 이 새끼야, 그게 재롱이냐?”</p>
+
+    <p>그러더니 성큼 다가와, 내 손에서 단소를 뺏어 들었다. 그리고 그걸로, 내 머리통을 툭—아니, 꽤 세게 후려쳤다.</p>
+
+    <p class="beat">딱. 딱.</p>
+
+    <p>대나무가 머리에 부딪히는 소리가, 정비실에 경쾌하게 울렸다. 솔직히 좀 웃겼다. 단소로 쳐맞는 인생이라니.</p>
+
+    <p>근데 그때, 가만히 구경하던 윤재경이 일어섰다.</p>
+
+    <p>그가 단소로 얻어맞고 있는 내 손목을 덥석 잡더니, 천천히 일으켜 세웠다. 표상혁이 “어?” 하고 한 발 물러섰다. 자기 장난감을 친구가 가져가는 게 살짝 못마땅한 눈치였지만, 그렇다고 막진 않았다.</p>
+
+    <p>윤재경은 나를 한참 들여다봤다. 무슨 신기한 물건이라도 보듯이. 그 눈에, 악의는 없었다. 그게 더 소름 끼쳤다.</p>
+
+    <p>그러더니, 제 목에 매고 있던 넥타이를 스르륵 풀었다.</p>
+
+    <p>그리고 그걸—내 목에.</p>
+
+    <p class="beat">스윽.</p>
+
+    <p>넥타이가 목에 감기는 감촉이, 차가웠다. 윤재경이 그 한쪽 끝을 손에 쥐고는, 나직이 말했다.</p>
+
+    <p class="line">“기어봐.”</p>
+
+    <p class="beat">…시발.</p>
+
+    <p>진짜 가지가지 한다, 이 인간들.</p>
+
+    <p>여기서 보통은 그 넥타이를 얼려서 끊고, 윤재경 면상에 얼음 창을 박아야 정상이다. A급씩이나 되는 새끼가, 목줄 차고 길 이유가 어디 있어.</p>
+
+    <p class="beat">근데.</p>
+
+    <p>나는 그냥, 바닥에 손을 짚었다.</p>
+
+    <p>한 달. 딱 한 달이면 양전이다. 양전하면 선택지가 생긴다. 이 좆같은 정비실에 더는 안 와도 되고, 이 인간들 비위 안 맞춰도 되고, 우리 애들 다 각자 원하는 데로 보낼 수 있고.</p>
+
+    <p>그 한 달을, 여기서 성질 한 번 부려서 다 날려? 능력자 간 폭력으로? 상위권 팀장 둘을 동시에 적으로 돌려서? 그랬다간 양전은커녕 막사째로 끝장이다.</p>
+
+    <p>그러니까—기자. 며칠만 더.</p>
+
+    <p>자존심은 어차피 3년 전에 얼음 관에 두고 왔으니까.</p>
+
+    <p>나는 윤재경이 쥔 넥타이 끝에 끌려, 정비실 바닥을 기었다.</p>
+
+    <p class="beat">개처럼.</p>
+
+    <p>바닥은 차가웠고, 윤재경이 쥔 넥타이는 내 목을 살짝 조였다 풀렸다 했다. 그 인간은 내가 기는 걸 무슨 실험이라도 관찰하듯 들여다봤다. 가끔 고개를 갸웃하면서. ‘왜 안 도망치지?’ ‘왜 안 덤비지?’ 그런 걸 순수하게 궁금해하는 얼굴로. 차라리 비웃거나 즐겼으면 나았을 거다. 근데 윤재경은 그냥—신기해했다. 내가 인간이 아니라, 처음 보는 벌레라도 되는 것처럼.</p>
+
+    <p>기라면 기고. 멈추라면 멈추고. 그 인간이 의자에 앉아 다리를 꼬면, 나는 그 발치에 가만히 앉아 있었다. 표상혁은 옆에서 단소를 까딱이며 낄낄댔다. “핑키 잘한다, 어? 옛날엔 누구한테 고개도 안 숙이던 새끼가.”</p>
+
+    <p>시간이 어떻게 갔는지 모르겠다. 한 시간이 지났는지, 다섯 시간이 지났는지. 무릎이고 손바닥이고 다 까졌고, 목엔 넥타이 자국이 빨갛게 박혔다.</p>
+
+    <p>그 와중에 딱 한 번. 윤재경이 내 머리카락을 손가락으로 툭 건드렸을 때—채도 빠진 그 분홍 머리가 신기하다는 듯이—나도 모르게, 손끝에 물기가 확 모였다. 얼음 창을 박기 직전의, 그 감각.</p>
+
+    <p class="beat">…참아.</p>
+
+    <p>나는 그 물기를 도로 흩어버렸다. 손톱이 손바닥을 파고들 만큼 주먹을 쥐고서.</p>
+
+    <p>한 달. 딱 한 달만. 그 뒤엔 이 모든 게 끝난다고. 그렇게 스스로한테 백 번쯤 되뇌면서.</p>
+
+    <p class="beat">하루가, 백 년 같았다.</p>
+
+
+    <div class="pov omni" aria-label="시점 전환"><span class="lbl">전지적 · 관측 시점</span></div>
+
+    <p>어쩌면 이날의 진짜 이야기는, 그다음이었다.</p>
+
+    <p>윤재경이 제 장난감(이라고 표상혁은 생각했다)을 한참 가지고 노는 걸 구경하던 표상혁이, 문득 뭔가 생각난 듯 손뼉을 쳤다.</p>
+
+    <p class="line">“아, 맞다. 핑키.” 표상혁이 낄낄거렸다. “너 얼마 전에 훈련실에서 무릎 꿇는 거, 영상 찍혔던데? 봤어. ‘폐급은 분수를 알겠습니다’? 큭, 너 진짜 성격 다 뒤졌더라. 옛날의 그 미친개는 어디 가고.”</p>
+
+    <p>은우는 대답하지 않았다. 목에 넥타이를 건 채로.</p>
+
+    <p class="line">“그거 누가 찍었더라.” 표상혁이 단말을 만지작거리더니, 누군가에게 호출을 넣었다. “오세건이, 그 새끼였지 아마.”</p>
+
+    <p>십 분 뒤, 오세건이 정비실에 들어섰다.</p>
+
+    <p>표상혁 같은 상위권 팀장의 호출이라, 잔뜩 긴장한 얼굴로. 근데 들어서서 그 광경을 본 순간—목에 넥타이를 걸고 바닥에 엎드린 은우를 본 순간—오세건의 입가에 슬그머니 웃음이 번졌다.</p>
+
+    <p class="beat">‘꼴좋다.’</p>
+
+    <p>며칠 전 제 앞에서 무릎 꿇던 폐급 팀장이, 이젠 상위권 팀장 둘 앞에서 개 노릇을 하고 있었다. 오세건에게 이만한 구경거리가 없었다.</p>
+
+    <p class="line">“부르셨습니까, 표 팀장님.” 오세건이 한껏 굽실거렸다. “역시, 폐급은 어딜 가나 폐급이네요. 저도 며칠 전에 저 새끼 버르장머리를 좀—”</p>
+
+    <p class="beat">퍽.</p>
+
+    <p>표상혁의 발이, 오세건의 정강이를 걷어찼다.</p>
+
+    <p class="line">“……예?” 오세건이 휘청, 했다.</p>
+
+    <p class="line">“야.” 표상혁이 껌을 짝 씹으며, 아주 느긋하게 웃었다. “내가 언제, 너보고 핑키 건드리랬냐?”</p>
+
+    <p class="beat">퍽. 퍽.</p>
+
+    <p>표상혁이 오세건의 정강이를 연거푸 찼다. 오세건이 비명을 지르며 주저앉았다.</p>
+
+    <p class="line">“이 잡것이 어디서. 핑키가 만만해? 어? 얘는 내 거야. 내가 굴리는 거라고.” 표상혁이 한 발 한 발, 박자 맞춰 차면서 말했다. “너 같은 새끼가 길바닥에서 무릎 꿇려도 되는 물건이 아니라니까? 응? 내 허락 받았어? 안 받았지?”</p>
+
+    <p class="beat">퍽.</p>
+
+    <p>오세건은 그제야 깨달았다. 자기가 무슨 짓을 했는지.</p>
+
+    <p>표상혁에게 서은우는, ‘폐급’이 아니었다. 표상혁의 장난감이었다. 그리고 표상혁은—제 물건에 남이 손대는 걸, 죽도록 싫어하는 인간이었다. 며칠 전 오세건이 훈련장에서 은우를 무릎 꿇린 건, 표상혁 입장에선 제 물건에 흠집을 낸 거나 마찬가지였던 거다.</p>
+
+    <p>윤재경은 그 광경을, 또 그 특유의 무심한 눈으로 구경했다. 표상혁이 화내는 것도, 오세건이 비는 것도, 똑같이 신기한 구경거리라는 듯이.</p>
+
+    <p class="line">“그만해라.” 윤재경이 처음으로 입을 열었다. 별 감정 없는 목소리로. “망가지겠다.”</p>
+
+    <p class="line">표상혁이 픽 웃으며 발을 거뒀다. “하긴, 형 말이 맞네.”</p>
+
+    <p>오세건이 망가진다는 건지, 은우가 망가진다는 건지. 어느 쪽이든, 사람을 두고 할 소리는 아니었다.</p>
+
+    <p>한참을 정강이를 차이고, 빌고, 또 차이고 나서야 오세건은 풀려났다. 절뚝거리며 정비실을 빠져나가는 그 뒷모습을, 은우는 바닥에서 가만히 지켜봤다. 통쾌하지도, 딱하지도 않았다. 그냥—이 인간들의 세계가 이렇게 굴러간다는 걸, 다시 한번 확인했을 뿐이다.</p>
+
+    <p>오세건이 사라지고, 정비실엔 다시 표상혁과 윤재경, 그리고 은우만 남았다.</p>
+
+    <p>표상혁은 기분이 좋아 보였다. 한참을 더 낄낄대다가, 문득 제 부대의 부팀장을 호출했다.</p>
+
+    <p>부팀장이 오자, 표상혁은 은우가 듣는 줄도 모르고—아니, 들어도 상관없다는 듯—심드렁하게 지시했다.</p>
+
+    <p class="line">“야. 저기 D-7, 그 폐급 팀 있잖아.” 표상혁이 턱으로 은우를 가리켰다. “걔네 출동 신청, 앞으로 다 막아. 너 사령부에 연줄 있잖아. 무슨 핑계를 대든, 당분간 못 나가게 묶어놔. 오키?”</p>
+
+    <p class="beat">은우의 어깨가, 미세하게 굳었다.</p>
+
+
+    <div class="pov me" aria-label="시점 전환"><span class="lbl">서은우 · 1인칭</span></div>
+
+    <p>목줄을 풀고 막사로 돌아오는 길에, 나는 방금 들은 말을 곱씹었다.</p>
+
+    <p class="beat">‘걔네 출동 신청, 앞으로 다 막아.’</p>
+
+    <p>…한 달. 딱 한 달이면 양전이었는데.</p>
+
+    <p>이제 알겠다. 표상혁이 왜 나한테 이렇게까지 잘(?) 해줬는지. 지원을 꼬박꼬박 데려가 주고, 점수를 따게 해주고. 그건 호의가 아니었다. 나를 딱 이 자리에—마이너스의 끝자락, 양전 직전, 영원히 제 손이 필요한 그 자리에—묶어두려는 거였다.</p>
+
+    <p>양수가 되면, 나는 더는 그 인간 무릎에 안 앉아도 된다.</p>
+
+    <p class="beat">그러니까 표상혁은, 내가 양수가 되게 둘 생각이 없는 거다.</p>
+
+    <p>지원으로 점수는 주되 정식 출동은 막아서, 딱 양전 직전에서 멈춰 세우고. 그렇게 영원히, 제 발밑에 빌붙은 폐급 핑키로 남겨두려는 거다.</p>
+
+    <p class="beat">머리 좋네, 진짜.</p>
+
+    <p>나는 목에 남은 넥타이 자국을 슥 문질렀다. 무릎도, 손바닥도 따끔거렸다. 하루 종일 긴 자국들이었다.</p>
+
+    <p>참자고 했다. 며칠만 더 참으면 선택지가 생긴다고. 근데 그 선택지로 가는 문을, 방금 표상혁이 잠가버렸다. 내가 듣는 앞에서, 아주 태연하게.</p>
+
+    <p class="beat">…그럼 어쩌냐.</p>
+
+    <p>참는 걸로 안 되는 거면.</p>
+
+    <p>나는 픽 웃었다. 3년 만에, 등 뒤 어딘가에서—얼음 관에 두고 왔다고 생각했던 옛날의 그 미친개가—슬그머니 고개를 드는 기분이었다.</p>
+
+    <p>방법을, 바꿔야겠다.</p>
+
+    <p>어떻게 바꿀지는 아직 모르겠지만. 적어도 하나는 확실했다.</p>
+
+    <p class="beat">이제, 기는 건 끝이다.</p>
+
+    <div class="endcard">
+      <div class="stamp">— 기록 종료 · 제5화 끝 —</div>
+      <div class="score">누적 점수 <span class="old">−1,900</span> → −1,100 &nbsp;<b>(양전까지 −1,100)</b></div>
+      <div class="alert">⚠ 작전 권한 · 전면 보류 — 사유 불명 〔외압 의심〕</div>
+      <div class="next">다음 화 · <b>미친개</b> &nbsp;〔준비 중〕</div>
+    </div>
+
+    <nav style="display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:1.8rem;font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.05em;">
+      <a href="온실_4화.html" style="color:var(--ice-dim);text-decoration:none;padding:.5rem .2rem;">◄ 이전 화 · 폐급 주제에</a>
+      <a href="index.html" style="color:var(--muted);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--line);border-radius:2px;">목 차</a>
+      <span style="color:var(--faint);">다음 화 준비 중 ►</span>
+    </nav>
+
+    <div class="colophon">
+      《온실》 (가제) · 생존 / 헌터 / 휴먼 드라마<br>
+      Terrarium 통합관제 시스템 — 인물 관찰 일지 No. 005
+    </div>
+
+  </main>
+</div>
+
+<script>
+  (function(){
+    var bar = document.getElementById('scan');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      bar.style.width = (p * 100).toFixed(2) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+</body>
+</html>
