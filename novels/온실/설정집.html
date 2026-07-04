@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온실 · 세계관 설정집</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090d0e; --surface:#0f1618; --surface-2:#0c1213;
+    --frost:#eaf2ef; --text:#c6d0cd; --text-soft:#aab4b1;
+    --muted:#6e7d7a; --faint:#475452;
+    --line:rgba(132,216,210,.13); --line-strong:rgba(132,216,210,.26);
+    --ice:#86d8d2; --ice-dim:rgba(134,216,210,.55); --danger:#df574e;
+    --maxw:48rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:radial-gradient(120% 80% at 50% -10%, #0e171a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); font-family:"Noto Serif KR", serif; line-height:1.95;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:clamp(2rem,6vw,4rem) clamp(1.15rem,5vw,2rem) 6rem;}
+
+  .back{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.14em;
+    color:var(--muted); text-decoration:none;}
+  .back:hover{color:var(--ice-dim);}
+
+  /* 기밀 문서 헤더 패널 */
+  .sys{margin-top:2rem; border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:1.05rem 1.15rem 1.1rem; font-family:"IBM Plex Mono", monospace;
+    font-size:.74rem; line-height:1.6; color:var(--text-soft); position:relative; overflow:hidden;}
+  .sys::before{content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px); pointer-events:none;}
+  .sys .head{display:flex; align-items:center; gap:.55rem; color:var(--ice); letter-spacing:.16em;
+    font-weight:500; font-size:.72rem; text-transform:uppercase;
+    padding-bottom:.7rem; margin-bottom:.75rem; border-bottom:1px dashed var(--line-strong);}
+  .sys .head .dot{width:6px;height:6px;border-radius:50%;background:var(--ice);
+    box-shadow:0 0 7px var(--ice); animation:pulse 2.4s ease-in-out infinite;}
+  .sys .row{display:grid; grid-template-columns:5.4rem 1fr; gap:.4rem;}
+  .sys .row + .row{margin-top:.18rem;}
+  .sys .k{color:var(--faint); letter-spacing:.04em;}
+
+  /* 표제 */
+  header.title{text-align:center; margin:clamp(2.6rem,7vw,3.6rem) 0 clamp(2.2rem,6vw,3rem);}
+  .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.42em;
+    text-indent:.42em; color:var(--muted); text-transform:uppercase; margin-bottom:1.2rem;}
+  h1{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(2.6rem,10vw,4rem); line-height:1.05; margin:0; letter-spacing:.04em;
+    text-shadow:0 0 38px rgba(134,216,210,.14);}
+  h1 .sub{display:block; margin-top:.7rem; font-size:clamp(1rem,3.4vw,1.3rem);
+    letter-spacing:.24em; color:var(--ice-dim); font-weight:400;}
+
+  /* 도입 인용 */
+  .hero-quote{border-left:2px solid var(--ice-dim); padding:.4rem 0 .4rem 1.3rem;
+    margin:0 auto clamp(2.6rem,6vw,3.6rem); max-width:34rem; color:var(--text-soft);
+    font-size:1.05rem; line-height:2;}
+  .hero-quote b{color:var(--frost); font-weight:400;}
+
+  /* 섹션 */
+  section{margin:0 0 clamp(2.6rem,6vw,3.4rem);}
+  .sec-label{font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--ice-dim); margin-bottom:.5rem;}
+  h2{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost);
+    font-size:clamp(1.5rem,4.6vw,2rem); margin:0 0 1.2rem; letter-spacing:.02em;
+    padding-bottom:.7rem; border-bottom:1px solid var(--line);}
+  h3{font-family:"Gowun Batang", serif; font-weight:700; color:var(--ice);
+    font-size:1.15rem; margin:2rem 0 .8rem; letter-spacing:.02em;}
+  p{margin:0 0 1.1em;}
+  ul.dots{margin:0 0 1.1em; padding-left:0; list-style:none;}
+  ul.dots li{position:relative; padding-left:1.2rem; margin-bottom:.5rem;}
+  ul.dots li::before{content:"◇"; position:absolute; left:0; color:var(--ice-dim); font-size:.7rem; top:.35em;}
+  ul.dots li b, p b{color:var(--frost); font-weight:600;}
+  em{color:var(--ice-dim); font-style:italic;}
+
+  /* 표 */
+  table{width:100%; border-collapse:collapse; margin:.6rem 0 1.4rem; font-size:.96rem;}
+  th,td{text-align:left; padding:.7rem .85rem; border:1px solid var(--line); vertical-align:top;}
+  th{background:rgba(134,216,210,.06); color:var(--ice); font-family:"IBM Plex Mono", monospace;
+    font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:500;}
+  td b{color:var(--frost); font-weight:600;}
+  td:first-child{white-space:nowrap; color:var(--text-soft);}
+
+  /* 콜아웃 (환상체 등) */
+  .callout{border:1px solid rgba(223,87,78,.35); border-left:3px solid var(--danger);
+    background:linear-gradient(180deg, rgba(223,87,78,.06), rgba(223,87,78,.02));
+    padding:1.1rem 1.2rem; margin:1.2rem 0 1.4rem; border-radius:3px;}
+  .callout .tag{font-family:"IBM Plex Mono", monospace; font-size:.68rem; letter-spacing:.16em;
+    color:var(--danger); text-transform:uppercase; margin-bottom:.6rem;}
+  .callout p:last-child{margin-bottom:0;}
+
+  .quote{border-left:2px solid var(--line-strong); padding:.2rem 0 .2rem 1.2rem;
+    margin:1.2rem 0; color:var(--text-soft); font-style:italic; line-height:1.9;}
+
+  /* 팀원 카드 */
+  .members{display:grid; gap:1rem; margin:1.2rem 0 1.4rem;}
+  .mem{border:1px solid var(--line); border-radius:4px; padding:1.2rem 1.3rem;
+    background:linear-gradient(160deg, rgba(15,22,24,.9), rgba(12,18,19,.92)); position:relative; overflow:hidden;}
+  .mem::after{content:""; position:absolute; left:0; top:0; bottom:0; width:2.5px; background:var(--ice); opacity:.55;}
+  .mem.fire::after{background:var(--danger);}
+  .mem .mh{display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap; margin-bottom:.7rem;}
+  .mem .mname{font-family:"Gowun Batang", serif; font-weight:700; color:var(--frost); font-size:1.35rem;}
+  .mem .mrole{font-family:"IBM Plex Mono", monospace; font-size:.68rem; letter-spacing:.12em;
+    color:var(--ice-dim); text-transform:uppercase;}
+  .mem .mtag{font-family:"IBM Plex Mono", monospace; font-size:.72rem; color:var(--muted); letter-spacing:.03em;}
+  .mem p{margin:0 0 .6em; font-size:.95rem; line-height:1.85;}
+  .mem p:last-child{margin-bottom:0;}
+
+  /* 체크리스트 */
+  ul.todo{list-style:none; padding:0; margin:.4rem 0 0;}
+  ul.todo li{padding:.5rem 0 .5rem 1.9rem; position:relative; border-bottom:1px solid var(--line); color:var(--text-soft);}
+  ul.todo li::before{content:"☐"; position:absolute; left:.2rem; color:var(--ice-dim);}
+
+  .colophon{margin-top:3.4rem; text-align:center; font-family:"IBM Plex Mono", monospace;
+    font-size:.68rem; letter-spacing:.12em; color:var(--faint); line-height:1.9;}
+  .botnav{display:flex; justify-content:center; gap:1.4rem; margin-top:2.4rem;
+    font-family:"IBM Plex Mono", monospace; font-size:.74rem; letter-spacing:.06em;}
+  .botnav a{color:var(--ice-dim); text-decoration:none;}
+  .botnav a:hover{color:var(--ice);}
+
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.32;}}
+  @media (max-width:560px){ .sys .row{grid-template-columns:4.6rem 1fr;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">◄ 온실 목차</a>
+
+  <section class="sys" aria-label="기밀 문서">
+    <div class="head"><span class="dot"></span>Terrarium · 기밀 열람 문서</div>
+    <div class="row"><span class="k">문서</span><span class="v">세계관 설정집 <span style="color:var(--faint)">/ CODEX</span></span></div>
+    <div class="row"><span class="k">작품</span><span class="v">《온실》 (가제)</span></div>
+    <div class="row"><span class="k">분류</span><span class="v">생존 · 헌터 · 휴먼 드라마</span></div>
+  </section>
+
+  <header class="title">
+    <div class="eyebrow">World Codex</div>
+    <h1>온실<span class="sub">세계관 설정집</span></h1>
+  </header>
+
+  <blockquote class="hero-quote">
+    인류가 자기 손으로 망친 지구.<br>
+    변이한 생물들이 세상을 뒤덮은 뒤, 살아남은 자들은 <b>단 하나의 유리 돔</b> 안으로 숨어들었다.<br>
+    그리고 그 무렵 — 설명할 수 없는 힘에 눈뜬 사람들이 나타나기 시작했다.
+  </blockquote>
+
+  <section>
+    <div class="sec-label">01 · Tone</div>
+    <h2>장르 &amp; 톤</h2>
+    <ul class="dots">
+      <li><b>적당히 어두운 생존물</b> + 헌터물 살짝 + 휴먼 드라마</li>
+      <li>잿빛이지만 완전한 절망은 아닌, 그 사이 어딘가</li>
+      <li>바깥의 액션 / 안의 관계와 감정 / 끊이지 않는 미스터리, 이 셋이 맞물려 굴러감</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · Era</div>
+    <h2>시대 배경</h2>
+    <ul class="dots">
+      <li>디스토피아 <b>먼 미래</b></li>
+      <li>인류가 자초한 <b>환경·기후 붕괴</b>로 지구 생태계가 무너짐</li>
+      <li>돔 밖은 전부 <b>위험구역</b></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · Mutants</div>
+    <h2>변이종 (變異種)</h2>
+    <ul class="dots">
+      <li>오염과 기후 붕괴로 <b>변이한 동·식물</b></li>
+      <li>원래는 평범한 사슴, 비둘기, 가로수였던 것들이 괴물이 됨 → 그래서 더 섬뜩하고 현실적</li>
+      <li>마법도 외계도 아님. <b>인류가 부순 지구가 그대로 되돌아온 결과</b></li>
+      <li>변이종에도 <b>등급이 존재</b> (강함의 척도)</li>
+    </ul>
+    <div class="callout">
+      <div class="tag">⚠ 환상체 · 정신 공격형 변이종</div>
+      <p>물리로 죽지 않고 <b>머릿속을 부수는</b> 변이종. 피해자를 <em>실재하지 않는 환영·미로</em>에 가둔다.</p>
+      <p><b>3년 전 주인공의 팀을 전멸시킨 원흉.</b> 아직 죽지 않고 바깥 어딘가 있다면? — 주인공이 잃어버린 기억을 되찾으려면 다시 만나야 할 <b>최종 보스 후보</b>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">04 · Espers</div>
+    <h2>능력자</h2>
+    <ul class="dots">
+      <li>변이종이 출현한 <b>바로 그 시기</b>에 함께 각성하기 시작</li>
+      <li><b>기원 불명</b> — 아무도 왜 생기는지 모름 <em>(이야기 내내 굴러갈 미스터리)</em></li>
+    </ul>
+    <p>능력자를 보는 두 갈래 시선:</p>
+    <div class="quote">“세상이 준 마지막 희망. 우리가 버려진 게 아니라는 증거” &nbsp;/&nbsp; “기원도 모르면서… 저것도 결국 변이의 일종 아니냐”</div>
+    <p>→ 능력자를 둘러싼 <b>종교</b>까지 생겨남 <em>(폐급 팀의 광신도와 연결)</em>.</p>
+
+    <h3>능력 체계</h3>
+    <table>
+      <tr><th>계열</th><th>예시</th></tr>
+      <tr><td><b>신체 강화형</b></td><td>순수 물리 능력이 극대화</td></tr>
+      <tr><td><b>원소형</b></td><td>불 · 물 · 바람 등 특정 원소 발현</td></tr>
+      <tr><td><b>비전투형</b></td><td>탐지 · 치유 · 방벽 · 분석 등</td></tr>
+    </table>
+    <p>그 위에 <b>S ~ F 등급제</b>가 매겨짐.</p>
+    <ul class="dots">
+      <li><b>S급은 센터 통틀어 단 3명</b> — 사실상 예외적 존재. <b>A급만 돼도 최상위권</b></li>
+      <li>군부에서 등급 = <em>“얼마나 쓸모 있는 무기냐”</em>의 척도 → <b>등급이 능력자 인생을 통째로 결정</b></li>
+      <li>같은 능력자끼리도 등급으로 계급이 갈림</li>
+      <li>비전투 능력자는 위세는 약하지만, 바깥 작전에선 목숨줄 <em>(반전 여지 多)</em></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">05 · The Dome</div>
+    <h2>안전구역 — 유리 돔</h2>
+    <ul class="dots">
+      <li>인류 최후의, <b>단 하나뿐인 최첨단 유리 돔</b></li>
+      <li>투명한 벽 너머로 망가진 바깥세상과 변이종이 그대로 다 보임</li>
+      <li><b>보호이자 감시</b> — 어디에도 숨을 곳 없는, 다 들여다보이는 사회</li>
+      <li>“안전한데 안전하지 않은 것 같은” 불안이 늘 깔림 <em>(저 유리가 정말 막아줄까?)</em></li>
+      <li>생각보다 크지 않음 → 모두를 수용하기 빠듯 → <b>공간이 가장 귀한 자원</b></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">06 · Regime</div>
+    <h2>권력 구조 — 군부 통제 정권</h2>
+    <ul class="dots">
+      <li>질서는 칼같고, 자유는 없음</li>
+      <li><em>“누가 어디서 사느냐”</em>까지 통제 → 자연히 <b>계급</b> 발생
+        <br>&nbsp;&nbsp;· <b>안쪽 핵심 구역</b> : 능력자 · 군인 · 기술자 등 “쓸모 있는” 사람들
+        <br>&nbsp;&nbsp;· <b>바깥 가장자리</b> : 나머지가 빽빽하게</li>
+      <li>능력자 = 떠받들리는 동시에 바깥으로 내보내지는 <b>병기</b></li>
+    </ul>
+
+    <h3>군 조직도</h3>
+    <table>
+      <tr><th>부대</th><th>역할</th></tr>
+      <tr><td><b>전선 공략대</b></td><td>능력자 전투원 주축. 직접 바깥 나가 변이종 소탕·구역 확장. 영광도 위험도 최대</td></tr>
+      <tr><td><b>지원·관측대</b></td><td>비전투 능력자. 탐지·치유·방벽·분석. 위세는 약해도 작전 성패를 쥠</td></tr>
+      <tr><td><b>공병·축성대</b></td><td>확보된 구역에 방벽·외곽 정착지 건설. 일반 병사 + 기술계 능력자</td></tr>
+      <tr><td><b>내무·치안국</b></td><td>돔 내부 감시·통제·치안. 시민도 능력자도 감시. 다들 두려워함 <em>(갈등의 온상)</em></td></tr>
+      <tr><td><b>사령부</b></td><td>어디를 칠지·누굴 내보낼지·누구에게 공간을 줄지 결정. 정권의 얼굴이자 숨은 손</td></tr>
+    </table>
+    <div class="quote"><b style="color:var(--ice)">실제 공략 팀 편성</b> <em>(헌터 파티처럼 섞음)</em><br>
+      돌파 담당 고등급 전투원 1~2명 + 중간 등급 전투원 몇 + 비전투 능력자 1명(탐지/치유) + 일반 병사들</div>
+  </section>
+
+  <section>
+    <div class="sec-label">07 · Expeditions</div>
+    <h2>바깥 작전 — 구역 확보</h2>
+    <ul class="dots">
+      <li><b>1순위 목적 : 안전지대 확장</b> — 돔이 과밀하니 살 공간을 계속 넓혀야 함</li>
+      <li>겸사겸사 <b>물자·자원 확보</b></li>
+      <li>새로 확보한 구역마다 위태로운 <b>외곽 정착지</b>가 들어섬</li>
+      <li>위험하지만 <em>“내 공간”</em>이 생기니까 사람들이 자원함</li>
+      <li>→ 능력자에게 바깥 전투는 단순 임무가 아니라 <b>가족이 발 뻗고 잘 자리를 만드는 일</b>. 개인적 동기가 강함</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">08 · Protagonist</div>
+    <h2>주인공 <span style="font-size:.7em;color:var(--muted)">(이름 미정)</span></h2>
+    <table>
+      <tr><td><b>나이</b></td><td>29세</td></tr>
+      <tr><td><b>등급</b></td><td><b>A급</b> (센터 통틀어 S급은 단 3명 → 사실상 최상위권)</td></tr>
+      <tr><td><b>계열</b></td><td>수(水) 계열 — 얼음 발사, 물보라 등 / <b>체술도 수준급</b> <em>(만능형)</em></td></tr>
+      <tr><td><b>현 소속</b></td><td>복귀 후 <b>폐급 팀 팀장</b></td></tr>
+    </table>
+
+    <h3>약력</h3>
+    <ul class="dots">
+      <li><b>18세</b> 각성 → <b>2년</b> 기초훈련교육 → <b>20세</b>부터 현장 소속·복무</li>
+      <li><b>3년 전</b>, 작전 중 <em>본인 빼고</em> <b>팀 전멸</b></li>
+      <li>그 여파로 <b>3년간 정신병동 센터</b>에서 지냄</li>
+      <li>현재 <b>복귀</b> — 팀장으로 돌아왔으나, 윗선이 <em>“정신이 온전치 않다”</em> 판단 → <b>폐급 팀에 배정</b></li>
+    </ul>
+
+    <h3>혼자 살아남은 밤 <span style="font-size:.8em;color:var(--muted)">(중심 미스터리)</span></h3>
+    <ul class="dots">
+      <li>그날 변이종 중 <b>환상체</b>가 있었음 → 주인공은 환영에 걸려 <em>실재하지 않는 미로</em>에 갇힘</li>
+      <li><b>마지막 기억은 소실</b></li>
+      <li>발견됐을 땐 — 스스로 만든 <b>얼음으로 온몸을 감싼 채</b>, 냉동 캡슐처럼</li>
+    </ul>
+    <div class="callout" style="border-color:var(--line-strong);border-left-color:var(--ice);background:linear-gradient(180deg,rgba(134,216,210,.05),transparent);">
+      <div class="tag" style="color:var(--ice-dim)">풀리지 않는 물음</div>
+      <p><em>나만 살자고 얼음으로 틀어막고 팀을 버린 건가? 아니면 환영 속 무의식이 멋대로 날 가둬서 살린 건가?</em></p>
+      <p style="margin-top:.6em">본인조차 진실을 모름 → <b>죄책감 + 자기 의심</b>이 평생의 짐. 윗선의 경계도, 광신도의 숭배도 전부 이 한 장면에서 비롯됨.</p>
+    </div>
+
+    <h3>외형</h3>
+    <ul class="dots">
+      <li>키 약 <b>184cm</b>, 잔근육 적당히 있는 몸</li>
+      <li>머리색은 특이하게 <b>채도 빠진 핑크</b> <em>(원래 색인지, 각성 후 변한 건지 — 떡밥)</em></li>
+      <li><b>양아치상</b>인데, 뜯어보면 이목구비는 미인</li>
+    </ul>
+
+    <h3>성격</h3>
+    <ul class="dots">
+      <li>별생각 없이 툭툭 말하다가도, 어딘가 <b>나사 하나 빠진</b> 느낌</li>
+      <li>실실 웃다가도 <b>정색할 땐 정색</b> — 종잡을 수 없음</li>
+      <li>3년 병동 갔다 온 사람치고 멀쩡한 척하지만, 분명 어딘가 깨져 있음</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">09 · The Reject Squad</div>
+    <h2>폐급 팀</h2>
+    <div class="quote">아무도 기대하지 않는 부적응자들의 집합소. 그 한복판에, 부서진 유일한 생존자가 팀장으로 떨어진다.<br>…그런데 자세히 뜯어보면, 구성만큼은 완벽한 한 팀이다.</div>
+
+    <div class="members">
+      <div class="mem">
+        <div class="mh"><span class="mname">팀장 — 주인공</span><span class="mrole">Carry</span></div>
+        <div class="mtag">A급 · 수(水) 계열 + 체술</div>
+        <p style="margin-top:.7em">만능 캐리. 상세는 위 〈주인공〉 참조.</p>
+      </div>
+      <div class="mem fire">
+        <div class="mh"><span class="mname">강도진</span><span class="mrole">화력</span></div>
+        <div class="mtag">22세 · B급 · 화염 계열</div>
+        <p style="margin-top:.7em">성질머리가 곧 출력. 열 받으면 화력이 치솟는 대신 <b>제어가 날아감</b> → <b>방화 4건</b>의 전말 <em>(적도, 아군 보급도, 한 번은 자기 막사까지)</em>.</p>
+        <p>화력은 진짜지만 아무도 옆에 세우기 싫어하는 시한폭탄. 입 더럽고 욱하지만 뒤끝은 없는 단순한 성격 → <b>새 팀장에게 시비 걸 1순위</b>.</p>
+      </div>
+      <div class="mem">
+        <div class="mh"><span class="mname">백서한</span><span class="mrole">방어</span></div>
+        <div class="mtag">27세 · B급 · 방벽(결계) 계열</div>
+        <p style="margin-top:.7em">능력자 숭배 종교의 독실한 신자. 늘 차분·정중하게 말하지만 그 정중함이 더 무섭다. <em>“합당하지 않은”</em> 상관은 교화한다며 주먹으로 바로잡음 → 3년간 <b>팀장 5명</b>.</p>
+        <p>능력은 비전투 방벽형 → 작전에선 <b>팀 전체의 목숨줄</b>인데, 손버릇 탓에 폐급행. 주인공을 <em>“더럽혀지고 온 자”</em>로 볼지, <em>“죽음에서 걸어 나온 자”</em>로 받들지 — 첫 대면에서 갈림.</p>
+      </div>
+      <div class="mem">
+        <div class="mh"><span class="mname">유한결</span><span class="mrole">정찰</span></div>
+        <div class="mtag">19세 · C급 · 탐지(감지) 계열</div>
+        <p style="margin-top:.7em">팀 막내. 걸핏하면 울고 작은 소리에도 펄쩍 뛰는 쫄보. 바로 그 과민함이 능력 → 변이종 기척을 <b>누구보다 먼저</b> 잡아냄.</p>
+        <p>등급은 낮게 매겨졌지만 <b>감지 정밀도는 비범</b> <em>(언젠가 그 환상체를 감지할 유일한 사람이 될지도?)</em>.</p>
+      </div>
+    </div>
+
+    <div class="quote"><b style="color:var(--ice)">숨은 그림</b> — 만능 캐리(팀장) + 화력(도진) + 방어(서한) + 정찰(한결). 사람은 다 고장났는데, 전술 구성만큼은 교과서적이다.</div>
+  </section>
+
+  <section>
+    <div class="sec-label">10 · Engine</div>
+    <h2>이야기 엔진 / 핵심 긴장</h2>
+    <ul class="dots">
+      <li><b>왜 너만 살아남았나</b> — 주인공의 잃어버린 기억과 죄책감, 그리고 그 환상체</li>
+      <li><b>영웅이자 소모품</b> — 시민에겐 구원자, 군부에겐 소모품인 능력자의 모순</li>
+      <li><b>고장난 사람들의 팀</b> — 부적응자들이 억지로 엮여 만들어가는 (혹은 박살나는) 유대</li>
+      <li><b>공간 = 생존</b> — 한 뼘의 땅이 곧 누군가의 삶</li>
+      <li><b>불안한 유리</b> — 안전의 상징이 동시에 가장 취약한 것</li>
+      <li><b>기원의 미스터리</b> — 능력자는, 변이종은, 대체 왜 생겨났나</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">11 · TBD</div>
+    <h2>아직 안 정한 것들</h2>
+    <ul class="todo">
+      <li>주인공 이름</li>
+      <li>돔과 세계의 정식 명칭</li>
+      <li>1화 오프닝 장면 — 복귀 + 폐급 팀 배정 + 첫 대면</li>
+    </ul>
+  </section>
+
+  <nav class="botnav">
+    <a href="index.html">◄ 온실 목차</a>
+    <a href="../../index.html">서재로 ◄◄</a>
+  </nav>
+
+  <div class="colophon">
+    《온실》 (가제) · Terrarium 기밀 열람 문서 — 세계관 설정집<br>
+    written with Claude
+  </div>
+
+</div>
+</body>
+</html>
