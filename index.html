@@ -9,133 +9,144 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#080a0c;
-    --ink-2:#0d1114;
-    --frost:#f2efe6;
-    --text:#cdd3cf;
-    --text-soft:#a7b0ab;
-    --muted:#6e7a75;
-    --faint:#46514c;
-    --jade:#8fe0d6;
-    --jade-dim:rgba(143,224,214,.55);
+    --ink:#07080a;
+    --ink-2:#0c0e11;
+    --paper:#0e1013;
+    --frost:#f3efe4;
+    --text:#c9cabf;
+    --text-soft:#a09f92;
+    --muted:#6d6c60;
+    --faint:#454438;
     --gold:#d9b877;
+    --gold-soft:#c6a866;
     --gold-dim:rgba(217,184,119,.5);
-    --seal:#c8433a;
-    --line:rgba(200,220,214,.12);
-    --line-strong:rgba(200,220,214,.24);
-    --maxw:54rem;
+    --gold-line:rgba(217,184,119,.14);
+    --gold-faint:rgba(217,184,119,.07);
+    --seal:#c33a30;
+    --line:rgba(217,184,119,.12);
+    --line-strong:rgba(217,184,119,.26);
+    --maxw:55rem;
   }
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   body{
     margin:0; min-height:100vh; position:relative; overflow-x:hidden;
     background:
-      radial-gradient(120% 90% at 50% -10%, #10201d 0%, transparent 55%),
-      radial-gradient(90% 70% at 85% 15%, #1a1712 0%, transparent 50%),
-      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 60%, var(--ink) 100%);
+      radial-gradient(130% 80% at 78% 12%, #14130d 0%, transparent 55%),
+      radial-gradient(120% 90% at 20% 100%, #0b1211 0%, transparent 55%),
+      linear-gradient(175deg, var(--ink) 0%, var(--ink-2) 55%, var(--ink) 100%);
     background-attachment:fixed;
     color:var(--text);
     font-family:"Nanum Myeongjo", serif;
     line-height:1.9; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
 
-  /* ── drifting ink-mist aurora ── */
-  .aurora{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;}
-  .aurora span{
-    position:absolute; border-radius:50%; filter:blur(70px); opacity:.5;
-    mix-blend-mode:screen;
+  /* ── 원고지 격자 (manuscript grid) ── */
+  .genko{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--gold-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold-faint) 1px, transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:radial-gradient(120% 100% at 50% 30%, #000 20%, transparent 78%);
+            mask-image:radial-gradient(120% 100% at 50% 30%, #000 20%, transparent 78%);
+    opacity:.9;
   }
-  .aurora .a1{width:46vw;height:46vw; left:-8vw; top:-6vw;
-    background:radial-gradient(circle, rgba(60,160,150,.55), transparent 70%);
-    animation:drift1 26s ease-in-out infinite;}
-  .aurora .a2{width:40vw;height:40vw; right:-6vw; top:8vh;
-    background:radial-gradient(circle, rgba(150,120,60,.42), transparent 70%);
-    animation:drift2 32s ease-in-out infinite;}
-  .aurora .a3{width:52vw;height:52vw; left:20vw; bottom:-20vw;
-    background:radial-gradient(circle, rgba(40,90,120,.4), transparent 70%);
-    animation:drift3 38s ease-in-out infinite;}
-  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(6vw,4vh) scale(1.15);}}
-  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5vw,6vh) scale(1.1);}}
-  @keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vw,-5vh) scale(1.2);}}
+  /* 조금 더 진한 격자 판 몇 개 (콜라주 느낌) */
+  .genko-blocks{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
+  .gb{position:absolute; background-image:
+      linear-gradient(var(--gold-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold-line) 1px, transparent 1px);
+      background-size:30px 30px; opacity:.5;}
+  .gb.b1{width:220px;height:300px; left:-40px; top:8%; transform:rotate(0deg);}
+  .gb.b2{width:180px;height:420px; right:-30px; top:22%;}
+  .gb.b3{width:260px;height:200px; left:6%; bottom:-30px; opacity:.35;}
 
-  /* ── paper grain + vignette ── */
-  .grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  /* ── 밤하늘: 별자리 + 초승달 ── */
+  .sky{position:fixed; inset:0; z-index:0; pointer-events:none;}
+  .sky svg{width:100%; height:100%; display:block;}
+  .cst-line{fill:none; stroke:var(--gold-dim); stroke-width:1; stroke-linecap:round; opacity:.55;}
+  .star{fill:var(--gold); filter:drop-shadow(0 0 3px rgba(217,184,119,.8));}
+  .star.tw{animation:tw 4s ease-in-out infinite;}
+  .star.tw2{animation:tw 5.5s ease-in-out infinite; animation-delay:1.2s;}
+  .moon{fill:var(--gold); filter:drop-shadow(0 0 10px rgba(217,184,119,.6));}
+  @keyframes tw{0%,100%{opacity:1;}50%{opacity:.35;}}
+
   .vignette{position:fixed; inset:0; z-index:1; pointer-events:none;
-    background:radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%);}
+    background:radial-gradient(120% 120% at 50% 36%, transparent 52%, rgba(0,0,0,.66) 100%);}
 
   .wrap{position:relative; z-index:2; max-width:var(--maxw); margin:0 auto;
     padding:clamp(3.5rem,9vw,7rem) clamp(1.2rem,5vw,2rem) 5rem;}
 
   /* ── masthead ── */
-  header.masthead{text-align:center; margin-bottom:clamp(3.2rem,8vw,5rem); position:relative;}
+  header.masthead{text-align:center; margin-bottom:clamp(3.4rem,8vw,5.2rem);}
   .eyebrow{font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.5em;
-    text-indent:.5em; color:var(--muted); text-transform:uppercase; margin-bottom:1.6rem;}
+    text-indent:.5em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:1.8rem;}
 
-  .title-row{display:inline-flex; align-items:center; gap:1.4rem;}
+  .title-row{display:inline-flex; align-items:center; gap:1.5rem;}
+
+  /* 낙관 도장 · 성명인 (2×2: 李承彦印) */
   .seal{
-    width:3.1rem; height:3.1rem; flex:0 0 auto; transform:rotate(-4deg);
-    border:2px solid var(--seal); border-radius:7px;
-    display:flex; align-items:center; justify-content:center;
-    color:var(--seal); font-family:"Nanum Myeongjo", serif; font-weight:800;
-    font-size:1.5rem; line-height:1; letter-spacing:-.05em;
-    box-shadow:0 0 22px rgba(200,67,58,.28), inset 0 0 12px rgba(200,67,58,.15);
-    background:rgba(200,67,58,.05);
+    width:3.4rem; height:3.4rem; flex:0 0 auto; transform:rotate(-3deg);
+    border:2.5px solid var(--seal); border-radius:8px;
+    padding:3px; background:rgba(195,58,48,.06);
+    box-shadow:0 0 26px rgba(195,58,48,.3), inset 0 0 14px rgba(195,58,48,.14);
   }
-  .seal .two{writing-mode:vertical-rl; text-orientation:upright; font-size:.9rem; letter-spacing:-.15em;}
+  .seal .grid2{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+    width:100%; height:100%; gap:1px;}
+  .seal .grid2 i{display:flex; align-items:center; justify-content:center;
+    font-family:"Nanum Myeongjo", serif; font-weight:800; font-style:normal;
+    color:var(--seal); font-size:1.02rem; line-height:1; letter-spacing:-.04em;
+    text-shadow:0 0 8px rgba(195,58,48,.25);}
 
-  h1{
-    font-family:"Nanum Myeongjo", serif; font-weight:800; color:var(--frost);
-    font-size:clamp(3.6rem,15vw,6.2rem); line-height:.95; margin:0; letter-spacing:.08em;
-    text-shadow:0 0 44px rgba(143,224,214,.16), 0 2px 0 rgba(0,0,0,.4);
-  }
-  .hanja{
-    display:block; margin-top:.55rem;
+  h1{font-family:"Nanum Myeongjo", serif; font-weight:800; color:var(--frost);
+    font-size:clamp(3.6rem,15vw,6.4rem); line-height:.95; margin:0; letter-spacing:.1em;
+    text-shadow:0 0 40px rgba(217,184,119,.2), 0 2px 0 rgba(0,0,0,.5);}
+  .hanja{display:block; margin-top:.6rem;
     font-family:"Nanum Brush Script", cursive; font-weight:400;
-    font-size:clamp(1.6rem,6vw,2.4rem); letter-spacing:.1em;
-    color:transparent; background:linear-gradient(100deg, var(--jade), var(--gold));
-    -webkit-background-clip:text; background-clip:text;
-  }
+    font-size:clamp(1.5rem,6vw,2.3rem); letter-spacing:.12em; color:var(--gold-soft);}
 
   .rule{display:flex; align-items:center; justify-content:center; gap:1rem;
-    margin:2.2rem 0 1.4rem; color:var(--gold-dim);}
+    margin:2.3rem 0 1.5rem; color:var(--gold-dim);}
   .rule::before,.rule::after{content:""; height:1px; width:min(9rem,26vw);
     background:linear-gradient(90deg, transparent, var(--line-strong), transparent);}
-  .rule span{font-size:.8rem;}
+  .rule span{font-size:.7rem; letter-spacing:.3em;}
 
-  .lede{color:var(--text-soft); font-size:1.02rem; line-height:1.95; max-width:34rem;
+  .lede{color:var(--text-soft); font-size:1.02rem; line-height:1.95; max-width:33rem;
     margin:0 auto; letter-spacing:.01em;}
-  .lede b{color:var(--jade); font-weight:400;}
+  .lede b{color:var(--gold-soft); font-weight:400;}
 
   /* ── shelf ── */
-  .shelf-head{font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.28em;
-    text-transform:uppercase; color:var(--muted); margin:0 0 1.4rem; text-align:center;}
+  .shelf-head{font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 1.5rem; text-align:center;}
 
   .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(15.5rem,1fr)); gap:1.3rem;}
 
   .book{
     position:relative; display:flex; flex-direction:column; text-decoration:none;
-    padding:1.8rem 1.6rem 1.5rem; overflow:hidden; isolation:isolate;
+    padding:1.9rem 1.7rem 1.55rem; overflow:hidden; isolation:isolate;
     border:1px solid var(--line); border-radius:4px;
-    background:linear-gradient(160deg, rgba(20,28,27,.9) 0%, rgba(10,14,15,.92) 100%);
-    box-shadow:0 12px 40px -18px rgba(0,0,0,.8);
+    background:
+      linear-gradient(var(--gold-faint) 1px, transparent 1px) 0 0/28px 28px,
+      linear-gradient(90deg, var(--gold-faint) 1px, transparent 1px) 0 0/28px 28px,
+      linear-gradient(160deg, rgba(20,20,16,.92) 0%, rgba(9,10,12,.94) 100%);
+    box-shadow:0 14px 44px -20px rgba(0,0,0,.85);
     transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
   }
   .book::before{content:""; position:absolute; inset:0; z-index:-1; opacity:0;
-    background:radial-gradient(120% 100% at 0% 0%, rgba(143,224,214,.14), transparent 55%),
-               radial-gradient(120% 100% at 100% 100%, rgba(217,184,119,.12), transparent 55%);
+    background:radial-gradient(120% 100% at 100% 0%, rgba(217,184,119,.16), transparent 55%);
     transition:opacity .28s ease;}
-  .book::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
-    background:linear-gradient(180deg, var(--jade), var(--gold)); opacity:.75;}
+  .book::after{content:""; position:absolute; left:0; top:0; bottom:0; width:2.5px;
+    background:linear-gradient(180deg, var(--gold), rgba(217,184,119,.15)); opacity:.8;}
   .book:hover{transform:translateY(-5px); border-color:var(--line-strong);
-    box-shadow:0 22px 55px -20px rgba(0,0,0,.9), 0 0 30px -12px rgba(143,224,214,.4);}
+    box-shadow:0 24px 58px -22px rgba(0,0,0,.9), 0 0 30px -12px rgba(217,184,119,.4);}
   .book:hover::before{opacity:1;}
 
   .book .badge{font-family:"IBM Plex Mono", monospace; font-size:.64rem; letter-spacing:.22em;
-    text-transform:uppercase; color:var(--jade-dim); margin-bottom:1.2rem;}
+    text-transform:uppercase; color:var(--gold-dim); margin-bottom:1.2rem;}
   .book .name{font-family:"Nanum Myeongjo", serif; font-weight:800; color:var(--frost);
-    font-size:2.2rem; line-height:1; letter-spacing:.05em; margin:0 0 1rem;
-    text-shadow:0 0 26px rgba(143,224,214,.1);}
+    font-size:2.2rem; line-height:1; letter-spacing:.06em; margin:0 0 1rem;
+    text-shadow:0 0 24px rgba(217,184,119,.12);}
   .book .desc{color:var(--text-soft); font-size:.92rem; line-height:1.85; margin:0 0 1.5rem;}
   .book .meta{margin-top:auto; display:flex; justify-content:space-between; align-items:center;
     font-family:"IBM Plex Mono", monospace; font-size:.68rem; letter-spacing:.08em; color:var(--muted);
@@ -144,26 +155,71 @@
   .book:hover .meta .open{letter-spacing:.15em;}
 
   .book.empty{align-items:center; justify-content:center; text-align:center; color:var(--faint);
-    border-style:dashed; min-height:13rem; cursor:default; background:rgba(10,14,15,.5);}
+    border-style:dashed; min-height:13rem; cursor:default;}
   .book.empty::after{display:none;}
-  .book.empty:hover{transform:none; border-color:var(--line); box-shadow:0 12px 40px -18px rgba(0,0,0,.8);}
+  .book.empty:hover{transform:none; border-color:var(--line);
+    box-shadow:0 14px 44px -20px rgba(0,0,0,.85);}
   .book.empty:hover::before{opacity:0;}
   .book.empty .plus{font-family:"Nanum Brush Script", cursive; font-size:2.6rem;
     margin-bottom:.3rem; color:var(--faint);}
   .book.empty .t{font-family:"IBM Plex Mono", monospace; font-size:.7rem; letter-spacing:.12em;}
 
-  .foot{margin-top:clamp(3.2rem,8vw,5rem); text-align:center;
-    font-family:"IBM Plex Mono", monospace; font-size:.66rem; letter-spacing:.14em;
+  .foot{margin-top:clamp(3.4rem,8vw,5rem); text-align:center;
+    font-family:"IBM Plex Mono", monospace; font-size:.66rem; letter-spacing:.16em;
     color:var(--faint); line-height:2;}
 
-  @media (max-width:520px){ .title-row{gap:1rem;} .seal{width:2.6rem;height:2.6rem;font-size:1.2rem;} }
-  @media (prefers-reduced-motion:reduce){ .aurora span{animation:none;} .book{transition:none;} }
+  @media (max-width:520px){ .title-row{gap:1.1rem;} .seal{width:2.9rem;height:2.9rem;}
+    .seal .grid2 i{font-size:.85rem;} }
+  @media (prefers-reduced-motion:reduce){ .star{animation:none!important;} .book{transition:none;} }
 </style>
 </head>
 <body>
 
-<div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
-<div class="grain" aria-hidden="true"></div>
+<!-- 원고지 격자 -->
+<div class="genko" aria-hidden="true"></div>
+<div class="genko-blocks" aria-hidden="true">
+  <div class="gb b1"></div><div class="gb b2"></div><div class="gb b3"></div>
+</div>
+
+<!-- 밤하늘: 별자리 + 초승달 -->
+<div class="sky" aria-hidden="true">
+  <svg viewBox="0 0 1000 1400" preserveAspectRatio="xMidYMid slice">
+    <!-- 초승달 -->
+    <path class="moon" d="M872 150 a52 52 0 1 0 34 92 a40 40 0 1 1 -34 -92 Z"/>
+
+    <!-- 북두칠성 (Big Dipper) · 좌하단 -->
+    <polyline class="cst-line" points="120,980 210,1000 300,970 380,1010 380,1110 470,1140 500,1060"/>
+    <circle class="star tw" cx="120" cy="980" r="4"/>
+    <circle class="star" cx="210" cy="1000" r="3.4"/>
+    <circle class="star tw2" cx="300" cy="970" r="4.2"/>
+    <circle class="star" cx="380" cy="1010" r="3.4"/>
+    <circle class="star tw" cx="380" cy="1110" r="3.6"/>
+    <circle class="star" cx="470" cy="1140" r="4"/>
+    <circle class="star tw2" cx="500" cy="1060" r="3.4"/>
+
+    <!-- 카시오페이아 (W) · 우중단 -->
+    <polyline class="cst-line" points="720,470 780,540 850,480 910,560 980,500"/>
+    <circle class="star tw2" cx="720" cy="470" r="3.6"/>
+    <circle class="star" cx="780" cy="540" r="3.2"/>
+    <circle class="star tw" cx="850" cy="480" r="4"/>
+    <circle class="star" cx="910" cy="560" r="3.2"/>
+    <circle class="star tw2" cx="980" cy="500" r="3.6"/>
+
+    <!-- 오리온 벨트 (세 별) · 중앙하단 -->
+    <polyline class="cst-line" points="560,760 620,800 680,840"/>
+    <circle class="star tw" cx="560" cy="760" r="3.4"/>
+    <circle class="star" cx="620" cy="800" r="3.8"/>
+    <circle class="star tw2" cx="680" cy="840" r="3.4"/>
+
+    <!-- 흩뿌린 별 -->
+    <circle class="star tw2" cx="180" cy="360" r="2.2"/>
+    <circle class="star tw" cx="640" cy="240" r="2"/>
+    <circle class="star" cx="430" cy="520" r="1.8"/>
+    <circle class="star tw" cx="900" cy="900" r="2.2"/>
+    <circle class="star tw2" cx="260" cy="640" r="2"/>
+  </svg>
+</div>
+
 <div class="vignette" aria-hidden="true"></div>
 
 <div class="wrap">
@@ -171,11 +227,13 @@
   <header class="masthead">
     <div class="eyebrow">Web Novel Archive</div>
     <div class="title-row">
-      <div class="seal" aria-hidden="true"><span class="two">書齋</span></div>
-      <h1>서재<span class="hanja">글이 머무는 곳</span></h1>
+      <div class="seal" title="李承彦印">
+        <div class="grid2"><i>彦</i><i>李</i><i>印</i><i>承</i></div>
+      </div>
+      <h1>서재<span class="hanja">별 헤는 밤</span></h1>
     </div>
-    <div class="rule"><span>◆</span></div>
-    <p class="lede">Claude와 함께 쓰고 엮은 이야기들.<br>한 편씩, <b>천천히</b> 읽어 내려가는 서가입니다.</p>
+    <div class="rule"><span>✦</span></div>
+    <p class="lede">계절이 지나가는 하늘 아래,<br>Claude와 함께 <b>한 편씩</b> 눌러쓴 이야기들.</p>
   </header>
 
   <div class="shelf-head">— 작품 · 書架 —</div>
@@ -195,7 +253,7 @@
 
   </div>
 
-  <div class="foot">novels/ 폴더에 이야기가 쌓입니다<br>written with Claude</div>
+  <div class="foot">원고지 위에, 별처럼 이야기가 쌓입니다<br>written with Claude · 李承彦</div>
 
 </div>
 </body>
