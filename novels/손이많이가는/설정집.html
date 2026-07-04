@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>손이 많이 가는 · 인물·설정집</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0e; --surface:#141216; --surface-2:#100e12;
+    --text:#c9c5be; --dim:#75706a; --faint:#4b473f;
+    --accent:#c99b83; --accent-dim:#7c5c4e; --accent-soft:#e0bfa6;
+    --line:#221f24; --line-2:#2e2a30; --hl:#f0ebe3;
+    --maxw:660px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(80% 45% at 50% -6%, #1a1512 0%, transparent 60%), var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Sans KR', sans-serif; font-weight:300;
+    min-height:100vh; line-height:1.85; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 24px 96px;}
+  .back{display:inline-block; font-size:12px; letter-spacing:.1em; color:var(--dim); text-decoration:none; margin-bottom:34px;}
+  .back:hover{color:var(--accent);}
+
+  .card0{border:1px solid var(--line); background:var(--surface); padding:18px 20px; font-size:12px; color:var(--dim); line-height:1.9; letter-spacing:.02em;}
+  .card0 .k{color:var(--faint);}
+
+  header.title{text-align:center; padding:50px 0 40px; border-bottom:1px solid var(--line); margin-bottom:38px;}
+  .brand{font-size:11px; letter-spacing:.42em; text-indent:.42em; color:var(--accent); margin-bottom:18px;}
+  h1{font-family:'Noto Serif KR',serif; font-weight:700; color:var(--hl); font-size:clamp(1.7rem,6vw,2.4rem); letter-spacing:.02em;}
+  h1 .sub{display:block; margin-top:12px; font-size:clamp(.9rem,3vw,1.05rem); letter-spacing:.16em; color:var(--accent-dim); font-weight:400; font-family:'Noto Sans KR',sans-serif;}
+  .lede{margin-top:20px; color:var(--dim); font-size:14.5px; line-height:1.95;}
+
+  section{margin:0 0 46px;}
+  .sec-label{font-size:11px; letter-spacing:.24em; color:var(--accent); margin-bottom:8px;}
+  h2{font-family:'Noto Serif KR',serif; font-weight:600; color:var(--hl); font-size:clamp(1.3rem,4.5vw,1.6rem);
+    margin:0 0 6px; letter-spacing:.02em;}
+  .h2rule{height:1px; background:linear-gradient(90deg,var(--accent-dim),transparent); margin:0 0 18px;}
+  p{margin:0 0 12px;}
+  ul.dots{list-style:none; margin:0 0 12px;}
+  ul.dots li{position:relative; padding-left:18px; margin-bottom:8px;}
+  ul.dots li::before{content:"—"; position:absolute; left:0; color:var(--accent-dim);}
+  b{color:var(--hl); font-weight:500;}
+  em{color:var(--accent); font-style:normal;}
+
+  /* 주역 카드 */
+  .lead{border:1px solid var(--line); background:var(--surface); padding:22px 22px 20px; position:relative; overflow:hidden; margin-bottom:16px;}
+  .lead::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent);}
+  .lead .lh{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+  .lead .nm{font-family:'Noto Serif KR',serif; font-weight:600; color:var(--hl); font-size:23px; letter-spacing:.02em;}
+  .lead .age{font-size:12px; color:var(--accent); letter-spacing:.08em;}
+  .lead .role{margin-left:auto; font-size:11px; letter-spacing:.1em; color:var(--dim);}
+  .lead .fld{margin-top:12px;}
+  .lead .fl{font-size:10px; letter-spacing:.12em; color:var(--faint); text-transform:uppercase; margin-bottom:4px;}
+  .lead .fld p{font-size:14px; margin:0; line-height:1.8;}
+  .qline{color:var(--accent-soft); font-style:italic;}
+
+  /* 가문/조연 */
+  .fam{display:grid; gap:10px; margin-top:8px;}
+  .fam .s{border:1px solid var(--line); border-radius:2px; background:var(--surface-2); padding:13px 15px;}
+  .fam .s .sn{color:var(--hl); font-weight:500;}
+  .fam .s .sr{font-size:11px; color:var(--accent-dim); letter-spacing:.05em; margin-left:6px;}
+  .fam .s p{font-size:13px; color:var(--dim); margin:6px 0 0; line-height:1.75;}
+
+  .relbox{border:1px solid var(--line-2); border-left:3px solid var(--accent); background:var(--surface-2); padding:16px 18px; margin-top:8px; border-radius:2px;}
+  .relbox .tag{font-size:11px; letter-spacing:.12em; color:var(--accent); margin-bottom:8px;}
+  .relbox p{font-size:14px; margin:0 0 10px;}
+  .relbox p:last-child{margin-bottom:0;}
+
+  .foot{margin-top:52px; text-align:center; font-size:10px; letter-spacing:.16em; color:var(--faint); line-height:2.2;}
+  .botnav{display:flex; justify-content:center; gap:22px; margin-top:26px; font-size:12px; letter-spacing:.05em;}
+  .botnav a{color:var(--accent-dim); text-decoration:none;} .botnav a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">◄ 손이 많이 가는 목차</a>
+
+  <div class="card0">
+    <div><span class="k">문서</span> &nbsp; 인물·설정집</div>
+    <div><span class="k">작품</span> &nbsp; 손이 많이 가는 · 완결 (33화+에필로그+번외 2)</div>
+    <div><span class="k">배경</span> &nbsp; 현대 대한민국 · 서광그룹 (재계 5대 그룹급)</div>
+    <div><span class="k">분류</span> &nbsp; 현대 · 재벌 · BL</div>
+  </div>
+
+  <header class="title">
+    <div class="brand">SEOGWANG GROUP</div>
+    <h1>인물 · 설정집<span class="sub">CHARACTERS &amp; WORLD</span></h1>
+    <p class="lede">누구도 제대로 선을 긋지 못한 막내와,<br>절반만 받아주는 법을 아는 단 한 사람.</p>
+  </header>
+
+  <section>
+    <div class="sec-label">01 · World</div>
+    <h2>배경</h2><div class="h2rule"></div>
+    <ul class="dots">
+      <li>현대 대한민국. <b>서광그룹</b> — 재계 5대 그룹급(삼성·현대·SK급)의 거대 재벌</li>
+      <li>주 무대는 <b>서광건설</b>과, 청담의 밤 · 반포의 집 사이</li>
+      <li>서술: 3인칭 전지적 시점</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · Lead</div>
+    <h2>주역</h2><div class="h2rule"></div>
+
+    <div class="lead">
+      <div class="lh"><span class="nm">서은우</span><span class="age">27</span><span class="role">서광그룹 3남 · 서광건설 실장</span></div>
+      <div class="fld">
+        <div class="fl">위치</div>
+        <p>서광그룹 회장의 <b>막내아들</b>(위로 형 둘, 나이 차 큼). <b>어머니는 여덟 살 때 사망</b> — 늦둥이에 모친상까지 겹쳐 집안에서 누구도 제대로 선을 긋지 못하는 존재로 자랐다. 어머니는 슬픔이라기보단 <em>빈자리</em>에 가깝다. 기억은 없는데, 없었다는 건 아는.</p>
+      </div>
+      <div class="fld">
+        <div class="fl">이력</div>
+        <p>한국 고졸 → 놀다가 21살에 <b>강제로 미국 유학</b> → 돈으로 들어간 명문대 경영학과를 꾸역꾸역 졸업 → 25살 귀국. <b>서광건설 실장</b> 직함은 있지만 <b>한 달에 한 번</b> 얼굴 비추는 수준.</p>
+      </div>
+      <div class="fld">
+        <div class="fl">일상</div>
+        <p>클럽 · 술 · 파티가 일상. <b>음주운전 상습</b> — 사고는 집안에서 쉬쉬하며 덮어준다. 뉴스에 안 나는 게 신기한 놈. 함께 노는 친구들도 비슷한 재벌가 자제들이지만, 특별히 깊은 사이는 없다.</p>
+      </div>
+      <div class="fld">
+        <div class="fl">성격</div>
+        <p>밝고 털털하고 선이 넓다. <b>치대는 걸 좋아하고 스킨십·애교가 많다.</b> 삐지면 애새끼 같은 면이 튀어나오고, 음주운전 같은 짓을 하긴 해도 <b>근본이 나쁜 놈은 아니다.</b> (아직 드러나지 않은 뒷면이 있다.)</p>
+      </div>
+    </div>
+
+    <div class="lead">
+      <div class="lh"><span class="nm">박재호</span><span class="age">37</span><span class="role">은우 수행비서 · 2년째</span></div>
+      <div class="fld">
+        <div class="fl">배경</div>
+        <p>평범한 가정 출신. 원래 <b>서광그룹 사무직</b>으로 입사했다가, <b>수행비서 급여를 보고</b> 지원해 합격했다. 은우는 사고를 하도 쳐서 수행비서가 한 달도 못 버티고 매번 바뀌었는데 — <b>26살의 은우를 만난 재호만 2년째</b> 곁에 있다.</p>
+      </div>
+      <div class="fld">
+        <div class="fl">성격</div>
+        <p>차분하고 묵묵하다. 의외로 은우를 다 받아주는데, <b>은우 다루는 법을 아는</b> 사람이다. 처음엔 돈 때문이었지만 — 지금은 정이 들었을지도.</p>
+      </div>
+    </div>
+
+    <div class="relbox">
+      <div class="tag">은우 ↔ 재호</div>
+      <p>은우는 <b>치대고</b>, 재호는 <b>반반</b>이다. 절반은 받아주고 절반은 선을 지킨다.</p>
+      <p>단호하다가도, 은우가 <span class="qline">“미안해ㅠㅠ”</span> 하면 그제야 풀어주는 — 그런 거리.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · Family</div>
+    <h2>서광그룹 가문</h2><div class="h2rule"></div>
+    <div class="fam">
+      <div class="s"><span class="sn">아버지</span><span class="sr">현직 회장</span><p>서광그룹 회장. 정식 재혼은 하지 않았으나 곁에 여자가 있다.</p></div>
+      <div class="s"><span class="sn">첫째 형</span><span class="sr">그룹 경영 참여</span><p>엄격한 성정. 그룹 경영에 깊이 관여한다.</p></div>
+      <div class="s"><span class="sn">둘째 형</span><span class="sr">그룹 경영 참여</span><p>막내 은우를 챙겨주는 편. 역시 그룹 경영에 참여 중.</p></div>
+    </div>
+  </section>
+
+  <nav class="botnav">
+    <a href="index.html">◄ 목차</a>
+    <a href="../../index.html">서재로 ◄◄</a>
+  </nav>
+
+  <div class="foot">《손이 많이 가는》 · 인물·설정집 — written with Claude</div>
+
+</div>
+</body>
+</html>

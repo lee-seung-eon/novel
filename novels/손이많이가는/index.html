@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>손이 많이 가는 · 목차</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0e; --surface:#141216; --surface-2:#100e12;
+    --text:#c9c5be; --dim:#75706a; --faint:#4b473f;
+    --accent:#c99b83; --accent-dim:#7c5c4e; --accent-soft:#e0bfa6;
+    --line:#221f24; --line-2:#2e2a30; --hl:#f0ebe3;
+    --maxw:560px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(80% 50% at 50% -6%, #1a1512 0%, transparent 60%), var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Sans KR', sans-serif; font-weight:300;
+    min-height:100vh; line-height:1.8; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 24px 96px;}
+  .back{display:inline-block; font-size:12px; letter-spacing:.1em; color:var(--dim);
+    text-decoration:none; margin-bottom:42px;}
+  .back:hover{color:var(--accent);}
+
+  header.title{text-align:center; padding:18px 0 46px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+  .brand{font-size:11px; letter-spacing:.42em; text-indent:.42em; color:var(--accent); margin-bottom:22px;}
+  h1{font-family:'Noto Serif KR',serif; font-weight:700; color:var(--hl);
+    font-size:clamp(2.6rem,9vw,3.6rem); letter-spacing:.02em; line-height:1.15;}
+  h1::after{content:''; display:block; width:44px; height:2px; background:var(--accent); margin:24px auto 0;}
+  .tagline{margin-top:24px; color:var(--dim); font-size:14.5px; line-height:1.95;}
+  .chips{margin-top:18px; display:flex; gap:9px; justify-content:center; flex-wrap:wrap; font-size:11px; letter-spacing:.1em;}
+  .chip{border:1px solid var(--line-2); border-radius:20px; padding:5px 13px; color:var(--accent-dim);}
+  .chip.done{border-color:var(--accent-dim); color:var(--accent-soft);}
+
+  .toc-label{font-size:11px; letter-spacing:.28em; color:var(--dim); margin:36px 0 4px; text-align:center;}
+  .toc{list-style:none;}
+  .toc a{display:flex; align-items:baseline; gap:16px; text-decoration:none; color:var(--text);
+    padding:14px 6px; border-bottom:1px solid var(--line); transition:background .16s, padding-left .16s;}
+  .toc a:hover{background:rgba(201,155,131,.06); padding-left:12px;}
+  .toc .no{font-family:'Noto Serif KR',serif; font-size:14px; color:var(--accent); flex:0 0 auto; min-width:56px;}
+  .toc .ep{font-size:16px; color:var(--hl);}
+  .toc .go{margin-left:auto; font-size:11px; letter-spacing:.12em; color:var(--faint);}
+  .toc a:hover .go{color:var(--accent);}
+  .toc li.side a{background:linear-gradient(90deg, rgba(201,155,131,.05), transparent);}
+  .toc li.side .no{font-size:10px; letter-spacing:.1em; color:var(--accent-dim);}
+  .toc li.side .ep{font-style:italic; color:var(--accent-soft); font-size:15px;}
+  .toc li.side .badge{font-size:9px; letter-spacing:.14em; color:var(--bg); background:var(--accent-dim);
+    padding:2px 6px; border-radius:2px; margin-right:8px; vertical-align:middle;}
+  .toc li.fin a{border-top:1px solid var(--line-2); margin-top:6px;}
+  .toc li.fin .no{color:var(--accent-soft);}
+
+  .foot{margin-top:50px; text-align:center; font-size:10px; letter-spacing:.16em; color:var(--faint); line-height:2.2;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../../index.html">◄ 서재로</a>
+
+  <header class="title">
+    <div class="brand">SEOGWANG GROUP</div>
+    <h1>손이 많이 가는</h1>
+    <p class="tagline">재벌가 막내의 음주운전으로 시작되는 밤.<br>치대는 도련님과, 절반만 받아주는 수행비서의 현대 로맨스.</p>
+    <div class="chips">
+      <span class="chip done">완결</span>
+      <span class="chip">전 33화 + 에필로그</span>
+      <span class="chip">현대 · 재벌 · BL</span>
+    </div>
+  </header>
+
+  <div class="toc-label">— 목차 —</div>
+  <ul class="toc">
+    <li><a href="chapter01.html"><span class="no">01</span><span class="ep">제1화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter02.html"><span class="no">02</span><span class="ep">제2화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter03.html"><span class="no">03</span><span class="ep">제3화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter04.html"><span class="no">04</span><span class="ep">제4화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter05.html"><span class="no">05</span><span class="ep">제5화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter06.html"><span class="no">06</span><span class="ep">제6화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter07.html"><span class="no">07</span><span class="ep">제7화</span><span class="go">읽기 ►</span></a></li>
+    <li class="side"><a href="spinoff_jaeho.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>2년 전 — 박재호</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter08.html"><span class="no">08</span><span class="ep">제8화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter09.html"><span class="no">09</span><span class="ep">제9화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter10.html"><span class="no">10</span><span class="ep">제10화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter11.html"><span class="no">11</span><span class="ep">제11화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter12.html"><span class="no">12</span><span class="ep">제12화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter13.html"><span class="no">13</span><span class="ep">제13화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter14.html"><span class="no">14</span><span class="ep">제14화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter15.html"><span class="no">15</span><span class="ep">제15화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter16.html"><span class="no">16</span><span class="ep">제16화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter17.html"><span class="no">17</span><span class="ep">제17화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter18.html"><span class="no">18</span><span class="ep">제18화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter19.html"><span class="no">19</span><span class="ep">제19화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter20.html"><span class="no">20</span><span class="ep">제20화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter21.html"><span class="no">21</span><span class="ep">제21화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter22.html"><span class="no">22</span><span class="ep">제22화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter23.html"><span class="no">23</span><span class="ep">제23화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter24.html"><span class="no">24</span><span class="ep">제24화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter25.html"><span class="no">25</span><span class="ep">제25화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter26.html"><span class="no">26</span><span class="ep">제26화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter27.html"><span class="no">27</span><span class="ep">제27화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter28.html"><span class="no">28</span><span class="ep">제28화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter29.html"><span class="no">29</span><span class="ep">제29화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter30.html"><span class="no">30</span><span class="ep">제30화</span><span class="go">읽기 ►</span></a></li>
+    <li class="side"><a href="spinoff_blind.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>서광건설 블라인드</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter31.html"><span class="no">31</span><span class="ep">제31화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter32.html"><span class="no">32</span><span class="ep">제32화</span><span class="go">읽기 ►</span></a></li>
+    <li><a href="chapter33.html"><span class="no">33</span><span class="ep">제33화</span><span class="go">읽기 ►</span></a></li>
+    <li class="fin"><a href="epilogue.html"><span class="no">에필로그</span><span class="ep">커튼이 열린 아침</span><span class="go">읽기 ►</span></a></li>
+  </ul>
+
+  <a href="설정집.html" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:28px;padding:17px 16px;text-decoration:none;border:1px solid var(--line-2);border-radius:3px;background:linear-gradient(180deg,rgba(201,155,131,.06),transparent);font-size:13px;letter-spacing:.1em;color:var(--accent);">📁 인물·설정집 <span style="color:var(--dim);letter-spacing:.02em;">— 서광그룹과 사람들</span></a>
+
+  <div class="foot">《손이 많이 가는》 · 완결 · written with Claude</div>
+
+</div>
+</body>
+</html>
