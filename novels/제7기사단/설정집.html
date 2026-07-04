@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제7기사단 · 세계관 설정집</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f; --surface:#12121c; --surface-2:#0e0e16;
+    --text:#c8c8d4; --text-dim:#7a7a90; --faint:#4a4a5c;
+    --accent:#c9a84c; --accent-dim:#6a5a2e; --accent-soft:#d8c078;
+    --border:#1a1a28; --border-2:#26263a; --parch:#e8ddc4;
+    --maxw:660px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(80% 45% at 50% -6%, #15130d 0%, transparent 60%), var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Serif KR', serif; font-weight:300;
+    min-height:100vh; line-height:1.85; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 24px 96px;}
+  .back{display:inline-block; font-family:'Cinzel',serif; font-size:11px;
+    letter-spacing:.16em; color:var(--text-dim); text-decoration:none; margin-bottom:34px;}
+  .back:hover{color:var(--accent);}
+
+  .scroll{border:1px solid var(--border); background:var(--surface); padding:18px 20px;
+    font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--text-dim); line-height:1.9; letter-spacing:.02em;}
+  .scroll .k{color:var(--faint); font-family:'Cinzel',serif; letter-spacing:.1em;}
+
+  header.title{text-align:center; padding:50px 0 40px; border-bottom:1px solid var(--border); margin-bottom:38px;}
+  .crest{font-family:'Cinzel',serif; font-size:11px; letter-spacing:.5em; text-indent:.5em; color:var(--accent-dim); margin-bottom:18px;}
+  h1{font-family:'Cinzel',serif; font-weight:700; color:var(--parch); font-size:clamp(1.5rem,5vw,2rem); letter-spacing:.14em;}
+  .h-ko{font-family:'Noto Serif KR',serif; font-weight:600; color:var(--accent-soft); font-size:clamp(1rem,3vw,1.25rem); letter-spacing:.16em; margin-top:12px;}
+  .lede{margin-top:20px; color:var(--text-dim); font-size:14.5px; line-height:1.95;}
+
+  section{margin:0 0 46px;}
+  .sec-label{font-family:'Cinzel',serif; font-size:11px; letter-spacing:.22em; color:var(--accent); margin-bottom:8px;}
+  h2{font-family:'Cinzel',serif; font-weight:600; color:var(--parch); font-size:clamp(1.2rem,4vw,1.5rem);
+    letter-spacing:.06em; margin:0 0 6px;}
+  h2 .ko{font-family:'Noto Serif KR',serif; font-weight:500; color:var(--accent-soft); font-size:.8em; margin-left:10px; letter-spacing:.04em;}
+  .h2rule{height:1px; background:linear-gradient(90deg,var(--accent-dim),transparent); margin:0 0 18px;}
+  h3{font-family:'Noto Sans KR',sans-serif; font-weight:500; color:var(--accent); font-size:14px; letter-spacing:.04em; margin:22px 0 10px;}
+  p{margin:0 0 12px;}
+  ul.dots{list-style:none; margin:0 0 12px;}
+  ul.dots li{position:relative; padding-left:18px; margin-bottom:8px;}
+  ul.dots li::before{content:"◆"; position:absolute; left:2px; top:1px; color:var(--accent-dim); font-size:9px;}
+  b{color:var(--parch); font-weight:500;}
+  em{color:var(--accent); font-style:normal;}
+
+  table{width:100%; border-collapse:collapse; margin:8px 0 16px; font-size:14px;}
+  th,td{text-align:left; padding:11px 13px; border:1px solid var(--border); vertical-align:top;}
+  th{background:rgba(201,168,76,.06); color:var(--accent); font-family:'Cinzel',serif;
+    font-size:11px; letter-spacing:.08em; font-weight:600;}
+  td:first-child{white-space:nowrap; color:var(--parch);}
+
+  .callout{border:1px solid var(--border-2); border-left:3px solid var(--accent-dim);
+    background:var(--surface-2); padding:14px 16px; margin:14px 0; border-radius:2px;}
+  .callout .tag{font-family:'Cinzel',serif; font-size:11px; letter-spacing:.12em; color:var(--accent); margin-bottom:7px;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout em{color:var(--accent-soft); font-style:italic;}
+
+  .chars{display:grid; gap:16px; margin:8px 0 0;}
+  .char{border:1px solid var(--border); background:var(--surface); padding:20px 20px 18px; position:relative; overflow:hidden;}
+  .char::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); opacity:.6;}
+  .char.lead::after{opacity:1;}
+  .ch-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:3px;}
+  .ch-name{font-weight:600; color:var(--parch); font-size:20px; letter-spacing:.02em;}
+  .ch-en{font-family:'Cinzel',serif; font-size:11px; color:var(--accent-dim); letter-spacing:.08em;}
+  .ch-role{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.1em; color:var(--accent); margin-left:auto;}
+  .ch-meta{font-family:'Noto Sans KR',sans-serif; font-size:12.5px; color:var(--text-dim); margin-bottom:12px;}
+  .ch-field{margin-top:10px;}
+  .ch-field .fl{font-family:'Cinzel',serif; font-size:10px; letter-spacing:.12em; color:var(--faint); margin-bottom:3px;}
+  .ch-field p{font-size:14px; margin:0; line-height:1.8;}
+  .qline{color:var(--accent-soft); font-style:italic;}
+
+  .side{display:grid; gap:10px; margin-top:8px;}
+  .side .s{border:1px solid var(--border); border-radius:2px; background:var(--surface-2); padding:13px 15px;}
+  .side .s .sn{color:var(--parch); font-weight:500;}
+  .side .s .sr{font-family:'Noto Sans KR',sans-serif; font-size:11px; color:var(--accent-dim); letter-spacing:.05em; margin-left:6px;}
+  .side .s p{font-size:13px; color:var(--text-dim); margin:6px 0 0; line-height:1.75;}
+
+  .motif{display:grid; gap:10px;}
+  .motif .m{border-left:2px solid var(--accent-dim); padding:2px 0 2px 14px;}
+  .motif .m b{color:var(--accent-soft);}
+  .motif .m span{color:var(--text-dim); font-size:14px;}
+
+  .foot{margin-top:52px; text-align:center; font-family:'Cinzel',serif; font-size:10px; letter-spacing:.16em; color:var(--faint); line-height:2.2;}
+  .botnav{display:flex; justify-content:center; gap:22px; margin-top:26px; font-family:'Cinzel',serif; font-size:11px; letter-spacing:.1em;}
+  .botnav a{color:var(--accent-dim); text-decoration:none;} .botnav a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">&#9668; 제7기사단 목차</a>
+
+  <div class="scroll">
+    <div><span class="k">CODEX</span> &nbsp; 세계관 설정집</div>
+    <div><span class="k">WORK</span> &nbsp; 제7기사단 · 본편 29화 + 번외 4편</div>
+    <div><span class="k">GENRE</span> &nbsp; 중세 판타지 · 혐관→브로맨스</div>
+  </div>
+
+  <header class="title">
+    <div class="crest">THE SEVENTH ORDER</div>
+    <h1>WORLD CODEX</h1>
+    <div class="h-ko">세계관 설정집</div>
+    <p class="lede">검을 버린 부단장과 명예를 믿는 신입 기사,<br>그리고 왕국이 지우고 싶어 하는 변두리 기사단의 기록.</p>
+  </header>
+
+  <section>
+    <div class="sec-label">I · THE WORLD</div>
+    <h2>WORLD <span class="ko">세계관</span></h2><div class="h2rule"></div>
+    <ul class="dots">
+      <li>중세 유럽 기반 <b>왕국</b>. 정규군 산하에 여러 <b>기사단</b>이 번호로 존재한다</li>
+      <li>현재는 평시 체제 — 국경 방어와 <b>마수 토벌</b>이 주 임무</li>
+      <li><b>몬스터</b>(본능적 짐승)와 <b>마수</b>(마력 보유, 지능 가능)는 구분된다</li>
+      <li>기사단은 규모·위상이 제각각. <em>번호가 높을수록 대체로 비주류</em></li>
+    </ul>
+    <div class="callout">
+      <div class="tag">제7기사단</div>
+      <p>단장 1 · 부단장 1 · 기사 7명의 소규모 기사단. 문제 있거나 갈 곳 없는 기사들이 모이는 이른바 <b>‘짬통’</b>. 왕궁엔 눈엣가시지만 해체할 명분이 없고, <b>마수 토벌 성공</b>으로 예산 삭감이 보류된 상태.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">II · KEY FIGURES</div>
+    <h2>MAIN <span class="ko">주요 인물</span></h2><div class="h2rule"></div>
+    <div class="chars">
+
+      <div class="char lead">
+        <div class="ch-head"><span class="ch-name">에단 로셰</span><span class="ch-en">Ethan Roché</span><span class="ch-role">35 · 부단장</span></div>
+        <div class="ch-meta">로셰 자작가 · 밝은 금발(직접 염색, 원래 갈색) · 나른하고 풀어진 인상</div>
+        <div class="ch-field">
+          <div class="fl">검 · SWORD</div>
+          <p>검술 훈련 자체를 하지 않는다. 쓸 수는 있지만 <b>자기를 갈지는 않는</b>다 — 기사로서 스스로를 벌하듯. 받아서 흘리는, 교범 밖의 느슨하지만 빈틈 없는 검.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">가치관</div>
+          <p>명예보다 생존, 규율보다 결과, 체면보다 사람. <span class="qline">“죽을 것 같으면 도망쳐도 된다.”</span> 정규 훈련엔 끼지 않고 구석에 앉아 감독하지만, 한 바퀴 돌며 한마디씩 던지는 게 묘하게 효과가 있다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">과거</div>
+          <p>제4기사단 시절, 국경 분쟁에서 <b>명령을 어기고 방어선을 포기해 민간인을 구출</b>했다. 부하 전원 생존·민간인 전원 구출·임무 실패. 진급 영구 보류 후 제7기사단으로 밀려나 5년째.</p>
+        </div>
+      </div>
+
+      <div class="char lead">
+        <div class="ch-head"><span class="ch-name">카엘 베른하르트</span><span class="ch-en">Kael Bernhardt</span><span class="ch-role">27 · 신입 기사</span></div>
+        <div class="ch-meta">베른하르트 공작가(명문) · 흑발, 날카로운 인상 · 에단보다 크고 단단한 체격</div>
+        <div class="ch-field">
+          <div class="fl">가치관</div>
+          <p>집단과 질서 우선. 기사의 명예와 규율에 확고한 신념. <span class="qline">“기사로서 부끄럽지 않은 일을 하는 것”</span> — 에단 왈, <em>“그건 목표라기보다 기준이네.”</em></p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">에단을 보는 눈 — 균열</div>
+          <p>경멸(“소문보다 더하다”)에서 시작해, “보지 않기로 했다”(8화)를 거쳐 <b>“그냥 보았다”(16화)</b>로. 14화, 에단이 “도망쳐도 된다” 해놓고 도망치지 않는 걸 본 뒤로 신념에 금이 가기 시작한다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">배정</div>
+          <p>1년만 버티면 다른 기사단 배치. 집안 힘은 쓰지 않는다(자존심). 매일 새벽 5시 기상, 혼자 훈련. <span class="qline">“할 일이 있다는 것은 좋은 일이었다. 생각하지 않아도 되니까.”</span></p>
+        </div>
+      </div>
+
+      <div class="char">
+        <div class="ch-head"><span class="ch-name">길버트 랭던</span><span class="ch-en">Gilbert Langdon</span><span class="ch-role">48 · 단장</span></div>
+        <div class="ch-meta">랭던 백작가 삼남 · 형들이 줄 대서 앉은 자리</div>
+        <div class="ch-field">
+          <div class="fl">본질</div>
+          <p>진짜 무능. 검도 지휘도 서류도 책임도 싫어하고 단장실에서 잔다. 그래도 <b>“저 사람(에단)이 없으면 이 기사단은 없다”</b>는 건 안다. 21화, 에단이 돈을 청하기 전에 먼저 건네며 — 5년 만에 처음 <span class="qline">“잘했어.”</span></p>
+        </div>
+      </div>
+
+      <div class="char">
+        <div class="ch-head"><span class="ch-name">레너드 아쉬포드</span><span class="ch-en">Leonard Ashford</span><span class="ch-role">45 · 제2기사단장</span></div>
+        <div class="ch-meta">엄격하지만 따뜻한 군인·멘토 · 에단이 유일하게 제대로 경례하는 사람</div>
+        <div class="ch-field">
+          <div class="fl">에단과의 관계</div>
+          <p>제4기사단 시절 에단의 상관이자, 그의 실력을 알아보고 아낀 멘토. 사건 후 탄원서를 써줬다. <span class="qline">“이 기사는 옳았다. 그리고 나는 이 기사를 지키지 못했다.”</span> · <span class="qline">“갈색이 더 잘 어울렸는데.”</span></p>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>기사단원 · THE SEVEN</h3>
+    <div class="side">
+      <div class="s"><span class="sn">드류 밀러</span><span class="sr">30 · 고참</span><p>기사단 살림(일정·물자·정비) 담당. 재능은 없어도 성실하다. 면담 — “살아남겠다.”</p></div>
+      <div class="s"><span class="sn">노엘 카터</span><span class="sr">26 · 분위기 메이커</span><p>에단의 뿌리 염색을 해주는 기사. 손재주가 좋아 장비 수리 담당. 토벌에서 발목 부상(에단이 구함). 면담 — “다 같이 돌아오겠다.”</p></div>
+      <div class="s"><span class="sn">릭 호간</span><span class="sr">33 · 에단 다음 실력</span><p>전 제3기사단. 자존심 세고 과묵. 문을 조용히 닫는 유일한 사람. <b>제2기사단 전입 승인(21화)</b>, 곧 전출. 면담 — “제자리에 돌아가겠다.”</p></div>
+      <div class="s"><span class="sn">사이먼 웨스트</span><span class="sr">24 · 막내</span><p>어디서도 안 받아줘 배정. 소심하고 긴장을 잘 한다. “옆에 사람 있으면 괜찮다.” 면담 — “폐를 끼치지 않겠다.”</p></div>
+      <div class="s"><span class="sn">헨리 던</span><span class="sr">29 · 낮잠 기사</span><p>게을러 보여도 상황 판단이 빠르고 정보 수집에 재능. 응급 처치 가능. 에단과 편한 사이. 면담 — “잠을 잘 수 있으면 좋겠다.”</p></div>
+      <div class="s"><span class="sn">오웬 프라이스</span><span class="sr">28 · 불만러</span><p>규율 반감으로 이곳에 왔다. 면담에서 목표 “없다”(유일). 그러나 토벌에서 도주 경로 확보라는 작전 핵심을 맡는다.</p></div>
+      <div class="s"><span class="sn">헨릭 모란</span><span class="sr">40대 · 감찰관</span><p>감찰 7년차. 제7기사단 감사 3회. 에단을 “쉬운 상대가 아니다”로 평가하고, 그의 요청대로 소견란에 예산 삭감 보류를 건의한다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">III · MOTIFS</div>
+    <h2>MOTIFS <span class="ko">핵심 장치</span></h2><div class="h2rule"></div>
+    <div class="motif">
+      <div class="m"><b>에단의 검</b> <span>— 훈련으로 자기를 갈지 않는 사람. 제7기사단에 와서 딱 세 번, 홀로 검을 휘둘렀다. “발자국은 바람이 지울 것이다. 하지만 있었다.”</span></div>
+      <div class="m"><b>‘명문가’ 호칭</b> <span>— 에단이 카엘을 이름 아닌 가문으로 부르는 버릇. 그 호칭이 빠지는 순간들이 곧 거리의 변화다.</span></div>
+      <div class="m"><b>카엘의 시선</b> <span>— “보지 못한 척했다”(4화) → “보지 않기로 했다”(8화) → “그냥 보았다”(16화).</span></div>
+      <div class="m"><b>빈 찻잔 두 개</b> <span>— 릭과의 장면마다 반복되는 모티프.</span></div>
+      <div class="m"><b>에단의 경례</b> <span>— 평소엔 손만 흔든다. 제대로 경례하는 대상은 단장과 레너드, 극히 드문 순간뿐.</span></div>
+      <div class="m"><b>염색</b> <span>— 갈색 머리를 금색으로 바꾼 이유는, 아직 아무도 모른다.</span></div>
+    </div>
+  </section>
+
+  <nav class="botnav">
+    <a href="index.html">&#9668; 목차</a>
+    <a href="../../index.html">서재로 &#9668;&#9668;</a>
+  </nav>
+
+  <div class="foot">SEVENTH KNIGHT ORDER · WORLD CODEX · written with Claude</div>
+
+</div>
+</body>
+</html>

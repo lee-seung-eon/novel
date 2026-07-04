@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제7기사단 · 목차</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f; --surface:#12121c; --surface-2:#0e0e16;
+    --text:#c8c8d4; --text-dim:#7a7a90; --faint:#4a4a5c;
+    --accent:#c9a84c; --accent-dim:#6a5a2e; --accent-soft:#d8c078;
+    --border:#1a1a28; --border-2:#26263a; --parch:#e8ddc4;
+    --maxw:560px;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:
+      radial-gradient(80% 50% at 50% -6%, #15130d 0%, transparent 60%), var(--bg);
+    background-attachment:fixed;
+    color:var(--text); font-family:'Noto Serif KR', serif; font-weight:300;
+    min-height:100vh; line-height:1.8; -webkit-text-size-adjust:100%; overflow-x:hidden;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:40px 24px 96px;}
+  .back{display:inline-block; font-family:'Cinzel',serif; font-size:11px;
+    letter-spacing:.16em; color:var(--text-dim); text-decoration:none; margin-bottom:40px;}
+  .back:hover{color:var(--accent);}
+
+  header.title{text-align:center; padding:16px 0 44px; border-bottom:1px solid var(--border); margin-bottom:6px;}
+  .crest{font-family:'Cinzel',serif; font-size:11px; letter-spacing:.5em; text-indent:.5em;
+    color:var(--accent-dim); margin-bottom:20px;}
+  .crest .n{color:var(--accent);}
+  h1{font-family:'Cinzel',serif; font-weight:700; color:var(--parch);
+    font-size:clamp(1.6rem,5.5vw,2.3rem); letter-spacing:.18em; line-height:1.2;}
+  .h-ko{font-family:'Noto Serif KR',serif; font-weight:600; color:var(--accent-soft);
+    font-size:clamp(2.2rem,8vw,3rem); letter-spacing:.1em; margin-top:6px;}
+  .h-ko::after{content:''; display:block; width:46px; height:1px; background:var(--accent-dim); margin:22px auto 0;}
+  .tagline{margin-top:22px; color:var(--text-dim); font-size:14.5px; line-height:1.95;}
+  .chips{margin-top:16px; display:flex; gap:9px; justify-content:center; flex-wrap:wrap;
+    font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.1em;}
+  .chip{border:1px solid var(--border-2); border-radius:2px; padding:5px 12px; color:var(--accent-dim);}
+
+  .toc-label{font-family:'Cinzel',serif; font-size:11px; letter-spacing:.24em;
+    color:var(--text-dim); margin:36px 0 4px; text-align:center;}
+  .toc{list-style:none;}
+  .toc a{display:flex; align-items:baseline; gap:16px; text-decoration:none; color:var(--text);
+    padding:14px 6px; border-bottom:1px solid var(--border); transition:background .16s, padding-left .16s;}
+  .toc a:hover{background:rgba(201,168,76,.05); padding-left:12px;}
+  .toc .no{font-family:'Cinzel',serif; font-size:12px; letter-spacing:.08em; color:var(--accent);
+    flex:0 0 auto; min-width:70px;}
+  .toc .ep{font-size:16px; color:var(--parch); letter-spacing:.02em;}
+  .toc .go{margin-left:auto; font-family:'Cinzel',serif; font-size:11px; color:var(--faint); letter-spacing:.1em;}
+  .toc a:hover .go{color:var(--accent);}
+
+  /* 번외 */
+  .toc li.side a{background:linear-gradient(90deg, rgba(201,168,76,.04), transparent);}
+  .toc li.side .no{color:var(--accent-dim); font-size:10px;}
+  .toc li.side .ep{color:var(--accent-soft); font-style:italic; font-size:15px;}
+  .toc li.side .badge{font-family:'Noto Sans KR',sans-serif; font-size:9px; letter-spacing:.14em;
+    color:var(--bg); background:var(--accent-dim); padding:2px 6px; border-radius:2px; margin-right:8px; vertical-align:middle;}
+
+  .codex{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:28px;
+    padding:16px; text-decoration:none; border:1px solid var(--border-2); border-radius:2px;
+    background:linear-gradient(180deg, rgba(201,168,76,.06), transparent);
+    font-family:'Cinzel',serif; font-size:12px; letter-spacing:.1em; color:var(--accent);}
+  .codex .ko{font-family:'Noto Sans KR',sans-serif; color:var(--text-dim); letter-spacing:.02em;}
+
+  .foot{margin-top:50px; text-align:center; font-family:'Cinzel',serif;
+    font-size:10px; letter-spacing:.16em; color:var(--faint); line-height:2.2;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../../index.html">&#9668; RETURN TO LIBRARY</a>
+
+  <header class="title">
+    <div class="crest">THE <span class="n">VII</span>TH ORDER</div>
+    <h1>SEVENTH KNIGHT ORDER</h1>
+    <div class="h-ko">제7기사단</div>
+    <p class="tagline">검을 들지 않는 부단장과, 명예를 믿는 신입 기사.<br>왕국 변두리 ‘짬통’ 기사단에서 시작되는 혐관 브로맨스.</p>
+    <div class="chips">
+      <span class="chip">중세 판타지</span>
+      <span class="chip">혐관 → 브로맨스</span>
+      <span class="chip">본편 29화 + 번외 4편</span>
+    </div>
+  </header>
+
+  <div class="toc-label">— CONTENTS —</div>
+  <ul class="toc">
+    <li><a href="ch01_assignment.html"><span class="no">CH. 01</span><span class="ep">배정</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch02_sparring.html"><span class="no">CH. 02</span><span class="ep">대련</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch03_inspection.html"><span class="no">CH. 03</span><span class="ep">감사</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch04_eve.html"><span class="no">CH. 04</span><span class="ep">전야</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch05_good_news_bad_news.html"><span class="no">CH. 05</span><span class="ep">좋은 소식과 나쁜 소식</span><span class="go">READ &#9658;</span></a></li>
+    <li class="side"><a href="side_story_inspector.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>감찰관의 하루</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch06_earning_keep.html"><span class="no">CH. 06</span><span class="ep">밥값</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch07_interviews.html"><span class="no">CH. 07</span><span class="ep">사랑의 면담</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch08_three_questions.html"><span class="no">CH. 08</span><span class="ep">세 가지 질문</span><span class="go">READ &#9658;</span></a></li>
+    <li class="side"><a href="side_story_three_interviews.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>나머지 세 사람</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch09_place.html"><span class="no">CH. 09</span><span class="ep">제자리</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch10_plan.html"><span class="no">CH. 10</span><span class="ep">계획</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch11_order.html"><span class="no">CH. 11</span><span class="ep">명령</span><span class="go">READ &#9658;</span></a></li>
+    <li class="side"><a href="side_story_captain.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>단장의 회고</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch12_departure.html"><span class="no">CH. 12</span><span class="ep">출정</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch13_run.html"><span class="no">CH. 13</span><span class="ep">도망쳐도 된다</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch14_battle.html"><span class="no">CH. 14</span><span class="ep">실전</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch15_return.html"><span class="no">CH. 15</span><span class="ep">귀환</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch16_daily.html"><span class="no">CH. 16</span><span class="ep">일상</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch17_promise.html"><span class="no">CH. 17</span><span class="ep">약속</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch18_old_acquaintance.html"><span class="no">CH. 18</span><span class="ep">옛 사람</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch19_sword.html"><span class="no">CH. 19</span><span class="ep">검</span><span class="go">READ &#9658;</span></a></li>
+    <li class="side"><a href="side_story_brown_hair.html"><span class="no">번외</span><span class="ep"><span class="badge">SIDE</span>갈색 머리의 기사</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch20_dawn.html"><span class="no">CH. 20</span><span class="ep">새벽</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch21_drink.html"><span class="no">CH. 21</span><span class="ep">한 잔</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch22_farewell.html"><span class="no">CH. 22</span><span class="ep">송별</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch23_empty_seat.html"><span class="no">CH. 23</span><span class="ep">빈자리</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch24_comrade.html"><span class="no">CH. 24</span><span class="ep">동기</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch25_proposal.html"><span class="no">CH. 25</span><span class="ep">제안</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch26_difficult.html"><span class="no">CH. 26</span><span class="ep">어려워</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch27_haunted.html"><span class="no">CH. 27</span><span class="ep">눈에 밟히다</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch28_doesnt_suit.html"><span class="no">CH. 28</span><span class="ep">안 어울려</span><span class="go">READ &#9658;</span></a></li>
+    <li><a href="ch29_ask_me.html"><span class="no">CH. 29</span><span class="ep">물어봐</span><span class="go">READ &#9658;</span></a></li>
+  </ul>
+
+  <a class="codex" href="설정집.html">⚔ CODEX <span class="ko">— 세계관 설정집 · 기사단의 기록</span></a>
+
+  <div class="foot">SEVENTH KNIGHT ORDER · written with Claude</div>
+
+</div>
+</body>
+</html>
