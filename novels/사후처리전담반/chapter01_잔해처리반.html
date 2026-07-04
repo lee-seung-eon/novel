@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 01 — 잔해 처리반</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --text: #d4d0c8;
+    --text-dim: #7a7770;
+    --accent: #c4946a;
+    --accent-dim: #8a6848;
+    --border: #2a2a28;
+    --highlight: #e8dcc8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .header-area {
+    position: relative;
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-area::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .series-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.3s forwards;
+  }
+
+  .chapter-num {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.5s forwards;
+  }
+
+  .chapter-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--highlight);
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.7s forwards;
+  }
+
+  .content-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 28px 120px;
+  }
+
+  .novel-text {
+    font-size: 16.5px;
+    line-height: 1.95;
+    font-weight: 400;
+    color: var(--text);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .novel-text p {
+    margin-bottom: 18px;
+    text-indent: 0;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  .novel-text p:nth-child(1) { animation-delay: 1.0s; }
+  .novel-text p:nth-child(2) { animation-delay: 1.05s; }
+  .novel-text p:nth-child(3) { animation-delay: 1.1s; }
+  .novel-text p:nth-child(4) { animation-delay: 1.15s; }
+  .novel-text p:nth-child(5) { animation-delay: 1.2s; }
+  .novel-text p:nth-child(6) { animation-delay: 1.25s; }
+  .novel-text p:nth-child(7) { animation-delay: 1.3s; }
+  .novel-text p:nth-child(8) { animation-delay: 1.35s; }
+  .novel-text p:nth-child(9) { animation-delay: 1.4s; }
+  .novel-text p:nth-child(10) { animation-delay: 1.45s; }
+  .novel-text p:nth-child(n+11) { animation-delay: 1.5s; }
+
+  .scene-break {
+    text-align: center;
+    padding: 36px 0;
+    color: var(--accent-dim);
+    font-size: 14px;
+    letter-spacing: 12px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.5s forwards;
+  }
+
+  .dialogue {
+    color: var(--highlight);
+    font-weight: 400;
+  }
+
+  .thought {
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .emphasis {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .chapter-end {
+    text-align: center;
+    padding: 60px 0 40px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.6s forwards;
+  }
+
+  .chapter-end-line {
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-dim);
+    vertical-align: middle;
+    margin: 0 16px;
+  }
+
+  .chapter-end-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<div class="header-area">
+  <div class="series-label">사후처리 전담반</div>
+  <div class="chapter-num">CHAPTER 01</div>
+  <div class="chapter-title">잔해 처리반</div>
+</div>
+
+<div class="content-wrapper">
+  <div class="novel-text">
+
+<p>지하 2층으로 내려가는 엘리베이터는 항상 한 박자 늦게 도착했다. 버튼을 누르고 나서 7초. 서은우는 그 시간을 세는 버릇이 생긴 지도 벌써 2년이 넘었다. 오늘은 8초였다. 어딘가 점점 느려지고 있다. 엘리베이터도, 아마 이곳에 있는 모든 것도.</p>
+
+<p>문이 열리자 형광등 특유의 싸늘한 빛이 얼굴을 때렸다. 복도는 텅 비어 있었고, 바닥의 리놀륨은 군데군데 들떠서 걸을 때마다 뻑뻑 소리를 냈다. 벽에 붙은 안내판 — <span class="emphasis">'각성자 통제 본부 제1국 제7과 — 사후처리 전담반'</span> — 의 '전담'이라는 글자 위에 누군가 네임펜으로 '쓰레기'라고 써놓은 낙서가 아직도 지워지지 않았다. 서은우는 그걸 매일 봤고, 매일 무시했다.</p>
+
+<p>사무실 문을 밀자 늘 같은 풍경이 펼쳐졌다. 책상 여섯 개. 그중 사용 중인 건 세 개. 나머지 셋은 먼지만 쌓여 있었는데, 총무과에 의자라도 달라고 했더니 "인원 충원 계획 없으면 기존 비품으로 운용하라"는 답이 돌아왔다. 2년 전에.</p>
+
+<p><span class="dialogue">"팀장님, 출근하셨어요."</span></p>
+
+<p>과 유일의 여성 인력이자 행정 담당인 최민서가 고개도 안 들고 인사했다. 모니터에는 전날 처리 못 한 민원서가 빼곡했다. 서은우는 자기 자리에 앉으며 모니터를 켰다. 부팅이 끝나기까지 47초. 이것도 셌다.</p>
+
+<p><span class="dialogue">"오늘 일정 뭐야."</span></p>
+
+<p><span class="dialogue">"영등포 C급 게이트 레이드 잔해 수거요. 천일 길드가 어제 클리어하고 갔는데, 마석이랑 핵심 소재만 쏙 빼가고 나머지는 그냥 놔뒀대요. 소각 대상 몬스터 사체가 — 잠깐요."</span> 최민서가 서류를 뒤적였다. <span class="dialogue">"트롤급 2구, 하급 고블린류 잔해 다수. 그리고 민간 시설 피해 견적서 현장 확인이 하나 있어요. 게이트 진동으로 편의점 유리가 깨졌다고."</span></p>
+
+<p><span class="dialogue">"편의점 주인은."</span></p>
+
+<p><span class="dialogue">"벌써 세 번째 전화 오셨어요. 어제도 오셨고, 그제도 오셨고요."</span></p>
+
+<p>서은우는 고개를 끄덕였다. 그게 전부였다. 감정 없이, 판단 없이. 할 일을 확인하고 순서를 매기는 것. 그게 그의 아침이었다.</p>
+
+<p>책상 위 커피잔에는 어제 마시다 만 커피가 아직 남아 있었다. 차갑게 식은 아메리카노. 관리국 지하 2층에는 정수기는 있어도 커피머신 같은 건 없으니, 이건 어제 점심때 올라가서 사 온 것이다. 서은우는 그걸 한 모금 마셨다. 쓰고 미지근했다. 정확히 이 자리에 어울리는 맛이었다.</p>
+
+<p>7과의 또 다른 인원인 박기영이 문을 벌컥 열고 들어왔다. 40대 중반, D급 각성자. 헌터라고 부르기도 민망한 등급이지만 7과에서는 '전투 인력'이었다. 방탄조끼처럼 두꺼운 점퍼를 걸치고 있었는데, 왼쪽 어깨의 지퍼가 고장 나서 테이프로 붙여놓은 게 눈에 들어왔다.</p>
+
+<p><span class="dialogue">"팀장, 차 시동 또 안 걸려."</span></p>
+
+<p><span class="dialogue">"배터리?"</span></p>
+
+<p><span class="dialogue">"배터리면 다행이지. 저번에 정비 넣었을 때 병참국 쪽에서 부품이 없어서 중고로 땜빵했잖아. 그게 또 나간 것 같아."</span></p>
+
+<p>서은우는 잠시 생각했다. 생각이라고 해봤자 별것 아니었다. 현장까지의 거리, 대중교통 소요 시간, 사체의 부패 속도를 고려한 수거 마감 시한. A급 각성자의 두뇌가 처리하기엔 한없이 사소한 연산이었다.</p>
+
+<p><span class="dialogue">"지하철 타고 가."</span></p>
+
+<p><span class="dialogue">"트롤 사체를 지하철에 실어요?"</span> 박기영이 황당하다는 얼굴을 했다.</p>
+
+<p><span class="dialogue">"현장에서 1차 해체하고 소각 가능 규격으로 분리하면 돼. 수거 백에 담아서 화물 택배 부르고."</span></p>
+
+<p><span class="dialogue">"화물 택배요?"</span></p>
+
+<p><span class="dialogue">"영수증 끊어. 경비 처리 할 테니까."</span></p>
+
+<p>박기영이 입을 벌렸다가 닫았다. 항의하고 싶은 얼굴이었지만 2년간 이 사무실에서 배운 게 있다면, 서은우 팀장에게 항의는 에너지 낭비라는 것이었다. 틀린 말을 하는 게 아니라 — 이 사람은 그냥 감정이라는 연료가 바닥난 기계 같았다.</p>
+
+<p><span class="dialogue">"아, 그리고 팀장님."</span> 최민서가 모니터에서 눈을 떼지 않은 채 말했다. <span class="dialogue">"인사과에서 연락 왔어요."</span></p>
+
+<p><span class="dialogue">"뭐래."</span></p>
+
+<p><span class="dialogue">"신규 인원 배치 예정이래요. 다음 주 월요일부터."</span></p>
+
+<p>사무실이 잠깐 조용해졌다. 박기영이 점퍼 지퍼를 만지작거리다가 픽 웃었다.</p>
+
+<p><span class="dialogue">"뭐, 또 한 달 버티다 전출 신청하겠지."</span></p>
+
+<p>서은우는 대답하지 않았다. 대신 식은 커피를 한 모금 더 마셨다. 2년 동안 7과에 배치된 신규 인원은 네 명이었고, 넷 다 석 달을 못 채우고 나갔다. 첫 번째는 울면서, 두 번째는 분노하면서, 세 번째는 조용히, 네 번째는 인사과에 탄원서를 내면서. 서은우는 누구도 말리지 않았고, 누구에게도 미안하다고 하지 않았다.</p>
+
+<p>모니터 화면이 완전히 떴다. 메일함에는 읽지 않은 메일이 두 통. 하나는 병참국에서 보낸 장비 지원 반려 통보, 하나는 1국 과장 단체 회의 공지. 서은우는 둘 다 열어보지 않고 마우스를 내려놓았다.</p>
+
+<p><span class="dialogue">"출발하자."</span></p>
+
+<p>그는 일어서며 책상 서랍에서 장갑을 꺼냈다. 관리국 정식 지급품이 아니라 철물점에서 산 3천 원짜리 면장갑이었다. A급 각성자의 손에 마력 강화를 걸면 맨손으로 트롤의 가죽도 찢을 수 있었지만, 서은우는 장갑을 꼈다. 면장갑 위로 삐져나온 손가락 끝이 가늘고 창백했다.</p>
+
+<p>엘리베이터를 기다리며 서은우는 복도 끝에 걸린 게시판을 봤다. '제2국 특수타격대, A급 게이트 3연속 성공 클리어 — 국장 표창 수여'. 사진 속에는 낯익은 얼굴들이 있었다. 2년 전까지 자신의 얼굴도 저 안에 있었다. 아니, 저 사진의 한가운데에 있었다.</p>
+
+<p><span class="thought">그게 뭐 어쨌다고.</span></p>
+
+<p>엘리베이터가 도착했다. 9초. 어제보다 1초 더 걸렸다.</p>
+
+<p>서은우는 1층 로비로 올라갔다. 로비는 지하 2층과는 다른 세계였다. 대리석 바닥, 높은 천장, 각국과 사무실로 이어지는 자동문. 출입구 쪽에는 대형 전광판이 실시간 게이트 발생 현황을 표시하고 있었고, 오가는 헌터들의 발걸음은 빠르고 단정했다. 이 건물의 사람들은 대부분 B급 이상이거나, 그들을 지원하는 엘리트 행정 인력이었다.</p>
+
+<p>서은우가 정문을 향해 걷는데, 뒤에서 누군가 불렀다.</p>
+
+<p><span class="dialogue">"어, 서 팀장님 아니세요?"</span></p>
+
+<p>3국 감찰 수사과 소속 헌터 두 명이 커피를 들고 지나가다 발걸음을 멈췄다. 한 명이 옆의 동료에게 뭔가를 속삭였고, 동료가 서은우를 힐끗 보더니 입꼬리를 올렸다.</p>
+
+<p><span class="dialogue">"아— 7과. 오늘도 청소하러 가시나 봐요?"</span></p>
+
+<p>서은우는 멈추지 않았다. 고개를 돌리지도 않았다. 그냥 걸었다. 정문 유리문이 자동으로 열리고, 3월의 싸늘한 바깥 공기가 얼굴을 스쳤다. 뒤에서 낮은 웃음소리가 들렸지만, 그의 귀에는 닿지 않았다. 정확히는 — 닿게 두지 않았다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p>영등포 현장은 예상대로였다. 아니, 예상보다 약간 나빴다.</p>
+
+<p>C급 게이트가 닫힌 자리에는 반경 50미터에 걸쳐 몬스터 잔해가 흩어져 있었다. 천일 길드의 클리어 팀이 가져간 건 마석 여덟 개와 트롤의 심장, 그리고 고블린 무리에서 나온 하급 마정석뿐이었다. 나머지 — 트롤의 내장, 체액이 범벅된 피부 조각, 부러진 뼈, 고블린의 사지 — 는 아스팔트 위에 그대로 널브러져 있었다. 3월의 찬 바람에도 부패 냄새가 올라왔다.</p>
+
+<p>서은우는 면장갑을 고쳐 끼고 수거 백을 폈다. 옆에서 박기영이 코를 막으며 투덜거렸다.</p>
+
+<p><span class="dialogue">"아 진짜, 내장이라도 좀 정리하고 가지. 이게 사람이 할 짓이야?"</span></p>
+
+<p><span class="dialogue">"길드 입장에서는 수익이 안 되니까."</span></p>
+
+<p><span class="dialogue">"그래도 A급 레이드도 아니고 C급짜리에서 이렇게 더럽게 놓고 가는 건 천일이 제일 심해요, 진짜."</span></p>
+
+<p>서은우는 대답 대신 트롤의 왼팔 잔해를 집어 들었다. 무게가 꽤 나갔지만, A급의 신체 능력이면 한 손으로도 충분했다. 문제는 무게가 아니라 냄새와 촉감이었다. 장갑 너머로도 느껴지는 축축하고 미끈한 감촉. 2년 전의 서은우였다면 이런 것에 손을 대는 일 자체가 없었을 것이다. 2국 특수타격대 팀장은 몬스터를 '처치'하는 사람이었지, '치우는' 사람이 아니었으니까.</p>
+
+<p>하지만 지금의 서은우에게 그 구분은 의미가 없었다. 해야 할 일이 있고, 그걸 하면 됐다. 그뿐이었다.</p>
+
+<p>트롤 사체를 해체하는 데는 40분이 걸렸다. 소각 규격에 맞게 부위별로 분리하고, 체액은 응고제를 뿌려 처리하고, 뼈는 별도로 분류했다. 박기영이 고블린 잔해를 수거하는 사이, 서은우는 혼자서 트롤 두 구를 해체했다. D급인 박기영은 트롤 가죽을 자를 수조차 없었으니까.</p>
+
+<p>작업이 끝난 뒤 서은우는 편의점으로 갔다. 주인은 50대 중반의 남자였는데, 서은우를 보자마자 눈이 벌개져서 쏟아냈다.</p>
+
+<p><span class="dialogue">"세 번이야, 세 번! 올해만 세 번째 유리가 깨졌어요. 게이트가 왜 맨날 이 근처에 뜨는 건데? 보상은 언제 나와요?"</span></p>
+
+<p><span class="dialogue">"견적서 현장 확인 왔습니다. 사진 촬영하고 접수 올릴 테니 보상 심사까지는 3주에서 5주 정도 걸립니다."</span></p>
+
+<p><span class="dialogue">"5주? 5주 동안 유리 깨진 채로 장사하라고요?"</span></p>
+
+<p><span class="dialogue">"임시 복구 비용은 별도로 청구하실 수 있습니다. 양식은 관리국 홈페이지에서 다운로드 가능하고, 접수처는—"</span></p>
+
+<p><span class="dialogue">"당신들은 맨날 그 소리야!"</span> 편의점 주인이 소리를 높였다. <span class="dialogue">"길드는 쳐들어와서 난리를 쳐놓고, 관리국은 서류만 들이밀고. 이게 나라야?"</span></p>
+
+<p>서은우는 가만히 서 있었다. 반박하지 않았다. 표정도 바꾸지 않았다. 다만 상대의 말이 끝나기를 기다렸고, 끝나자 담담하게 말했다.</p>
+
+<p><span class="dialogue">"민원 접수 도와드리겠습니다. 서류 작성이 어려우시면 제가 대필해드릴 수 있습니다."</span></p>
+
+<p>편의점 주인이 한순간 멈칫했다. 분노가 허공을 때린 느낌이었을 것이다. 눈앞의 이 남자는 화를 내도 반응이 없고, 그렇다고 무례한 것도 아니었다. 그냥 — 없는 사람 같았다. 감정이라는 게 통째로 빠져 있는 것 같은.</p>
+
+<p>서류를 작성하고 현장 사진을 찍는 데 30분이 걸렸다. 서은우는 편의점을 나오며 주머니에서 휴대폰을 꺼냈다. 화면에는 최민서의 메시지가 와 있었다.</p>
+
+<p><span class="dialogue">[최민서: 팀장님, 인사과에서 추가 연락 왔어요. 신규 배치 인원이 C급이래요. C급이 7과에 자진 배치라는데, 이거 진짜인 거 맞죠?]</span></p>
+
+<p>서은우는 메시지를 읽고 화면을 껐다. C급이면 프로 헌터 입문 등급이다. 전투 능력도 있고, 원하면 3대 길드 하위 팀이나 중소 길드에도 충분히 들어갈 수 있는 등급. 그런 사람이 왜 7과에 자진 배치를 신청하는가.</p>
+
+<p><span class="thought">미치지 않고서야.</span></p>
+
+<p>하지만 그것도 서은우가 신경 쓸 일은 아니었다. 올 테면 오는 거고, 가고 싶으면 가면 됐다. 어차피 모두 간다.</p>
+
+<p>영등포역으로 걸어가는 길에 하늘을 올려다봤다. 3월의 하늘은 회색이었다. 20년 전 대공명 이후 서울의 하늘에는 항상 희미한 마력 잔류가 있어서, 맑은 날에도 어딘가 탁했다. A급의 감각으로는 그 미세한 마력의 흐름까지 느낄 수 있었지만, 서은우는 감각을 의도적으로 닫아두고 있었다.</p>
+
+<p>느끼지 않으면 신경 쓸 것도 없다. 신경 쓸 것이 없으면 아프지도 않다.</p>
+
+<p>지하철 개찰구를 통과하며 서은우는 교통카드를 찍었다. 잔액 4,800원. A급 헌터 — 걸어 다니는 중소기업이라 불리는 등급의 각성자가, 잔액 4,800원의 교통카드를 들고 몬스터 내장 냄새가 밴 면장갑을 주머니에 쑤셔넣고 지하철을 기다리고 있었다.</p>
+
+<p>열차가 들어왔다. 서은우는 빈자리에 앉았다. 옆자리 승객이 코를 찡그리며 슬쩍 자리를 옮겼다. 몬스터 사체 냄새가 아직 옷에 남아 있었을 것이다.</p>
+
+<p>서은우는 그걸 알아챘지만, 역시 아무 반응도 하지 않았다.</p>
+
+<p>창밖으로 터널의 어둠이 흘러갔다. 그 어둠 속에서, 2년 전의 기억이 잠깐 스쳤다. 2국 작전실의 밝은 조명, 전술 테이블 위의 홀로그램 지도, 부사수의 단단한 목소리로 읽어 내려가는 작전 보고, 자신의 한마디에 팀 전체가 움직이던 그 팽팽한 긴장감—</p>
+
+<p>열차가 덜컹거리며 정차했다. 서은우는 눈을 떴다. 잠든 것은 아니었다. 다만 잠깐, 닫아두었던 감각의 틈으로 뭔가가 새어 들어왔을 뿐이다.</p>
+
+<p>그는 자리에서 일어나 하차했다. 관리국으로 돌아가 보고서를 쓰고, 내일 일정을 확인하고, 또 하루를 끝내면 됐다.</p>
+
+<p>그게 서은우의 하루였다. 매일, 정확히, 같은 하루.</p>
+
+<p>— 적어도, 다음 주 월요일까지는.</p>
+
+  </div>
+
+  <div class="chapter-end">
+    <span class="chapter-end-line"></span>
+    <span class="chapter-end-text">CHAPTER 01 END</span>
+    <span class="chapter-end-line"></span>
+  </div>
+</div>
+
+<nav data-nav="1" style="max-width:720px;margin:0 auto;padding:8px 24px 72px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.02em;"><span style="color:var(--text-dim);opacity:.55;">&#9668; 이전 화 없음</span><a href="index.html" style="color:var(--text-dim);text-decoration:none;padding:10px 18px;border:1px solid var(--border);border-radius:3px;">목 차</a><a href="chapter02_자진배치.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">다음 화 · 자진 배치 &#9658;</a></nav>
+</body>
+</html>

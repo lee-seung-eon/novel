@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 08 — 지하 3층</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --text: #d4d0c8;
+    --text-dim: #7a7770;
+    --accent: #c4946a;
+    --accent-dim: #8a6848;
+    --border: #2a2a28;
+    --highlight: #e8dcc8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+  .header-area {
+    position: relative;
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-area::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .series-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.3s forwards;
+  }
+  .chapter-num {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.5s forwards;
+  }
+  .chapter-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--highlight);
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    opacity: 0;
+    animation: fadeDown 0.8s ease 0.7s forwards;
+  }
+  .content-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 28px 120px;
+  }
+  .novel-text {
+    font-size: 16.5px;
+    line-height: 1.95;
+    font-weight: 400;
+    color: var(--text);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .novel-text p {
+    margin-bottom: 18px;
+    text-indent: 0;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+  .novel-text p:nth-child(1) { animation-delay: 1.0s; }
+  .novel-text p:nth-child(2) { animation-delay: 1.05s; }
+  .novel-text p:nth-child(3) { animation-delay: 1.1s; }
+  .novel-text p:nth-child(4) { animation-delay: 1.15s; }
+  .novel-text p:nth-child(5) { animation-delay: 1.2s; }
+  .novel-text p:nth-child(6) { animation-delay: 1.25s; }
+  .novel-text p:nth-child(7) { animation-delay: 1.3s; }
+  .novel-text p:nth-child(8) { animation-delay: 1.35s; }
+  .novel-text p:nth-child(9) { animation-delay: 1.4s; }
+  .novel-text p:nth-child(10) { animation-delay: 1.45s; }
+  .novel-text p:nth-child(n+11) { animation-delay: 1.5s; }
+  .scene-break {
+    text-align: center;
+    padding: 36px 0;
+    color: var(--accent-dim);
+    font-size: 14px;
+    letter-spacing: 12px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.5s forwards;
+  }
+  .dialogue { color: var(--highlight); font-weight: 400; }
+  .thought { color: var(--text-dim); font-style: italic; }
+  .emphasis { color: var(--accent); font-weight: 500; }
+  .chapter-end {
+    text-align: center;
+    padding: 60px 0 40px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.6s forwards;
+  }
+  .chapter-end-line {
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-dim);
+    vertical-align: middle;
+    margin: 0 16px;
+  }
+  .chapter-end-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<div class="header-area">
+  <div class="series-label">사후처리 전담반</div>
+  <div class="chapter-num">CHAPTER 08</div>
+  <div class="chapter-title">지하 3층</div>
+</div>
+
+<div class="content-wrapper">
+  <div class="novel-text">
+
+<p>목요일 오후, 서은우는 최민서가 자판기 커피를 사러 올라간 사이 자리에서 일어나 복도까지 따라나갔다. 최민서가 돌아보며 눈을 깜빡였다.</p>
+
+<p><span class="dialogue">"팀장님?"</span></p>
+
+<p><span class="dialogue">"민서 씨."</span></p>
+
+<p><span class="dialogue">"네."</span></p>
+
+<p><span class="dialogue">"월요일 훈련에 민서 씨는 빠져. 감각 강화형이 물리 훈련 해봤자 의미 없어. 따로 생각 중이니까 참고해."</span></p>
+
+<p>최민서가 멈칫했다. '따로 생각 중'이라는 말이 걸렸다. 서은우가 자기에 대해 뭔가를 '생각 중'이라는 것 자체가 3년 동안 없던 일이었다. 하지만 최민서는 고개를 끄덕였다.</p>
+
+<p><span class="dialogue">"네, 알겠어요."</span></p>
+
+<p>서은우가 고개를 까딱하고 사무실로 돌아갔다. 최민서는 자판기 앞에 서서 잠깐 멈춰 있었다. 버튼을 누르는 손이 평소보다 느렸다. '따로 생각 중'이라는 말이, 어째서인지 마음에 남았다. 버려진 게 아니라 — 분류된 것이었다. 그 차이가 작은 것 같으면서도 크게 느껴졌다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p>금요일, 토요일, 일요일이 지났다. 별다를 것 없는 주말이었다. 현장 출동도 없었고, 긴급 게이트도 뜨지 않았다. 서은우는 주말 이틀 동안 무엇을 했는지 아무도 몰랐다. 추측할 수 있는 건 월요일 아침에 그의 눈 밑이 평소보다 조금 더 어두워 보인다는 것 정도였지만, 그것도 원래 어둡던 것이라 판단하기 어려웠다.</p>
+
+<p>월요일. 오후 2시 50분.</p>
+
+<p>서은우가 모니터를 끄며 말했다.</p>
+
+<p><span class="dialogue">"가자."</span></p>
+
+<p>박기영이 의자에서 벌떡 일어났다. 왔다, 라는 표정이었다. 도하진은 읽던 문서를 접어 서랍에 넣고 조용히 일어섰다. 최민서는 자리에 앉은 채 세 사람을 봤다. 서은우가 문을 열고 나가자, 박기영과 도하진이 뒤따랐다. 최민서에게 눈짓 하나 없었지만, 최민서도 신경 쓰지 않았다. 이미 말해두었으니까.</p>
+
+<p>지하 2층에서 지하 3층은 계단으로 한 층이었다. 엘리베이터를 타지 않았다. 계단을 내려가자 복도가 나왔는데, 지하 2층보다도 더 한산했다. 형광등이 듬성듬성 있었고, 문이 몇 개 보였지만 대부분 잠겨 있거나 '사용 불가' 표시가 붙어 있었다. 복도 끝에 <span class="emphasis">B-07</span>이라는 표식이 붙은 철문이 있었다.</p>
+
+<p>서은우가 열쇠를 꺼내 문을 열었다. 안에 불을 켰다.</p>
+
+<p>소형 훈련실이라고 해도 사무실보다는 넓었다. 천장이 높았고, 바닥에는 연습용 매트가 깔려 있었다 — 다만 가장자리가 좀 닳아 있었다. 한쪽 벽면에는 거울이 있었고, 반대쪽에는 기본적인 운동 기구 몇 가지가 먼지를 뒤집어쓴 채 놓여 있었다. 구석에는 옷을 갈아입을 수 있는 간이 탈의 공간이 칸막이로 나뉘어 있었고, 선반 위에 관리국 표준 훈련복이 사이즈별로 쌓여 있었다.</p>
+
+<p><span class="dialogue">"사이즈 맞는 거 골라 입어."</span></p>
+
+<p>서은우가 말하고 먼저 칸막이 안으로 들어갔다. 박기영과 도하진이 뒤따라 각자 훈련복을 골랐다. 관리국 표준 훈련복은 검정 반팔 상의에 회색 트레이닝 하의였다. 소재가 얇고 기능성이었지만, 디자인은 10년 전이나 지금이나 똑같아 보였다.</p>
+
+<p>박기영이 먼저 나왔다. 40대 중반의 D급 헌터는 훈련복을 입으니 더 평범해 보였다. 건장하지만 과하지 않은 체형. 현장에서 무거운 짐을 나르는 데 최적화된 몸이었다.</p>
+
+<p>도하진이 다음으로 나왔다. 붉은 머리카락이 검정 상의 위로 선명했다. 구리빛 피부에 검은 반팔이 들어맞았고, 소매 밖으로 드러난 팔이 단단했다. 마른 편이 아니었다. C급 근접전투형답게 근육이 압축된 체형이었는데, 평소 사복을 입었을 때보다 훈련복 차림이 체격을 더 드러냈다. 박기영이 한번 위아래로 훑어보며 작게 휘파람을 불었다.</p>
+
+<p><span class="dialogue">"야, 너 사복 입었을 때는 몰랐는데 어깨 넓다."</span></p>
+
+<p><span class="dialogue">"운동을 좀 했어요."</span></p>
+
+<p><span class="dialogue">"좀이 아닌 것 같은데."</span></p>
+
+<p>칸막이가 열리고 서은우가 나왔다.</p>
+
+<p>박기영과 도하진이 동시에 봤다. 반사적으로. 3년 동안 — 아니, 도하진은 한 달 반 동안 — 사복 차림만 봐온 서은우가 훈련복을 입고 서 있었다.</p>
+
+<p>첫인상은 — 마른 것이었다. 하지만 그냥 마른 게 아니었다. 어깨가 넓었다. 알고는 있었지만 셔츠가 가려서 정도를 몰랐던 것이 훈련복으로 드러났다. 넓은 어깨, 좁은 골반, 얇은 허리. 뼈대가 확실히 큰 사람이었다. 그 위에 올라간 살이 적어서 마른 것이지, 뼈와 근육의 비율이 나쁜 게 아니었다. 반팔 소매 밖으로 나온 팔은 가늘었지만, 손목에서 전완으로 이어지는 선에 잔근육이 남아 있었다. 줄어들었을 뿐 사라지지는 않은 것. 2국 시절에 쌓아놓은 것이 3년이 지나도 뼈 가까이에 붙어 있었다.</p>
+
+<p>그리고 — 목. 칼라에 가려져 있던 목이 반팔 훈련복에서는 그대로 노출되었다. 목 뒤에서 왼쪽 쇄골까지 이어지는 가느다란 흉터 하나. 도하진이 엘리베이터에서 슬쩍 본 것의 전모였다. 칼에 베인 흔적이 아니었다. 무언가 날카로운 것이 — 아마 마력이 실린 것이 — 빗겨간 자국이었다.</p>
+
+<p>서은우는 자기를 보는 시선들에 신경 쓰지 않았다. 아니, 신경 쓸 이유가 없었다. 그냥 옷을 갈아입었을 뿐이니까.</p>
+
+<p><span class="dialogue">"시작한다."</span></p>
+
+<p>그 한마디로 훈련이 시작되었다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p><span class="dialogue">"훈련실 20바퀴. 뛰어."</span></p>
+
+<p>소형 훈련실이라고 해도 한 바퀴가 대략 60미터는 됐다. 20바퀴면 1.2킬로미터. 워밍업으로는 적당해 보였다. 박기영과 도하진이 뛰기 시작했다. 서은우는 벽에 등을 기대고 서서 팔짱을 끼고 봤다.</p>
+
+<p>20바퀴가 끝났다. 도하진은 숨이 약간 가빴고, 박기영은 좀 더 가빴다. C급과 D급의 체력 차이가 드러나는 시작이었다.</p>
+
+<p><span class="dialogue">"스쿼트 100개."</span></p>
+
+<p>박기영이 눈이 커졌지만 말하지 않았다. 도하진이 먼저 자세를 잡았다. 박기영도 따라갔다. 서은우는 벽에 기댄 채 봤다. 자세를 교정해주거나, 응원하거나, 격려하는 일은 없었다. 그냥 봤다. 60개쯤에서 박기영의 허벅지가 떨리기 시작했다. 80개에서 도하진의 속도가 줄었다. 100개를 채웠을 때 둘 다 무릎에 손을 짚고 숨을 몰아쉬었다.</p>
+
+<p>서은우가 3초 기다렸다가 말했다.</p>
+
+<p><span class="dialogue">"푸시업 80개."</span></p>
+
+<p><span class="dialogue">"잠, 잠깐—"</span> 박기영이 손을 들었다.</p>
+
+<p><span class="dialogue">"쉬는 시간 없어."</span></p>
+
+<p>박기영이 욕을 삼키며 엎드렸다. 도하진은 이미 엎드려 있었다. 푸시업이 시작됐다. 40개쯤에서 박기영의 팔이 흔들렸다. 55개에서 속도가 반으로 줄었다. 70개에서 거의 기어가는 수준이 되었다. 80개를 겨우 채우고 바닥에 엎어졌다.</p>
+
+<p>도하진은 80개를 채우고 일어났다. 숨은 거칠었지만 무너지지는 않았다. C급의 체력이었다.</p>
+
+<p><span class="dialogue">"버피 50개."</span></p>
+
+<p><span class="dialogue">"...아."</span> 박기영이 바닥에 엎드린 채 신음을 흘렸다. 하지만 일어났다. D급이라도 2년 동안 현장을 뛴 몸이었다. 근성은 있었다.</p>
+
+<p>버피가 시작됐다. 전신을 쓰는 동작이라 스쿼트와 푸시업에서 누적된 피로가 한꺼번에 밀려왔다. 박기영은 30개에서 리듬이 무너졌고, 40개에서 거의 쓰러지다시피 하면서도 겨우겨우 이어갔다. 도하진은 40개까지 일정한 속도를 유지하다가 마지막 10개에서 느려졌다. 그래도 멈추지는 않았다.</p>
+
+<p>50개가 끝났다. 박기영은 매트 위에 대자로 누웠다. 도하진은 무릎에 손을 짚고 서서 숨을 몰아쉬었다. 둘 다 땀에 젖어 있었다. 훈련실의 환기가 좋지 않아서 열기가 빠지지 않았고, 4월의 지하 3층은 밀폐된 사우나 같았다.</p>
+
+<p>서은우는 벽에서 등을 떼지 않은 채 시계를 봤다. 4시 20분. 시작한 지 1시간 20분. 두 사람의 상태를 봤다. 박기영은 천장을 보며 헐떡이고 있었고, 도하진은 숨을 가다듬으며 일어서고 있었다.</p>
+
+<p><span class="dialogue">"일어나."</span></p>
+
+<p>박기영이 고개를 들었다. 서은우가 벽에서 떨어져 훈련실 중앙으로 걸어나왔다. 처음이었다. 시작부터 지금까지 벽에 기대서 팔짱만 끼고 있었는데, 처음으로 매트 위에 섰다.</p>
+
+<p><span class="dialogue">"둘이 동시에 덤벼."</span></p>
+
+<p>박기영이 누운 채로 눈을 깜빡였다. 도하진이 땀을 닦다 말고 서은우를 봤다.</p>
+
+<p><span class="dialogue">"...팀장님한테요?"</span></p>
+
+<p><span class="dialogue">"응. 마음대로 해. 때려도 되고, 잡아도 되고. 30분 안에 한 대라도 맞추면 됐어."</span></p>
+
+<p>서은우의 자세는 무방비였다. 팔짱을 풀었지만 가드를 올리지도 않았고, 발을 벌리지도 않았다. 그냥 서 있었다. 훈련복 차림의 마른 남자가 매트 한가운데에 서 있는 것. 그게 전부였다.</p>
+
+<p>박기영이 일어섰다. 다리가 떨렸지만 섰다. 도하진은 이미 서 있었다. 두 사람이 서은우를 사이에 두고 양쪽에 섰다.</p>
+
+<p>박기영이 먼저 움직였다. D급의 물리 강화로 강화된 오른 주먹이 서은우의 옆구리를 향해 날아갔다. 빠르지 않았다. 1시간 반의 신체 단련 뒤에 남은 힘으로 내지른 것이라 속도도, 위력도 평소의 절반이었다.</p>
+
+<p>서은우가 반걸음 옆으로 빠졌다. 주먹이 허공을 쳤다. 박기영이 균형을 잃고 앞으로 쏠리는 순간, 도하진이 뒤에서 들어왔다. 타이밍은 나쁘지 않았다. 박기영이 시선을 끄는 사이 뒤를 치는 — 본능적인 연계였다. 도하진의 오른손이 서은우의 등을 향해 뻗었다.</p>
+
+<p>서은우의 몸이 한 바퀴 돌았다. 회전이라고 하기엔 너무 자연스럽고, 피한다고 하기엔 너무 가까웠다. 도하진의 손이 셔츠의 표면을 스쳤지만 닿지는 못했다. 바람만 지나갔다. 서은우가 회전을 끝냈을 때, 도하진의 뒤쪽에 서 있었다. 자리가 바뀌어 있었다.</p>
+
+<p>도하진의 눈이 좁아졌다. 빠르다. C급의 반사 속도로도 따라갈 수 없는 움직임이었다. 마력을 쓴 것 같지도 않았다. 신체 능력만으로. 마른 몸에서 나오는 움직임이라고 믿기 어려운 유연함과 속도였다.</p>
+
+<p>두 사람이 다시 달려들었다. 이번에는 박기영이 정면, 도하진이 오른쪽 대각선. 박기영이 로우킥을 걸었고 도하진이 동시에 상단을 노렸다. 서은우가 박기영의 로우킥 위로 발을 들어올려 피하면서, 도하진의 주먹을 왼손으로 흘렸다. 손바닥으로 궤도를 살짝 비튼 것뿐인데 도하진의 주먹이 엉뚱한 방향으로 빠졌다.</p>
+
+<p>10분이 지났다. 20분이 지났다. 두 사람은 번갈아, 동시에, 각도를 바꿔가며 덤벼들었다. 박기영은 힘으로, 도하진은 속도로. 하지만 서은우에게 닿는 것은 아무것도 없었다. 서은우의 숨이 흐트러지지 않았다. 땀이 나지 않았다. 발이 매트 위에서 미끄러지듯 움직였고, 어깨 하나 돌리는 것으로 주먹을 피했고, 반걸음 뒤로 빠지는 것만으로 킥을 흘렸다.</p>
+
+<p>A급이었다. 이것이 A급이었다. 수치와 등급표로만 보던 것이 눈앞에서 몸으로 증명되고 있었다. C급과 D급이 지쳐 죽을 만큼 뛰고 난 뒤에 달려들어도 — 숨 하나 안 흐트러지는 존재.</p>
+
+<p>도하진이 마지막으로 뛰어들었다. 순수 물리 계열의 순간 폭발력을 전부 실은 오른 주먹이었다. 의식보다 빠르게 몸이 움직이는, 그 반사 속도. 서은우의 왼쪽 턱을 향한 스트레이트.</p>
+
+<p>서은우의 눈이 움직였다. 주먹을 봤다. 피하지 않았다. 대신 — 왼손을 올려 도하진의 주먹을 받았다. 손바닥으로. 탁. 건조한 소리가 훈련실에 울렸다. 도하진의 주먹이 서은우의 손바닥에 멈춰 있었다. C급의 폭발적인 펀치를 한 손으로, 별다른 충격 없이 받아낸 것이었다.</p>
+
+<p>두 사람의 얼굴이 가까웠다. 30센티미터. 서은우의 검은 눈동자가 도하진의 눈을 봤다. 감정이 없는 눈이었지만 — 처음으로, 거기에 뭔가가 있었다. 이름을 붙이기 어려운 것. 평가도 아니고, 인정도 아니고. 그냥, 보고 있다는 것.</p>
+
+<p><span class="dialogue">"됐어."</span></p>
+
+<p>서은우가 도하진의 주먹을 놓았다. 도하진이 뒤로 물러서며 무릎에 손을 짚었다. 숨이 거칠었다. 온몸이 땀에 젖어 있었고, 팔이 떨리고 있었다. 박기영은 이미 매트 위에 주저앉아 있었다. 더 이상 일어설 힘이 없는 상태였다.</p>
+
+<p>서은우는 두 사람을 내려다보며 3초 동안 아무 말도 하지 않았다. 그리고 입을 열었다.</p>
+
+<p><span class="dialogue">"박기영."</span></p>
+
+<p><span class="dialogue">"...네."</span> 바닥에 앉은 채 고개를 들었다.</p>
+
+<p><span class="dialogue">"기초 체력은 D급치고 나쁘지 않아. 현장에서 2년 뛴 게 쌓이긴 했어. 근데 전투 경험이 없으니까 싸우는 법을 모르지. 힘은 있는데 어디에 써야 하는지를 몰라. 주먹을 지를 때 어깨가 먼저 가. 그러면 텔레그래프야. 상대가 다 보여. 그리고 킥 쓸 때 축 발이 흔들려. 그 상태로 실전 나가면 하급 몬스터한테도 위험해."</span></p>
+
+<p>박기영이 입을 벌렸다가 닫았다. 반박이 아니라, 할 말이 없어서였다. 지적이 전부 맞았다.</p>
+
+<p><span class="dialogue">"하지만 근력 강화의 회복력이 있으니까, 물리적 부하를 늘려서 기초 스탯 자체를 올리는 게 먼저야. D급 물리 강화형이 등급 올리려면, 강화의 효율을 높여야 해. 강화폭을 넓히는 건 반복 훈련으로 가능한 영역이야. 선천적 한계가 아니라 쓰는 법의 문제거든."</span></p>
+
+<p>박기영이 눈을 크게 떴다. '선천적 한계가 아니라 쓰는 법의 문제.' 2년 동안 D급이라는 등급에 체념하고 있었던 남자에게 그 말은 — 적지 않은 무게를 가졌다.</p>
+
+<p><span class="dialogue">"도하진."</span></p>
+
+<p><span class="dialogue">"네."</span> 도하진이 숨을 가다듬으며 서은우를 봤다.</p>
+
+<p><span class="dialogue">"반사 속도는 C급이 맞나 싶을 정도야. 마지막 펀치, 그건 B급 하위도 반응하기 어려워. 순간 폭발력도 네가 말한 대로 B급 하위급. 문제는 세 가지야."</span></p>
+
+<p>서은우가 손가락을 접어가며 말했다. 이것은 — 보고서를 읽는 톤이 아니었다. 2국 팀장이 작전 브리핑을 하던 톤이었다. 서은우 본인은 의식하지 못했을 것이다. 하지만 그 목소리는 사무실에서 듣던 무미건조함과 달리, 어딘가 날이 서 있었다.</p>
+
+<p><span class="dialogue">"하나. 지속력. 순간 폭발력이 B급이어도 30초 못 가면 의미 없어. 폭발 후에 회복하는 데 시간이 너무 걸려. 실전에서 그 틈에 죽어."</span></p>
+
+<p><span class="dialogue">"둘. 패턴. 빠른 건 좋은데, 움직임이 직선적이야. 최단거리로 때리는 건 효율적이지만 읽히기 쉬워. 내가 마지막 펀치를 받은 게 아니라, 네 동선을 읽고 기다린 거야."</span></p>
+
+<p>도하진의 눈이 미세하게 커졌다. 받은 게 아니라 기다렸다. 그 말은 — 마지막 펀치가 서은우의 얼굴까지 도달한 것이 자신의 실력이 아니라, 서은우가 허용한 것이라는 뜻이었다.</p>
+
+<p><span class="dialogue">"셋. 마력 방어가 없어. 순수 물리 계열의 가장 큰 약점인데, 마법형 몬스터 앞에서는 종이야. 이건 내가 해결할 수 있는 문제가 아니지만, 회피와 판단력으로 커버하는 법은 있어."</span></p>
+
+<p>서은우가 말을 끝냈다. 두 사람이 바닥에 앉거나 기댄 채 숨을 고르고 있었다. 훈련실에 헐떡임과 환풍기 소리만 남았다.</p>
+
+<p>서은우는 벽으로 돌아가 다시 기댔다. 팔짱을 꼈다. 땀 한 방울 나지 않은 훈련복이 인공 조명 아래에서 깨끗하게 빛났다.</p>
+
+<p><span class="dialogue">"오늘은 여기까지. 씻고 올라가."</span></p>
+
+<p>그리고 먼저 칸막이 안으로 들어가 옷을 갈아입었다. 사복 차림의 서은우가 나왔을 때, 방금 전 두 사람의 주먹을 숨 하나 안 흐트러지고 피하던 사람과 같은 사람이라는 것이 믿기 어려울 정도로 — 다시 무미건조한 직장인으로 돌아가 있었다.</p>
+
+<p>서은우가 먼저 나갔다. 문이 닫혔다.</p>
+
+<p>훈련실에 박기영과 도하진이 남았다. 매트 위에 앉은 채. 박기영이 천장을 보며 말했다.</p>
+
+<p><span class="dialogue">"야."</span></p>
+
+<p><span class="dialogue">"네."</span></p>
+
+<p><span class="dialogue">"저 사람이 2국 팀장이었다는 거, 이제 좀 믿어지네."</span></p>
+
+<p>도하진이 웃었다. 헐떡이는 숨 사이로. 땀에 젖은 붉은 머리카락이 이마에 달라붙어 있었다. 오른 주먹을 폈다 쥐었다. 서은우의 손바닥에 막힌 감촉이 아직 남아 있었다. 딱딱하지 않았다. 부드럽지도 않았다. 그냥 — 벽 같았다. 절대적인 벽.</p>
+
+<p><span class="dialogue">"근데 말이에요, 기영 씨."</span></p>
+
+<p><span class="dialogue">"뭐."</span></p>
+
+<p><span class="dialogue">"팀장님, 마지막에 제 펀치 받을 때."</span></p>
+
+<p><span class="dialogue">"응."</span></p>
+
+<p><span class="dialogue">"피할 수 있었는데 받은 거 알죠?"</span></p>
+
+<p>박기영이 고개를 돌려 도하진을 봤다. 도하진의 얼굴에는 땀과 피로 사이로 — 작은 웃음이 있었다.</p>
+
+<p><span class="dialogue">"제 폭발력을 직접 느껴보려고 일부러 받은 거예요. 손바닥으로."</span></p>
+
+<p>박기영이 멈칫했다. 생각해보니 그랬다. 그때까지 서은우는 단 한 번도 공격을 '받은' 적이 없었다. 전부 피하거나 흘렸다. 유일하게 받은 것이 마지막 도하진의 펀치였다. 그리고 그 직후에 '순간 폭발력은 B급 하위급'이라는 평가를 내렸다. 수치가 아니라 체감으로. 제 손으로 재본 것이었다.</p>
+
+<p><span class="dialogue">"...미친 사람 아니야, 저 양반?"</span></p>
+
+<p>박기영이 중얼거렸다. 도하진은 대답 대신 매트 위에 등을 대고 누웠다. 천장의 형광등이 하얗게 빛나고 있었다. 눈이 부셨지만 감지 않았다.</p>
+
+<p><span class="thought">이 사람 밑에서 배우고 싶다.</span></p>
+
+<p>한 달 반 전 7과 문을 열고 들어왔을 때의 예감이 확신으로 바뀌는 순간이었다. 도하진은 천장을 보며 웃었다. 온몸이 아팠고, 팔이 떨렸고, 다리에 힘이 없었다. 하지만 기분은 — 7과에 온 이후 가장 좋았다.</p>
+
+  </div>
+
+  <div class="chapter-end">
+    <span class="chapter-end-line"></span>
+    <span class="chapter-end-text">CHAPTER 08 END</span>
+    <span class="chapter-end-line"></span>
+  </div>
+</div>
+
+<nav data-nav="1" style="max-width:720px;margin:0 auto;padding:8px 24px 72px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.02em;"><a href="chapter07_본부장실.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">&#9668; 이전 화 · 본부장실</a><a href="index.html" style="color:var(--text-dim);text-decoration:none;padding:10px 18px;border:1px solid var(--border);border-radius:3px;">목 차</a><a href="chapter09_한달.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">다음 화 · 한 달 &#9658;</a></nav>
+</body>
+</html>

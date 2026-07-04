@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사후처리 전담반 · 목차</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0f0f; --surface:#1a1a1a; --surface-2:#151515;
+    --text:#d4d0c8; --text-dim:#7a7770; --faint:#4b4842;
+    --accent:#c4946a; --accent-dim:#8a6848; --highlight:#e8dcc8;
+    --border:#2a2a28; --border-2:#343330;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:var(--bg); color:var(--text); font-family:'Noto Serif KR', serif;
+    min-height:100vh; overflow-x:hidden; line-height:1.7;}
+  body::before{content:''; position:fixed; inset:0; opacity:.03; pointer-events:none; z-index:100;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{max-width:720px; margin:0 auto; padding:40px 24px 90px;}
+
+  .back{display:inline-block; font-family:'Noto Sans KR',sans-serif; font-size:12px;
+    letter-spacing:.08em; color:var(--text-dim); text-decoration:none; margin-bottom:48px;}
+  .back:hover{color:var(--accent);}
+
+  /* 부서 명패 */
+  .plate{border:1px solid var(--border); background:var(--surface); padding:18px 20px;
+    font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--text-dim);
+    line-height:1.9; letter-spacing:.02em; position:relative;}
+  .plate .k{color:var(--faint);}
+  .plate .stamp{position:absolute; top:14px; right:16px; transform:rotate(-8deg);
+    border:2px solid var(--accent-dim); color:var(--accent-dim); border-radius:4px;
+    font-size:11px; letter-spacing:.15em; padding:4px 8px; opacity:.75;}
+
+  header.title{text-align:center; padding:56px 0 44px; border-bottom:1px solid var(--border);
+    margin-bottom:40px; position:relative;}
+  .series{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.5em;
+    text-indent:.5em; color:var(--accent); margin-bottom:22px;}
+  h1{font-weight:700; color:var(--highlight); font-size:clamp(2.6rem,9vw,3.8rem);
+    letter-spacing:.06em; line-height:1.15;}
+  .tagline{margin-top:20px; color:var(--text-dim); font-size:15px; line-height:1.9;}
+  .genre{margin-top:16px; font-family:'Noto Sans KR',sans-serif; font-size:11px;
+    letter-spacing:.2em; color:var(--accent-dim);}
+
+  .toc-label{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--text-dim); margin-bottom:14px;}
+
+  .toc{list-style:none;}
+  .toc a{display:flex; align-items:baseline; gap:18px; text-decoration:none; color:var(--text);
+    padding:17px 6px; border-bottom:1px solid var(--border); transition:background .16s, padding-left .16s;}
+  .toc a:hover{background:rgba(196,148,106,.06); padding-left:16px;}
+  .toc .no{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.08em;
+    color:var(--accent); flex:0 0 auto; min-width:78px;}
+  .toc .ep{font-size:18px; color:var(--highlight); letter-spacing:.02em;}
+  .toc .go{margin-left:auto; font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--faint);}
+  .toc a:hover .go{color:var(--accent);}
+
+  .foot{margin-top:52px; text-align:center; font-family:'Noto Sans KR',sans-serif;
+    font-size:11px; letter-spacing:.12em; color:var(--faint); line-height:2;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back" href="../../index.html">&#9668; 서재로</a>
+
+  <div class="plate">
+    <span class="stamp">7과</span>
+    <div><span class="k">소속</span> &nbsp; 각성자 통제 본부 · 제1국 제7과</div>
+    <div><span class="k">부서</span> &nbsp; 사후처리 전담반 <span style="color:var(--faint)">〔통칭 · 쓰레기과〕</span></div>
+    <div><span class="k">관리</span> &nbsp; 팀장 서은우 · A급 각성자</div>
+    <div><span class="k">기록</span> &nbsp; 15화 공개 · 연재 중</div>
+  </div>
+
+  <header class="title">
+    <div class="series">사후처리 전담반</div>
+    <h1>사후처리<br>전담반</h1>
+    <p class="tagline">화려한 게이트 공략은 길드의 몫.<br>그 뒤에 남은 잔해를 치우는 건, 지하 2층 낡은 사무실의 몫이었다.</p>
+    <div class="genre">현대 판타지 · 헌터 · 직장 드라마</div>
+  </header>
+
+  <div class="toc-label">목차 · Chapters</div>
+  <ul class="toc">
+    <li><a href="chapter01_잔해처리반.html"><span class="no">CHAPTER 01</span><span class="ep">잔해 처리반</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter02_자진배치.html"><span class="no">CHAPTER 02</span><span class="ep">자진 배치</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter03_현장.html"><span class="no">CHAPTER 03</span><span class="ep">현장</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter04_왜왔어.html"><span class="no">CHAPTER 04</span><span class="ep">왜 왔어</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter05_구성.html"><span class="no">CHAPTER 05</span><span class="ep">구성</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter06_연금.html"><span class="no">CHAPTER 06</span><span class="ep">연금</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter07_본부장실.html"><span class="no">CHAPTER 07</span><span class="ep">본부장실</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter08_지하3층.html"><span class="no">CHAPTER 08</span><span class="ep">지하 3층</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter09_한달.html"><span class="no">CHAPTER 09</span><span class="ep">한 달</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter10_통화가능할때.html"><span class="no">CHAPTER 10</span><span class="ep">통화 가능할 때</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter11_5층.html"><span class="no">CHAPTER 11</span><span class="ep">5층</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter12_승인불가.html"><span class="no">CHAPTER 12</span><span class="ep">승인 불가</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter13_무릎.html"><span class="no">CHAPTER 13</span><span class="ep">무릎</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter14_월요일.html"><span class="no">CHAPTER 14</span><span class="ep">월요일</span><span class="go">읽기 &#9658;</span></a></li>
+    <li><a href="chapter15_모르겠습니다.html"><span class="no">CHAPTER 15</span><span class="ep">모르겠습니다</span><span class="go">읽기 &#9658;</span></a></li>
+  </ul>
+
+  <div class="foot">각성자 통제 본부 · 제7과 사후처리 전담반<br>written with Claude</div>
+
+</div>
+</body>
+</html>

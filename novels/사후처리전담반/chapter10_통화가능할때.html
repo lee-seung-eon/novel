@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10 — 통화 가능할 때</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --text: #d4d0c8;
+    --text-dim: #7a7770;
+    --accent: #c4946a;
+    --accent-dim: #8a6848;
+    --border: #2a2a28;
+    --highlight: #e8dcc8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+  }
+  .header-area {
+    position: relative;
+    padding: 48px 20px 36px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-area::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .series-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .chapter-num {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .chapter-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--highlight);
+    line-height: 1.3;
+  }
+  .content-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  .novel-text {
+    font-size: 15px;
+    line-height: 1.85;
+    font-weight: 400;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .novel-text p { margin-bottom: 14px; }
+  .scene-break {
+    text-align: center;
+    padding: 24px 0;
+    color: var(--accent-dim);
+    font-size: 13px;
+    letter-spacing: 10px;
+  }
+  .dialogue { color: var(--highlight); }
+  .thought { color: var(--text-dim); font-style: italic; }
+  .emphasis { color: var(--accent); font-weight: 500; }
+  .chapter-end {
+    text-align: center;
+    padding: 40px 0 24px;
+  }
+  .chapter-end-line {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent-dim);
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+  .chapter-end-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+  }
+  @media (min-width: 600px) {
+    .header-area { padding: 64px 28px 48px; }
+    .chapter-title { font-size: 36px; }
+    .content-wrapper { padding: 48px 28px 80px; }
+    .novel-text { font-size: 16.5px; line-height: 1.95; }
+    .novel-text p { margin-bottom: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="header-area">
+  <div class="series-label">사후처리 전담반</div>
+  <div class="chapter-num">CHAPTER 10</div>
+  <div class="chapter-title">통화 가능할 때</div>
+</div>
+<div class="content-wrapper"><div class="novel-text">
+
+<p>소문은 빨랐다.</p>
+
+<p>관리국은 큰 조직이었지만, 그 안의 소문은 작은 동네와 다를 바 없었다. 7과가 훈련실을 쓴다는 이야기는 훈련 시작 2주 만에 1국 전체에 퍼졌고, 한 달이 되자 2국과 3국까지 닿았다. 경로는 뻔했다. 시설과에서 지하 3층 B-07호 사용 기록을 확인한 누군가가 옆 사람에게 말했고, 옆 사람이 점심시간에 식당에서 말했고, 그게 퍼진 것이다.</p>
+
+<p>반응은 대부분 같았다. 웃음. 비웃음이 아니라 — 아니, 비웃음이 맞았다.</p>
+
+<p>6월 첫째 주 수요일. 서은우가 1층 로비를 지나갈 때, 3과 소속 헌터 두 명이 다가왔다. 정현석 팀장의 부하들이었다. B급과 C급 한 명씩. 어깨에 1국 3과 마크가 붙은 전투복을 입고 있었다. 이제 막 훈련에서 돌아온 모양이었다. 땀이 마르지 않은 얼굴이 자신감으로 빛나고 있었다.</p>
+
+<p><span class="dialogue">"아, 서 팀장님이시다."</span></p>
+
+<p>B급 헌터가 가볍게 말했다. '팀장님'이라는 호칭에 존경은 없었다. 장식 같은 존칭이었다.</p>
+
+<p><span class="dialogue">"요즘 7과에서 훈련하신다면서요? 지하 3층에서?"</span></p>
+
+<p>서은우는 멈추지 않았다. 걸음을 이어가며 그들 옆을 지나쳤다. 대꾸할 생각이 없다는 것을 온몸으로 보여주는 움직임이었지만, 두 사람은 물러서지 않았다. C급 헌터가 서은우의 앞으로 반걸음 나서며 말했다.</p>
+
+<p><span class="dialogue">"D급이랑 C급 신입을 훈련시킨다고요? 뭐, 사체 빨리 치우려고?"</span></p>
+
+<p>옆의 B급이 코웃음을 쳤다. <span class="dialogue">"아니 근데 진지하게, 7과에서 훈련이 무슨 의미가 있어요? 등급 올려서 어디 가게요? 7과에서 B급 돼봤자 하는 일이 같은데."</span></p>
+
+<p>서은우가 걸음을 멈추었다. 두 사람이 긴장하지는 않았다. A급이라는 건 알지만, 3년 동안 사체만 줍던 사람이 뭘 할 수 있겠나 — 그런 계산이 얼굴에 보였다.</p>
+
+<p>서은우가 두 사람을 봤다. 0.5초. 그리고 시선을 돌려 다시 걸었다. 한마디도 하지 않았다. 뒤에서 낮은 웃음소리가 들렸다.</p>
+
+<p><span class="dialogue">"역시 할 말 없으시네."</span></p>
+
+<p><span class="dialogue">"저러고 A급이라니까."</span></p>
+
+<p>서은우의 등 뒤로 말이 쌓였다. 3년간 쌓여온 것과 같은 종류의 말이었다. 형광등 소리, 에어컨 바람 소리, 자기 뒷담화. 다 같은 잡음. 서은우는 엘리베이터 버튼을 누르고 7초를 기다렸다. 문이 열리고 들어갔다. 닫혔다.</p>
+
+<p>혼자 된 엘리베이터 안에서, 서은우는 주머니에 손을 넣고 천장을 봤다. 아무 감정도 없었다. 정말로. 3년이면 충분한 시간이었고, 저 정도 말에 흔들릴 것은 남아 있지 않았다.</p>
+
+<p>다만.</p>
+
+<p>저 말이 자기가 아니라 팀원들에게 향할 수도 있다는 것을 — 서은우는 알고 있었다. 7과가 훈련한다는 소문이 퍼지면, 시비가 붙는 것은 팀장인 자기가 아니라 밑에 있는 사람들일 가능성이 높았다. 특히 도하진은 C급이라 다른 과의 C급과 마주칠 일이 있었고, 박기영은 D급이라 어디서든 가장 만만한 대상이었다.</p>
+
+<p><span class="thought">상관없다고 해야 하는데.</span></p>
+
+<p>엘리베이터가 지하 2층에 도착했다. 문이 열렸다. 서은우는 복도를 걸으며 그 생각을 지웠다. 지우는 데는 익숙했다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p>예상대로였다.</p>
+
+<p>같은 주 금요일, 도하진이 1층 식당에서 점심을 먹고 돌아오는 길에 4과 소속 C급 헌터 세 명과 마주쳤다. 도하진이 먼저 말한 것은 아니었다. 그쪽에서 다가왔다.</p>
+
+<p><span class="dialogue">"너 7과 신입이지? 도하진?"</span></p>
+
+<p><span class="dialogue">"네."</span></p>
+
+<p><span class="dialogue">"C급이 7과에서 훈련하면 뭐가 돼? 사체 해체 더 빨라져?"</span></p>
+
+<p>세 명이 웃었다. 도하진은 웃지 않았다. 하지만 화내지도 않았다. 그냥 서 있었다. 표정이 밝은 쪽도 아니고 어두운 쪽도 아닌, 평평한 얼굴이었다. 구리빛 피부 위의 또렷한 눈이 세 사람을 한 명씩 봤다.</p>
+
+<p><span class="dialogue">"음, 그렇게 되면 좋죠."</span></p>
+
+<p>도하진이 가볍게 대답하고 지나갔다. 뒤에서 뭐라고 더 말하는 소리가 들렸지만, 돌아보지 않았다. 엘리베이터에서 내려 사무실로 돌아왔을 때, 서은우가 자리에 앉아 있었다. 도하진은 아무 말 없이 자리에 앉았다.</p>
+
+<p>서은우가 물어보지 않았다. 도하진도 말하지 않았다. 하지만 서은우는 알고 있었다. 도하진의 걸음이 평소보다 0.2초 느렸다는 것을. 그것이 분노인지 체념인지 아무것도 아닌지는 — 모르겠지만, 평소와 다르다는 것은 A급의 감각이 아니더라도 알 수 있었다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p>그 주가 지나고, 다음 주가 지나갔다. 6월 중순이 되었다. 훈련은 주 3회로 올라간 뒤 안정적으로 돌아가고 있었다. 박기영의 스쿼트가 130개를 넘었고, 도하진의 스파링에서 서은우에게 닿을 뻔한 순간이 처음으로 발생했다. 닿지는 못했지만, 서은우가 피하는 폭이 전보다 커졌다. 그것은 — 도하진의 위협 범위가 넓어졌다는 뜻이었다. 서은우는 그것에 대해 아무 말도 하지 않았지만, 다음 스파링에서 회피 대신 흘리기를 쓰기 시작했다. 난이도를 올린 것이었다.</p>
+
+<p>화요일 오후, 현장 없는 날이었다. 서은우는 사무실에서 보고서를 넘기다가, 손을 멈추었다. 최민서가 서류를 정리하고 있었고, 박기영은 폰을 보고 있었고, 도하진은 컴퓨터로 뭔가를 보고 있었다. 평소의 풍경이었다.</p>
+
+<p>서은우의 머릿속에 무언가가 떠올랐다.</p>
+
+<p>2국에 있을 때 썼던 장비가 있었다. 반응 속도 측정기. 정식 명칭은 '마력-물리 복합 반응 측정 시스템'이었는데, 2국에서는 그냥 '반응기'라고 불렀다. 랜덤한 타이밍에 물리적 자극 — 빛이나 충격 —을 발생시키고, 각성자의 반응 속도를 밀리초 단위로 측정하는 장비였다. 2국 특수타격대에서 팀원의 반응 속도를 훈련할 때 필수적으로 사용했었다.</p>
+
+<p>박기영에게는 물리 강화의 반응 패턴을 잡아주는 데 쓸 수 있었다. 강화가 언제 발동되고, 얼마나 지속되고, 어떤 자극에 가장 빠른지를 수치로 확인할 수 있으니까. 도하진에게는 더 직접적이었다. 순수 물리 계열의 반사 속도가 정확히 어디까지인지 — B급 하위라고 말했지만, 정밀 측정 없이는 한계치를 알 수 없었다. 한계치를 모르면 훈련의 상한선도 모른다.</p>
+
+<p>없어도 그만이었다. 지금까지 맨몸 스파링과 기초 체력 훈련만으로도 효과는 나고 있었다. 하지만 — 딱 맞았다. 저 두 명한테. 이걸 쓰면 성장 속도가 달라질 수 있었다.</p>
+
+<p>문제는 그 장비가 2국에만 있다는 것이었다.</p>
+
+<p>관리국 전체에서 반응 측정기를 보유한 곳은 2국과 4국 연구실뿐이었다. 4국은 연구 목적이라 외부 대여가 불가능했고, 2국은 — 2국이었다. 서은우가 3년 전에 나온 곳. 지금은 강주혁이 팀장인 곳.</p>
+
+<p>서은우는 보고서를 닫고 의자에 기댔다. 천장을 봤다. 형광등이 안정적으로 빛나고 있었다. 생각이 돌았다. 필요한가. 필요하다. 없어도 되는가. 된다. 하지만 있으면 다르다. 그 '다름'이 이 팀원들에게 의미가 있는가.</p>
+
+<p><span class="thought">있다.</span></p>
+
+<p>인정하는 데 3일이 걸렸다.</p>
+
+<p>3일 동안 서은우는 평소보다 담배를 많이 피우지 않았다. 오히려 적었다. 생각이 너무 명확해서 태울 것이 없었다. 답은 처음부터 나와 있었다. 장비가 필요하고, 장비는 2국에 있고, 2국에 연락하려면 — 그 사람에게 전화해야 한다. 변수는 하나. 자기가 그 전화를 걸 수 있느냐는 것뿐이었다.</p>
+
+<p>금요일 오후 4시. 사무실에서 최민서가 서류를 정리하고, 박기영이 졸고 있고, 도하진이 뭔가를 읽고 있는 평소의 풍경 속에서. 서은우가 자리에서 일어났다.</p>
+
+<p><span class="dialogue">"밖에 나갔다 올게."</span></p>
+
+<p>최민서가 고개를 들었지만, 서은우는 이미 문을 열고 나가고 있었다. 담배를 피러 가는 것으로 보일 수 있었지만, 서은우의 손에 담뱃갑이 아니라 휴대폰이 들려 있었다. 도하진만이 그것을 봤다.</p>
+
+<div class="scene-break">• • •</div>
+
+<p>흡연 구역은 비어 있었다. 실외기가 웅웅거리는 소리만 가득한, 콘크리트 벽 사이의 좁은 공간. 서은우는 벽에 등을 기대고 휴대폰을 꺼냈다.</p>
+
+<p>연락처를 열었다. 스크롤을 내렸다. 'ㄱ' 항목. 강주혁. 전화번호는 3년 전 그대로였다. 바뀌지 않았다는 걸 안 건 — 확인한 적이 없으니 모르는 거였다. 그냥 지우지 않았을 뿐이었다. 강주혁도, 서은우도.</p>
+
+<p>통화 버튼을 눌렀다.</p>
+
+<p>신호음이 울렸다. 한 번. 두 번. 세 번. 네 번. 다섯 번.</p>
+
+<p>받지 않았다.</p>
+
+<p>여섯 번. 일곱 번. 서은우는 끊지 않고 기다렸다. 아홉 번. 열 번. 자동 응답으로 넘어갔다. 서은우는 음성 메시지를 남기지 않고 끊었다.</p>
+
+<p>받지 않는 것이 당연했다. 3년 동안 연락 한 번 없던 번호에서 갑자기 전화가 오면, 받기 전에 확인부터 할 것이다. 아니면 — 누군지 알고 일부러 안 받았을 수도 있다.</p>
+
+<p>서은우는 문자를 열었다. 강주혁과의 대화창은 3년 전에 멈춰 있었다. 마지막 메시지는 강주혁이 보낸 것이었다. 날짜는 3년 1개월 전.</p>
+
+<p><span class="emphasis">[강주혁: 팀장님. 전화 좀 받아주세요.]</span></p>
+
+<p>그 아래에 서은우의 답장은 없었다. 3년간 비어 있던 대화창이었다.</p>
+
+<p>서은우는 키보드를 열고 타이핑했다.</p>
+
+<p><span class="emphasis">[서은우: 통화 가능할 때 연락줘.]</span></p>
+
+<p>보냈다. 그게 전부였다. 안부도, 설명도, 3년의 공백에 대한 사과도 없었다. 열한 글자. 서은우는 휴대폰을 주머니에 넣고 담뱃갑을 꺼냈다. 결국 담배도 피웠다. 한 대.</p>
+
+<p>5분이 지났다. 10분이 지났다. 담배 한 대가 필터까지 탔다. 재떨이에 던지고 두 번째를 꺼내려다 — 주머니에서 진동이 울렸다.</p>
+
+<p>화면을 봤다. 강주혁.</p>
+
+<p>서은우가 전화를 받았다.</p>
+
+<p><span class="dialogue">"네."</span></p>
+
+<p>1초의 침묵. 전화 너머로 숨소리가 들렸다. 그리고 목소리가 왔다.</p>
+
+<p><span class="dialogue">"...형."</span></p>
+
+<p>낮고, 단단한 목소리였다. 서은우보다 세 살 아래인 서른셋의 남자. 2국 특수타격대 현 팀장. A급. 서은우가 2국 팀장이었을 때 바로 밑에서 부사수를 했던 사람. 그리고 — 서은우가 2국을 나온 뒤 3년 동안, 한 번도 통화하지 못했던 사람.</p>
+
+<p>'형'이라고 불렀다. 3년 전에도 업무 외의 자리에서는 그렇게 불렀다. 서은우가 그 호칭을 허락한 적은 없었지만, 금지한 적도 없었다. 강주혁은 그 애매한 틈을 써서 '형'이라고 부르기 시작했고, 서은우는 반응하지 않는 것으로 묵인했다.</p>
+
+<p><span class="dialogue">"바빠?"</span></p>
+
+<p>서은우가 물었다. 안부가 아니었다. 시간 확인이었다. 잘 지냈냐, 팀장 된 거 봤다, 오래간만이다 — 그런 말은 없었다. 서은우의 전화에서는 날씨 이야기를 기대할 수 없었다.</p>
+
+<p>전화 너머에서 2초의 침묵이 있었다. 강주혁이 뭔가를 삼키는 것 같았다. 3년 만에 전화를 걸어놓고 첫 마디가 '바빠?'인 사람에 대한 — 뭐라고 해야 할까. 감정 정리의 시간이었을 것이다.</p>
+
+<p><span class="dialogue">"...아뇨. 괜찮습니다."</span></p>
+
+<p>존댓말이 나왔다. '형'이라고 부르고 나서 존댓말을 쓰는 것은, 이 두 사람 사이의 거리가 3년 사이에 어떻게 변했는지를 보여주고 있었다. 가까웠던 것과 멀어진 것이 한 문장 안에 공존했다.</p>
+
+<p><span class="dialogue">"시간 되면 찾아가도 돼?"</span></p>
+
+<p>서은우가 말했다. 용건은 말하지 않았다. 전화로 용건을 말하는 것은 서은우의 스타일이 아니었다. 얼굴을 보고 말하는 것도 아니었지만, 적어도 전화보다는 직접이 나았다. 아니, 정확히는 — 전화로 이 사람과 오래 통화하고 싶지 않았다. 목소리를 오래 들으면 생각나는 것들이 있었으니까.</p>
+
+<p>강주혁이 다시 침묵했다. 이번에는 3초. 전화 너머로 뭔가가 부딪히는 소리가 들렸다. 펜을 놓거나, 테이블을 치거나. 그리고 대답이 왔다.</p>
+
+<p><span class="dialogue">"...네. 오세요."</span></p>
+
+<p>짧았다. 하지만 짧은 안에 들어 있는 것이 많았다. '네'까지의 0.5초 동안 강주혁의 머릿속에서 무슨 일이 일어났는지는 — 서은우는 모르고, 알려 하지도 않았다.</p>
+
+<p><span class="dialogue">"내일 오전 가도 돼?"</span></p>
+
+<p><span class="dialogue">"내일... 오전이요."</span></p>
+
+<p><span class="dialogue">"바쁘면 다른 날로."</span></p>
+
+<p><span class="dialogue">"아닙니다. 괜찮습니다. 오세요."</span></p>
+
+<p>'오세요'가 두 번 나왔다. 서은우는 그것을 세지 않았지만, A급의 청력은 강주혁의 숨이 평소보다 빨라진 것까지 잡아냈다. 서은우는 그 정보를 무시했다.</p>
+
+<p><span class="dialogue">"알겠어."</span></p>
+
+<p>끊으려는 찰나, 강주혁이 말했다.</p>
+
+<p><span class="dialogue">"형."</span></p>
+
+<p><span class="dialogue">"뭐."</span></p>
+
+<p>1초. 2초. 전화 너머의 숨소리.</p>
+
+<p><span class="dialogue">"...아닙니다. 내일 뵙겠습니다."</span></p>
+
+<p>강주혁이 먼저 끊었다. 전화가 끝나자 흡연 구역에는 실외기 소리만 남았다. 서은우는 휴대폰을 주머니에 넣고 두 번째 담배를 꺼내지 않았다. 대신 벽에 등을 기댄 채 하늘을 봤다. 6월의 하늘은 5월보다 밝았지만, 마력 잔류 때문에 여전히 탁했다.</p>
+
+<p><span class="thought">3년.</span></p>
+
+<p>3년 동안 이 사람의 전화를 받지 않았다. 문자에 답하지 않았다. 복도에서 마주치는 일도 없었다 — 7과는 지하 2층이고, 2국은 5층이었으니까. 게시판에서 이름을 보았을 뿐이었다. '강주혁, 2국 신규 팀장 임명.' 서은우가 앉아 있던 자리에 앉은 사람.</p>
+
+<p>그 사람에게 3년 만에 전화를 걸었다. 11글자 문자를 보내고. 용건도 말하지 않고. '찾아가도 돼?'라고만 하고.</p>
+
+<p><span class="thought">피곤하다.</span></p>
+
+<p>이번에는 진짜로 피곤했다. 담배를 피워서도, 훈련 때문도, 다른 과의 시비 때문도 아니었다. 3년 동안 닫아두었던 문을 하나 더 열었기 때문이었다. 본부장실의 문, 훈련실의 문, 그리고 이제 — 강주혁이라는 문.</p>
+
+<p>서은우는 벽에서 등을 떼고 건물 안으로 들어갔다. 엘리베이터를 타고 지하 2층으로 내려갔다. 사무실 문을 열었다.</p>
+
+<p>세 사람이 각자의 자리에 있었다. 최민서가 올려다봤다.</p>
+
+<p><span class="dialogue">"팀장님, 오래 나가셨네요."</span></p>
+
+<p><span class="dialogue">"응."</span></p>
+
+<p>그게 전부였다. 서은우는 자리에 앉았다. 의자를 젖히고 눈을 감았다. 오늘은 벽을 보지 않았다. 눈을 감고 싶었다. 아무것도 보지 않고, 아무것도 듣지 않고.</p>
+
+<p>하지만 눈을 감아도 들렸다. 최민서의 타자 소리. 박기영의 미세한 코 숨소리. 그리고 도하진이 페이지를 넘기는 소리. 그 소리들이 어둠 속에서 서은우를 둘러싸고 있었다. 싫지 않았다. 그것이 문제였다.</p>
+
+<p>싫지 않은 것은 — 잃을 수 있다는 뜻이었으니까.</p>
+
+<p>5시가 됐다. 서은우가 눈을 떴다.</p>
+
+<p><span class="dialogue">"내일 오전에 나 잠깐 빠진다. 2국 쪽에 볼일 있어."</span></p>
+
+<p>세 사람이 동시에 서은우를 봤다. '2국'이라는 단어가 이 사무실에서 나온 것은 — 서은우가 이곳에 온 이후 처음이었다.</p>
+
+<p>최민서와 박기영은 눈을 마주치며 뭔가를 교환했지만 묻지 않았다. 3년의 학습.</p>
+
+<p>도하진만이 서은우를 1초 봤다. 서은우는 보지 않았다. 하지만 그 1초의 시선이 등에 닿는 것을 느꼈다. 순수 물리 계열이 아니어도 느꼈을 것이다. 도하진의 시선은 — 무게가 있었다.</p>
+
+<p><span class="dialogue">"퇴근해."</span></p>
+
+<p>서은우가 먼저 일어나 문을 열고 나갔다. 복도를 걷는 발소리는 일정했다. 느리지도 빠르지도 않은, 늘 같은 걸음. 하지만 오늘은 — 그 걸음이 내일 5층으로 향한다는 사실이, 발소리의 울림을 조금 다르게 만들고 있었다.</p>
+
+<p>도하진은 그 발소리를 끝까지 들었다. 엘리베이터 문이 열리고, 닫히는 소리까지. 그리고 가방을 메며 작게 중얼거렸다.</p>
+
+<p><span class="dialogue">"2국."</span></p>
+
+<p>그 두 글자에 담긴 것이 무엇인지, 도하진은 아직 모른다. 하지만 서은우가 그 두 글자를 말할 때 — 목소리의 온도가 0.5도쯤 내려갔다는 것은 알았다.</p>
+
+</div>
+  <div class="chapter-end">
+    <span class="chapter-end-line"></span>
+    <span class="chapter-end-text">CHAPTER 10 END</span>
+    <span class="chapter-end-line"></span>
+  </div>
+</div>
+<nav data-nav="1" style="max-width:720px;margin:0 auto;padding:8px 24px 72px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.02em;"><a href="chapter09_한달.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">&#9668; 이전 화 · 한 달</a><a href="index.html" style="color:var(--text-dim);text-decoration:none;padding:10px 18px;border:1px solid var(--border);border-radius:3px;">목 차</a><a href="chapter11_5층.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">다음 화 · 5층 &#9658;</a></nav>
+</body>
+</html>

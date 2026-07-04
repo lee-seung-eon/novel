@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 09 — 한 달</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --text: #d4d0c8;
+    --text-dim: #7a7770;
+    --accent: #c4946a;
+    --accent-dim: #8a6848;
+    --border: #2a2a28;
+    --highlight: #e8dcc8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+  }
+  .header-area {
+    position: relative;
+    padding: 48px 20px 36px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-area::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .series-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .chapter-num {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .chapter-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--highlight);
+    line-height: 1.3;
+  }
+  .content-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  .novel-text {
+    font-size: 15px;
+    line-height: 1.85;
+    font-weight: 400;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .novel-text p { margin-bottom: 14px; }
+  .scene-break {
+    text-align: center;
+    padding: 24px 0;
+    color: var(--accent-dim);
+    font-size: 13px;
+    letter-spacing: 10px;
+  }
+  .dialogue { color: var(--highlight); }
+  .thought { color: var(--text-dim); font-style: italic; }
+  .emphasis { color: var(--accent); font-weight: 500; }
+  .chapter-end {
+    text-align: center;
+    padding: 40px 0 24px;
+  }
+  .chapter-end-line {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent-dim);
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+  .chapter-end-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+  }
+  @media (min-width: 600px) {
+    .header-area { padding: 64px 28px 48px; }
+    .chapter-title { font-size: 36px; }
+    .content-wrapper { padding: 48px 28px 80px; }
+    .novel-text { font-size: 16.5px; line-height: 1.95; }
+    .novel-text p { margin-bottom: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="header-area">
+  <div class="series-label">사후처리 전담반</div>
+  <div class="chapter-num">CHAPTER 09</div>
+  <div class="chapter-title">한 달</div>
+</div>
+<div class="content-wrapper"><div class="novel-text">
+<p>최민서의 훈련이 시작된 것은 박기영과 도하진의 첫 훈련이 있고 나서 사흘 뒤였다.</p>
+<p>그 사흘 동안 서은우는 담배를 많이 피웠다. 평소보다 확실히. 반 갑이 아니라 한 갑 가까이를 태운 날도 있었다. 흡연 구역의 재떨이에 필터가 쌓여가는 동안 서은우의 머릿속에서는 E급 감각 강화형을 어떻게 키울 것인가에 대한 연산이 돌고 있었다.</p>
+<p>E급은 헌터라고 부르기도 애매한 등급이었다. 전투력은 일반인과 차이가 거의 없었고, 대부분의 E급 각성자들은 각성 자체를 숨기거나, 비전투 분야에서 소소하게 능력을 쓰는 정도였다. 감각 강화형이면 더욱 그랬다. 때릴 수도 없고, 맞아줄 수도 없고, 그냥 잘 보이고 잘 들리는 것뿐인 능력을 어디에 써먹겠는가.</p>
+<p>하지만 서은우는 2국 시절에 감각형 각성자를 써본 적이 있었다. 정찰, 사전 탐색, 전장 모니터링. 감각형은 전투력이 아니라 정보력이었다. 문제는 E급이라는 출력의 한계였는데 — 서은우가 담배 반 갑을 태우며 도달한 결론은 단순했다. 출력을 올릴 수 없으면, 정밀도를 올리면 된다.</p>
+<p>수요일 오전, 현장 출동이 없는 날이었다. 서은우는 최민서에게 말했다.</p>
+<p><span class="dialogue">"민서 씨, 잠깐."</span></p>
+<p><span class="dialogue">"네?"</span></p>
+<p><span class="dialogue">"현장 기록용 카메라 가져와. 그리고 이거."</span></p>
+<p>서은우가 책상 위에 서류 다섯 장을 펼쳤다. 지난달 현장 보고서들이었다. 각 현장의 사진이 첨부되어 있었다.</p>
+<p><span class="dialogue">"이 사진 다섯 장 봐. 현장에서 뭐가 잘못됐는지 찾아봐."</span></p>
+<p>최민서가 사진을 들여다보았다. E급 감각 강화형의 시각으로. 5초가 지나지 않아 입을 열었다.</p>
+<p><span class="dialogue">"두 번째 사진, 오우거 사체 왼쪽 아래에 잔류 마석 파편 같은 게 보여요. 각도 때문에 안 보이는데 그림자가 약간 파란 빛이에요. 그리고 네 번째 사진, 배경 건물 3층 창문에 균열이 있어요. 현장 피해 기록에는 안 올라간 것 같은데."</span></p>
+<p>서은우가 고개를 끄덕였다. 두 가지 다 맞았다. 그리고 두 가지 다, 보통 사람의 눈으로는 놓칠 수밖에 없는 것이었다.</p>
+<p><span class="dialogue">"앞으로 현장 나가면, 민서 씨도 같이 가."</span></p>
+<p>최민서가 눈을 크게 떴다.</p>
+<p><span class="dialogue">"제가요? 현장에서 뭘 해요?"</span></p>
+<p><span class="dialogue">"봐."</span></p>
+<p><span class="dialogue">"...봐요?"</span></p>
+<p><span class="dialogue">"우리가 못 보는 걸 봐. 잔류 마석 위치, 사체 상태 이상 여부, 주변 피해 범위. 감각형이 현장에서 할 수 있는 건 그거야. 싸우는 게 아니라 보는 거."</span></p>
+<p>최민서가 입을 다물었다. 2년 반 동안 이 사무실에서 서류만 만졌다. E급이라서 현장에 나가봤자 짐만 된다고 생각했고, 서은우도 그렇게 생각하는 줄 알았다. 하지만 서은우는 — 다르게 보고 있었다.</p>
+<p><span class="dialogue">"근데 E급이라 감각 범위가 좁아요. 시각은 괜찮은데 청각은 집중해야만 잡히고, 범위가 한 20미터 정도—"</span></p>
+<p><span class="dialogue">"그래서 훈련하는 거야."</span></p>
+<p>서은우가 서류를 정리하며 말했다.</p>
+<p><span class="dialogue">"범위는 올리기 어려워. E급의 출력 한계가 있으니까. 하지만 정밀도는 올릴 수 있어. 20미터 안에서 못 보는 게 없게 만들면 돼."</span></p>
+<p>최민서는 대답하지 못했다. 이 사람이 자기 능력에 대해 자기보다 더 구체적으로 생각하고 있다는 사실이 — 좀 벅찼기 때문이었다.</p>
+<p>그날부터 최민서의 훈련이 시작됐다. 훈련실을 쓰는 것이 아니었다. 사무실에서, 현장에서, 짬짬이. 서은우가 불쑥 사진 한 장을 건네며 "뭐가 보여"라고 물었고, 최민서는 감각을 집중해 찾아야 했다. 처음에는 시간이 걸렸다. 하지만 서은우는 재촉하지 않았다. 느려도 틀려도 아무 말 없이, 다음에 또 물었다. 반복이었다.</p>
+<p>생각보다 섬세한 사람이라는 것을 최민서는 깨달았다. 서은우가 물어보는 것들은 무작위가 아니었다. 난이도가 조금씩 올라가고 있었다. 서은우는 최민서의 감각이 어디까지 닿는지를 정확히 알고 있었고, 그 경계를 조금씩 밀고 있었다.</p>
+<div class="scene-break">• • •</div>
+<p>한 달이 지났다.</p>
+<p>5월이 끝나가고 있었다. 도하진이 7과에 온 지 두 달 반, 훈련이 시작된 지 한 달이었다. 주 2회 오후 3시의 지하 3층 훈련은 어느새 7과의 루틴이 되었다. 박기영은 매 훈련 뒤에 복도에서 벽에 기대 헐떡이는 것이 습관이 되었고, 도하진은 훈련 다음 날이면 왼쪽 어깨를 돌리는 버릇이 생겼다. 최민서는 사무실에서 서류를 볼 때 무의식적으로 주변의 소리를 세기 시작했다.</p>
+<p>변화는 미세했지만 확실했다. 박기영의 버피 횟수가 50에서 65로 늘었다. 스파링에서 서은우에게 쓸려나가는 시간이 3초에서 7초로 늘었다. 도하진의 순간 폭발력 회복 시간이 짧아졌고, 직선적이던 움직임에 각도가 생기기 시작했다. 최민서는 현장에서 잔류 마석 위치를 90퍼센트 이상의 정확도로 찾아냈고, 사체 상태 이상 감별에서 서은우가 틀렸는데 최민서가 맞은 적이 한 번 있었다. 서은우는 그때 아무 말도 하지 않았지만, 최민서에게 건네는 사진의 난이도가 한 단계 올라갔다.</p>
+<p>금요일이었다. 5월의 마지막 금요일. 오후 현장 출동에서 돌아온 뒤, 사무실은 느슨한 공기로 채워져 있었다.</p>
+<p>서은우는 자리에 앉아 보고서를 넘기다가, 시계를 봤다. 4시 30분. 퇴근 30분 전.</p>
+<p>보고서를 닫았다.</p>
+<p><span class="dialogue">"훈련 시작하고 한 달 지났다."</span></p>
+<p>세 사람의 시선이 모였다.</p>
+<p><span class="dialogue">"한 명씩 말해. 어떤지."</span></p>
+<p>최민서가 먼저 입을 열었다.</p>
+<p><span class="dialogue">"저는요."</span> 최민서가 모니터를 보다가 돌아앉으며 말했다. <span class="dialogue">"솔직히 처음에는 뭘 시키시는 건지 잘 몰랐어요. 사진 보고 뭐가 보이냐는 게, 그게 훈련인가 싶었거든요."</span></p>
+<p>서은우가 듣고 있었다. 반응은 없었지만 듣고 있다는 건 느껴졌다. 의자를 젖히지 않고 앉아 있으면, 이 사람은 듣는 중이었다.</p>
+<p><span class="dialogue">"근데 지금은 좀 달라요. 현장 나가면 제가 볼 수 있는 것들이 있다는 거 알겠어요. 지난주에 마포 현장에서 잔류 마석 세 개 찾았을 때, 팀장님이 두 개만 잡으셨잖아요. 제가 하나 더 찾았을 때..."</span> 최민서가 잠깐 멈추었다. <span class="dialogue">"그때 뭔가 좀, 의미 있다는 느낌이 들었어요. 2년 반 만에 처음으로."</span></p>
+<p>서은우는 고개를 끄덕이지 않았다. 하지만 시선이 최민서에게 0.5초 머물렀다. 그것이 이 남자의 반응이었다.</p>
+<p>박기영이 다음이었다.</p>
+<p><span class="dialogue">"나는 솔직히 죽을 줄 알았어요."</span></p>
+<p>최민서가 피식 웃었다. 도하진도 작게 웃었다. 박기영이 진지한 얼굴로 이어갔다.</p>
+<p><span class="dialogue">"아니, 진짜로. 첫날 버피 끝나고 팀장한테 덤비라고 했을 때, 이게 뭔 소리인가 싶었거든요. 그리고 주먹 한 대 못 맞추고 굴러다니면서 — 아, D급이 이런 건가, 나는 진짜 이 정도인가, 그 생각이 들었어요."</span></p>
+<p>박기영의 목소리가 조금 낮아졌다.</p>
+<p><span class="dialogue">"근데 한 달 하고 나니까, 조금은 달라요. 첫날에 버피 50개 하고 죽었는데 이제 65개 해요. 스파링 때 팀장 주먹 피하는 시간이 늘었어요. 수치로 보면 별거 아닌데..."</span></p>
+<p>박기영이 자기 손을 봤다. 40대 중반의 D급 헌터의 손.</p>
+<p><span class="dialogue">"근데 '쓰는 법의 문제'라고 하셨잖아요. 선천적 한계가 아니라. 그 말이 — 아직도 남아 있어요."</span></p>
+<p>서은우가 박기영을 봤다. 시선이 1초 머물렀다. 최민서보다 0.5초 길었다.</p>
+<p>도하진이 마지막이었다.</p>
+<p>도하진은 서은우를 보고 있었다. 의자에 편하게 기대앉은 자세로, 구리빛 팔이 팔걸이 위에 올려져 있었다. 붉은 머리카락이 형광등 아래에서 어둡게 빛났다.</p>
+<p><span class="dialogue">"재밌어요."</span></p>
+<p>한마디였다. 서은우가 눈을 미세하게 좁혔다.</p>
+<p><span class="dialogue">"훈련이?"</span></p>
+<p><span class="dialogue">"네. 훈련도 그렇고, 전부 다요."</span></p>
+<p><span class="dialogue">"팀장님이 첫날에 제 펀치 받았을 때, 그 감촉이 아직 있어요. 손바닥에."</span></p>
+<p>도하진이 오른 주먹을 폈다 쥐었다.</p>
+<p><span class="dialogue">"A급이 어떤 건지 몸으로 알았어요. 수치가 아니라 체감으로. 그리고 매주 스파링할 때마다 느껴요. 내가 늘고 있다는 거. 아직 한 대도 못 맞추지만, 첫 주보다 가까워지고 있다는 거요."</span></p>
+<p><span class="dialogue">"그리고."</span> 도하진이 잠깐 멈추었다. <span class="dialogue">"팀장님이 이걸 시작한 게, 저는 좋아요."</span></p>
+<p>서은우가 도하진을 봤다. 2초. 이 사람에게 2초는 긴 시간이었다. 도하진의 눈에는 아까 최민서가 말한 '의미 있다는 느낌'보다 더 무거운 것이 있었다. 그냥 — 이 사람이 움직이기 시작한 것 자체가 좋다는 것. 서은우가 가장 듣기 곤란한 종류의 말이었다.</p>
+<p>서은우는 시선을 돌렸다.</p>
+<p><span class="dialogue">"됐어."</span></p>
+<p>언제나와 같은 마침표. 서은우는 자리에서 일어나지 않았다. 대신 의자를 뒤로 젖히고 천장을 봤다. 형광등이 안정적으로 빛나고 있었다. 전기포트에서 물이 끓어가는 소리가 작게 났다.</p>
+<p><span class="dialogue">"다음 달부터 훈련 주 3회로 올린다."</span></p>
+<p>세 사람이 동시에 서은우를 봤다.</p>
+<p><span class="dialogue">"월, 수, 금. 시간은 같아. 오후 3시에서 5시. 민서 씨는 현장 나가는 날마다 감각 훈련 이어가고."</span></p>
+<p>박기영이 입을 벌렸다. <span class="dialogue">"주 3회요? 그러면 월수금 오후가 전부 훈련인데?"</span></p>
+<p><span class="dialogue">"어차피 현장 없는 오후에 뭐 해. 자거나 폰 게임하거나."</span></p>
+<p>박기영이 반박하려다 입을 닫았다. 최민서가 입을 가리고 웃었다. 도하진은 소리 내어 웃었다. 짧은 웃음이었지만 사무실에 울렸다.</p>
+<p>서은우는 웃지 않았다. 하지만 — 의자를 젖힌 채 눈을 감는 대신, 잠깐 창문 없는 벽을 봤다. 벽 너머에는 콘크리트, 그 너머에는 흙, 그 너머에는 서울의 땅과 하늘이 있을 것이었다. 보이지 않았지만, 있다는 것은 알고 있었다.</p>
+<p><span class="dialogue">"퇴근해."</span></p>
+<p>5시였다. 네 사람이 짐을 챙겼다. 도하진이 전기포트 전원을 끄고, 최민서가 모니터를 끄고, 박기영이 점퍼를 걸쳤다. 서은우는 가방 없이 먼저 나갔다.</p>
+<p>최민서가 사무실 불을 끄며 작은 소리로 말했다.</p>
+<p><span class="dialogue">"팀장님 요즘 좀 달라지셨죠?"</span></p>
+<p>박기영이 고개를 끄덕였다. <span class="dialogue">"좀이 아니라 많이."</span></p>
+<p>도하진은 대답하지 않았다. 대신 복도로 나서며 사무실 문 옆 안내판을 봤다. <span class="emphasis">'제1국 제7과 — 사후처리 전담반'</span>. 낙서는 여전히 없었다.</p>
+<p>엘리베이터 앞에서 세 사람이 나란히 섰다. 문이 열렸을 때 엘리베이터 안은 비어 있었다. 담배 냄새가 희미하게 남아 있었다. 세 사람은 그 냄새와 함께 올라갔다.</p>
+<p>1층 로비에서 각자 흩어졌다. 서은우는 — 보이지 않았다. 이미 나간 뒤였다.</p>
+<p>도하진은 지하철역으로 걸으며 이어폰을 끼지 않았다. 요즘 이어폰을 끼는 날이 줄었다. 음악 대신 주변 소리를 듣는 것이 습관이 되어가고 있었다. 서은우와 같은 공간에 있다 보면 생기는 버릇이었다.</p>
+<p>역 계단을 내려가며 도하진은 생각했다.</p>
+<p><span class="thought">세 달이 됐다.</span></p>
+<p>7과에 온 지 두 달 반. 역대 신입 최장 기록인 석 달까지 2주 남았다. 하지만 그 기록은 도하진에게 아무 의미가 없었다. 이 사무실에 있고 싶은 이유가 사라지지 않는 한, 나갈 이유가 없었다.</p>
+<p>지하철 개찰구를 통과했다. 열차가 들어오고 있었다. 5월의 저녁은 아직 밝았다. 지상 구간을 지나는 동안 창밖으로 노을이 보였다. 마력 잔류 때문에 탁한 하늘이지만, 해가 질 때만큼은 그 탁함이 색을 만들었다. 보라색과 주황색이 섞인, 이 세계에만 있는 하늘.</p>
+<p>도하진은 오른 주먹을 폈다 쥐었다. 한 달 전 서은우의 손바닥에 막혔던 감촉. 다음에는 — 닿을 수 있을까. 아직은 모르겠다. 하지만 가까워지고 있다는 건 확실했다.</p>
+<p>열차가 터널로 들어갔다. 유리에 자기 얼굴이 비쳤다. 도하진은 그 얼굴을 보며 웃었다. 피곤했지만 기분이 좋았다.</p>
+<p>그리고 한 가지 더, 생각했다.</p>
+<p><span class="thought">팀장님도 기분이 좋으셨으면 좋겠는데.</span></p>
+<p>그것은 도하진만의 바람이었고, 서은우에게 말할 수는 없는 종류의 것이었다. 하지만 도하진은 알고 있었다. 오늘 서은우가 세 사람의 이야기를 들은 뒤 의자를 젖히는 대신 벽을 봤다는 것을. 그것이 이 사람에게는 — 창밖을 보는 것과 같은 의미였다는 것을.</p>
+<p>창문이 없는 지하 2층에서, 벽 너머를 보려 한 것.</p>
+</div>
+  <div class="chapter-end">
+    <span class="chapter-end-line"></span>
+    <span class="chapter-end-text">CHAPTER 09 END</span>
+    <span class="chapter-end-line"></span>
+  </div>
+</div>
+<nav data-nav="1" style="max-width:720px;margin:0 auto;padding:8px 24px 72px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.02em;"><a href="chapter08_지하3층.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">&#9668; 이전 화 · 지하 3층</a><a href="index.html" style="color:var(--text-dim);text-decoration:none;padding:10px 18px;border:1px solid var(--border);border-radius:3px;">목 차</a><a href="chapter10_통화가능할때.html" style="color:var(--accent);text-decoration:none;padding:10px 4px;">다음 화 · 통화 가능할 때 &#9658;</a></nav>
+</body>
+</html>
