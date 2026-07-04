@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사후처리 전담반 · 세계관 설정집</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0f0f; --surface:#1a1a1a; --surface-2:#151515;
+    --text:#d4d0c8; --text-dim:#7a7770; --faint:#4b4842;
+    --accent:#c4946a; --accent-dim:#8a6848; --highlight:#e8dcc8;
+    --border:#2a2a28; --border-2:#343330; --danger:#b6564b;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:var(--bg); color:var(--text); font-family:'Noto Serif KR', serif;
+    min-height:100vh; overflow-x:hidden; line-height:1.85;}
+  body::before{content:''; position:fixed; inset:0; opacity:.03; pointer-events:none; z-index:100;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{max-width:720px; margin:0 auto; padding:40px 24px 96px;}
+
+  .back{display:inline-block; font-family:'Noto Sans KR',sans-serif; font-size:12px;
+    letter-spacing:.08em; color:var(--text-dim); text-decoration:none; margin-bottom:36px;}
+  .back:hover{color:var(--accent);}
+
+  /* 기밀 파일 패널 */
+  .file{border:1px solid var(--border); background:var(--surface); padding:18px 20px;
+    font-family:'Noto Sans KR',sans-serif; font-size:12px; color:var(--text-dim);
+    line-height:1.9; letter-spacing:.02em; position:relative; overflow:hidden;}
+  .file .stamp{position:absolute; top:14px; right:16px; transform:rotate(-9deg);
+    border:2px solid var(--danger); color:var(--danger); border-radius:4px;
+    font-size:10px; letter-spacing:.18em; padding:4px 9px; opacity:.8; font-family:'Noto Sans KR',sans-serif;}
+  .file .k{color:var(--faint);}
+
+  header.title{text-align:center; padding:54px 0 40px; border-bottom:1px solid var(--border);
+    margin-bottom:38px;}
+  .series{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.5em;
+    text-indent:.5em; color:var(--accent); margin-bottom:20px;}
+  h1{font-weight:700; color:var(--highlight); font-size:clamp(2.1rem,7vw,3rem);
+    letter-spacing:.04em; line-height:1.2;}
+  h1 .sub{display:block; margin-top:12px; font-size:clamp(.95rem,3vw,1.15rem);
+    letter-spacing:.22em; color:var(--accent-dim); font-weight:400;}
+  .lede{margin-top:22px; color:var(--text-dim); font-size:15px; line-height:1.9;}
+
+  section{margin:0 0 46px;}
+  .sec-label{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+  h2{font-weight:700; color:var(--highlight); font-size:clamp(1.35rem,4.5vw,1.7rem);
+    margin:0 0 18px; letter-spacing:.02em; padding-bottom:10px; border-bottom:1px solid var(--border);}
+  h3{font-family:'Noto Sans KR',sans-serif; font-weight:700; color:var(--accent); font-size:14px;
+    letter-spacing:.04em; margin:26px 0 10px;}
+  p{margin:0 0 12px;}
+  ul.dots{list-style:none; margin:0 0 12px;}
+  ul.dots li{position:relative; padding-left:18px; margin-bottom:8px;}
+  ul.dots li::before{content:"·"; position:absolute; left:4px; top:-1px; color:var(--accent); font-weight:700; font-size:16px;}
+  b{color:var(--highlight); font-weight:600;}
+  em{color:var(--accent); font-style:normal;}
+
+  table{width:100%; border-collapse:collapse; margin:8px 0 16px; font-size:14px;}
+  th,td{text-align:left; padding:11px 13px; border:1px solid var(--border); vertical-align:top;}
+  th{background:rgba(196,148,106,.07); color:var(--accent);
+    font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; font-weight:700;}
+  td:first-child{white-space:nowrap; color:var(--highlight); font-weight:600;}
+
+  /* 두 진영 대비 박스 */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:8px 0 16px;}
+  .split .box{border:1px solid var(--border); background:var(--surface-2); padding:16px 16px 18px;}
+  .split .box .t{font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.1em;
+    color:var(--accent); margin-bottom:8px; font-weight:700;}
+  .split .box p{font-size:13.5px; color:var(--text-dim); margin:0; line-height:1.8;}
+
+  .callout{border:1px solid var(--border-2); border-left:3px solid var(--accent);
+    background:var(--surface-2); padding:14px 16px; margin:14px 0; border-radius:2px;}
+  .callout .tag{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.14em;
+    color:var(--accent); text-transform:uppercase; margin-bottom:7px; font-weight:700;}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* 인물 카드 */
+  .chars{display:grid; gap:16px; margin:8px 0 0;}
+  .char{border:1px solid var(--border); background:var(--surface); padding:20px 20px 18px;
+    position:relative; overflow:hidden;}
+  .char::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); opacity:.7;}
+  .char.rival::after{background:var(--danger);}
+  .char.rookie::after{background:#c98a5e;}
+  .ch-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px;}
+  .ch-name{font-weight:700; color:var(--highlight); font-size:22px; letter-spacing:.02em;}
+  .ch-role{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.12em;
+    color:var(--accent); text-transform:uppercase; font-weight:700;}
+  .ch-meta{font-family:'Noto Sans KR',sans-serif; font-size:12.5px; color:var(--text-dim);
+    letter-spacing:.02em; margin-bottom:12px;}
+  .ch-field{margin-top:10px;}
+  .ch-field .fl{font-family:'Noto Sans KR',sans-serif; font-size:11px; letter-spacing:.1em;
+    color:var(--faint); text-transform:uppercase; margin-bottom:3px;}
+  .ch-field p{font-size:14px; margin:0; line-height:1.8;}
+
+  .foot{margin-top:54px; text-align:center; font-family:'Noto Sans KR',sans-serif;
+    font-size:11px; letter-spacing:.12em; color:var(--faint); line-height:2;}
+  .botnav{display:flex; justify-content:center; gap:22px; margin-top:26px;
+    font-family:'Noto Sans KR',sans-serif; font-size:12px; letter-spacing:.05em;}
+  .botnav a{color:var(--accent-dim); text-decoration:none;}
+  .botnav a:hover{color:var(--accent);}
+
+  @media (max-width:560px){ .split{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back" href="index.html">&#9668; 사후처리 전담반 목차</a>
+
+  <div class="file">
+    <span class="stamp">기밀</span>
+    <div><span class="k">문서</span> &nbsp; 세계관 자료철 · CODEX</div>
+    <div><span class="k">작품</span> &nbsp; 사후처리 전담반</div>
+    <div><span class="k">발급</span> &nbsp; 각성자 통제 본부 (KACB)</div>
+    <div><span class="k">분류</span> &nbsp; 현대 판타지 · 헌터 · 직장 드라마</div>
+  </div>
+
+  <header class="title">
+    <div class="series">사후처리 전담반</div>
+    <h1>세계관 설정집<span class="sub">World Codex</span></h1>
+    <p class="lede">게이트가 열린 지 20년. 마석이 세상을 바꿨고,<br>랭크가 사람의 값을 매기는 시대의 뒷골목 이야기.</p>
+  </header>
+
+  <section>
+    <div class="sec-label">01 · Setting</div>
+    <h2>시대 &amp; 세계관 배경</h2>
+    <ul class="dots">
+      <li><b>현재 시점</b> — ‘대공명(게이트 발생)’ 이후 <b>20년</b>이 지난 근미래 대한민국</li>
+      <li><b>마석 자본주의</b> — 던전에서 채굴되는 ‘<em>마석</em>’이 기존 에너지를 대체하며 눈부신 발전을 이룸. <b>랭크와 마석이 곧 권력</b>인 세상</li>
+      <li><b>양극화</b> — 사회가 두 세계로 쪼개짐</li>
+    </ul>
+    <div class="split">
+      <div class="box">
+        <div class="t">세이프 존 (Safe Zone)</div>
+        <p>거대 길드와 부유층이 사는 <b style="color:var(--highlight)">완벽한 방어 구역</b>. 몬스터도 범죄도 닿지 않는 곳.</p>
+      </div>
+      <div class="box">
+        <div class="t">아웃랜드 (Outland)</div>
+        <p>치안이 붕괴되고 <b style="color:var(--highlight)">몬스터 위협에 노출된</b> 빈민가. 버려진 자들의 구역.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · Hunter Rank</div>
+    <h2>헌터 등급 &amp; 밸런스</h2>
+    <ul class="dots">
+      <li><b>등급 체계 : F급 ~ S급</b></li>
+      <li><b>F ~ D급</b> — 일상 / 하급 노무 수준</li>
+      <li><b>C급</b>부터 ‘프로’ 헌터로 인정</li>
+      <li><b>A급</b> — 걸어 다니는 <em>중소기업</em> 수준의 전력</li>
+    </ul>
+    <div class="callout">
+      <div class="tag">S급 · 대한민국의 정점</div>
+      <p>국가 최고 전력인 <b>S급 헌터는 대한민국 전체에 단 6명</b>뿐.</p>
+    </div>
+    <table>
+      <tr><th>S급 6인</th><th>소속 / 위치</th></tr>
+      <tr><td>3명</td><td>3대 길드의 <b>길드장</b></td></tr>
+      <tr><td>1명</td><td>자유 <b>용병</b></td></tr>
+      <tr><td>1명</td><td>관리국 <b>2국 국장</b></td></tr>
+      <tr><td>1명</td><td>관리국 <b>본부장</b></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · Powers</div>
+    <h2>핵심 세력 구도 — 거대 길드 vs 정부</h2>
+
+    <h3>3대 거대 길드 · 권력과 자본</h3>
+    <p style="color:var(--text-dim);font-size:14px;">정·재계를 장악하고 알짜배기 게이트를 독점하는 초거대 기업들.</p>
+    <table>
+      <tr><th>길드</th><th>성향</th></tr>
+      <tr><td>천일 (天一)</td><td>압도적 <b>자본력</b>, 상업적 성향</td></tr>
+      <tr><td>이지스 (Aegis)</td><td><b>전투 특화</b>, 군사 기업(PMC) 성향</td></tr>
+      <tr><td>미라지 (Mirage)</td><td><b>마법 / 서포터</b> 중심, 던전 부산물 독점</td></tr>
+    </table>
+
+    <h3>각성자 통제 본부 · 통칭 ‘관리국’</h3>
+    <p style="color:var(--text-dim);font-size:14px;">
+      <b>KACB</b> — Korean Awakened Control Bureau. 길드를 견제하고 치안을 유지하는 권력 기관. 총 6개 국으로 나뉜다.</p>
+    <table>
+      <tr><th>국</th><th>관할</th></tr>
+      <tr><td>제1국</td><td>대민 보호 및 통제</td></tr>
+      <tr><td>제2국</td><td>특수 타격대</td></tr>
+      <tr><td>제3국</td><td>감찰 수사</td></tr>
+      <tr><td>제4국</td><td>이상 현상 및 게이트 연구국</td></tr>
+      <tr><td>제5국</td><td>대외 협력 및 정보국</td></tr>
+      <tr><td>제6국</td><td>병참국</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-label">04 · The 7th Division</div>
+    <h2>제1국 7과 — 사후처리 전담반</h2>
+    <p style="color:var(--accent-dim);font-family:'Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.1em;">통칭 · 짬통</p>
+    <ul class="dots">
+      <li><b>사무실 위치</b> — 볕도 안 드는 <b>지하 2층</b></li>
+      <li><b>주요 업무</b> — 레이드 종료 후 현장 진입 → 몬스터 사체 잔해(길드들이 돈 안 된다고 버리고 간 내장·찌꺼기) 수거 및 소각 / 무너진 민간 시설 피해 견적서 작성 및 민원인 응대</li>
+    </ul>
+    <div class="callout">
+      <div class="tag">부서의 위상</div>
+      <p>1국 내에서도 <em>“거긴 헌터가 아니라 환경미화원 아니냐?”</em>며 대놓고 무시당하는 <b>기피 부서 1순위</b>.</p>
+      <p style="margin-top:8px">예산 지원도 항상 꼴찌 — 현장 나갈 때 타는 승합차마저 <b>에어컨이 고장 난 채 덜덜거리는 구형</b>. 신입 헌터는 절대 안 오려 하고, 오더라도 다른 과로 전출 가려 발악한다.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">05 · Characters</div>
+    <h2>등장인물</h2>
+
+    <div class="chars">
+
+      <div class="char">
+        <div class="ch-head"><span class="ch-name">서은우</span><span class="ch-role">주인공</span></div>
+        <div class="ch-meta">A급 헌터 · 現 1국 7과 팀장 · 前 2국 팀장</div>
+        <div class="ch-field">
+          <div class="fl">2국 → 7과, 좌천의 진실</div>
+          <p>표면상 좌천이지만, 실상은 그를 눈엣가시로 여기던 <b>2국장(S급)</b>이 판 <em>함정</em>. 윗선의 미움이 그를 지하 2층까지 밀어냈다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">외형</div>
+          <p>키 180 안팎. 눈썹을 덮는 <b>검은 반곱슬</b> — 생머리가 아니라 부스스한 편. <span style="color:var(--text-dim)">(2국 팀장 시절엔 깔끔하게 넘기거나 짧게 잘랐다.)</span> 검은 눈동자, 하얀 피부. 뼈대는 넓어 <b>어깨는 넓고 골반은 좁고 허리는 얇은데</b> 살이 없는, 본투비 마른 몸. 2국 시절엔 잔근육이 꽤 있었지만 7과 온 뒤로 더 말랐다 — 그래도 보기 싫은 마름은 아니다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">인상 · 과거와 현재</div>
+          <p>예전엔 <b>날카롭게 생긴 잘생김</b>. 지금은 그 날카로움이 꽤 빠지고 — <em>무기건조한 직장인</em> 같은 얼굴이 됐다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">과거의 성격 (2국 팀장 시절)</div>
+          <p>자기 말이 다 맞다 + 남의 의견은 안 듣는다 + 못 따라오는 놈은 버린다. — 그 독선이 옛 부사수와의 <b>악연</b>을 만들었다.</p>
+        </div>
+      </div>
+
+      <div class="char rookie">
+        <div class="ch-head"><span class="ch-name">도하진</span><span class="ch-role">신입 · 7과 자진 배치</span></div>
+        <div class="ch-meta">20대 초반 · 팀 막내</div>
+        <div class="ch-field">
+          <div class="fl">성격</div>
+          <p><b>밝고 털털한데, 의외로 날카로운</b> 타입. 아무도 안 오려는 기피 부서에 <em>제 발로</em> 걸어 들어온 별종.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">외형</div>
+          <p><b>붉은 머리카락</b>에 <b>구릿빛 피부</b>.</p>
+        </div>
+      </div>
+
+      <div class="char rival">
+        <div class="ch-head"><span class="ch-name">강주혁</span><span class="ch-role">옛 부사수 · 現 2국 팀장</span></div>
+        <div class="ch-meta">33세 · 관리국 2국</div>
+        <div class="ch-field">
+          <div class="fl">관계 — 시작은 혐관</div>
+          <p>서은우의 옛 부사수. 처음엔 <b>서로 싫어하는 사이</b>. 서은우가 2국 팀장이던 시절의 독선(제 말만 맞다·남 의견 무시·낙오자는 버림)에 데인 앙금이 남아 있다.</p>
+        </div>
+        <div class="ch-field">
+          <div class="fl">외형</div>
+          <p>키 <b>188</b>, 떡대도 크다. 완전 우락부락한 근육질은 아니지만 — 하여튼 크다. 묵직하고 강한 인상.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <nav class="botnav">
+    <a href="index.html">&#9668; 목차</a>
+    <a href="../../index.html">서재로 &#9668;&#9668;</a>
+  </nav>
+
+  <div class="foot">각성자 통제 본부 · 세계관 자료철 — 사후처리 전담반<br>written with Claude</div>
+
+</div>
+</body>
+</html>
