@@ -2,13 +2,13 @@
 
 Claude로 쓰는 HTML 웹소설 모음입니다. 각 화는 브라우저에서 바로 열리는 정적 HTML이며, 빌드·설치 과정이 없습니다.
 
-## ▶ 읽기 시작 (최초 진입점)
+## ▶ 읽기 시작 (웹에서 바로 보기)
 
-**[index.html](index.html) — 서재 열기**
+### **👉 [여기를 눌러 서재 열기](https://lee-seung-eon.github.io/novel/)**
 
-위 파일을 브라우저로 열면 전체 작품 목록(서재)이 나옵니다. 작품 → 목차 → 각 화 순으로 이동합니다.
+GitHub Pages로 렌더링된 실제 웹페이지입니다. (저장소 안의 `.html` 링크를 GitHub에서 누르면 페이지가 아니라 **코드**가 보이므로, 읽을 때는 반드시 위 Pages 링크를 이용하세요.)
 
-> GitHub에서는 `.md`만 미리보기되고 `.html`은 소스로 표시됩니다. 실제로 읽으려면 저장소를 내려받아 `index.html`을 열거나, 아래 GitHub Pages를 켜세요.
+> **처음 한 번은 Pages를 켜야 합니다.** 저장소 **Settings → Pages → Build and deployment → Source: `Deploy from a branch` → Branch: `main` / `(root)` → Save**. 1~2분 뒤 위 링크가 열립니다.
 
 ### 로컬에서 보기
 ```bash
@@ -17,15 +17,11 @@ python -m http.server
 # 브라우저에서 http://localhost:8000 접속
 ```
 
-### GitHub Pages로 웹에 공개하기
-저장소 **Settings → Pages → Branch: main / (root)** 로 설정하면
-`https://<사용자명>.github.io/<저장소명>/` 에서 서재가 바로 열립니다.
-
 ## 📚 작품 목록
 
 | 작품 | 장르 | 상태 | 바로가기 |
 |------|------|------|----------|
-| **온실** | 생존 · 헌터 · 휴먼 드라마 | 연재 중 · 5화 | [목차](novels/온실/index.html) |
+| **온실** | 생존 · 헌터 · 휴먼 드라마 | 연재 중 · 5화 | [웹에서 읽기](https://lee-seung-eon.github.io/novel/novels/%EC%98%A8%EC%8B%A4/) |
 
 ## 🗂 구조
 
